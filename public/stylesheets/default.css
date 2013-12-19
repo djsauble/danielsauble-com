@@ -1,4 +1,9 @@
-/* line 1, ../sass/default.scss */
+/* line 3, ../sass/default.scss */
 body {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
+}
+
+/* line 7, ../sass/default.scss */
+.container {
+  margin-top: 60px;
 }

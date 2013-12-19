@@ -1,3 +1,9 @@
+$background: #EEEEEE;
+
 body {
-  background-color: #EEEEEE;
+  background-color: $background;
+}
+
+.container {
+  margin-top: 60px;
 }
