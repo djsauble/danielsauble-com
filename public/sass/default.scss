@@ -1,7 +1,24 @@
-$background: #EEEEEE;
+$background: #FFFFFF;
 
 body {
   background-color: $background;
+  font-size: 19px;
+  line-height: 1.5em;
+  font-family: "Calisto MT", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #B9B9B9;
+  font-family: "Calisto MT", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+h1 {
+  font-size: 76px;
+  line-height: 100px;
+}
+
+h2 {
+  line-height: 60px;
 }
 
 .container {
