@@ -49,39 +49,69 @@ h2 {
 /* line 51, ../sass/default.scss */
 .toc li .pointer:hover {
   border-right: 1px solid #EEEEEE;
-  background-color: #F8F8F8;
+  border-left: 15px solid #444444;
+}
+/* line 55, ../sass/default.scss */
+.toc li .pointer:hover.first {
+  background-color: #f9f2ff;
+}
+/* line 59, ../sass/default.scss */
+.toc li .pointer:hover.second {
+  background-color: #f8fff2;
+}
+/* line 63, ../sass/default.scss */
+.toc li .pointer:hover.third {
+  background-color: #fff5f2;
 }
 
-/* line 58, ../sass/default.scss */
+/* line 70, ../sass/default.scss */
 section {
   left: 0;
   right: 0;
   padding-top: 30px;
   padding-bottom: 30px;
 }
-/* line 64, ../sass/default.scss */
+/* line 76, ../sass/default.scss */
 section.first {
   background-color: #f9f2ff;
 }
-/* line 68, ../sass/default.scss */
+/* line 80, ../sass/default.scss */
 section.second {
   background-color: #f8fff2;
 }
-/* line 72, ../sass/default.scss */
+/* line 84, ../sass/default.scss */
 section.third {
   background-color: #fff5f2;
 }
 
-/* line 77, ../sass/default.scss */
+/* line 89, ../sass/default.scss */
 .title {
   margin-bottom: 20px;
 }
-/* line 80, ../sass/default.scss */
+/* line 92, ../sass/default.scss */
 .title h1 {
   margin-bottom: -10px;
 }
 
-/* line 85, ../sass/default.scss */
-.fa {
-  color: #888888;
+/* line 97, ../sass/default.scss */
+.back {
+  text-decoration: none;
+  position: absolute;
+  margin-top: 11px;
+  margin-left: -3em;
+  opacity: 0.2;
+}
+/* line 104, ../sass/default.scss */
+.back .fa {
+  font-size: 2em;
+}
+
+/* line 109, ../sass/default.scss */
+.back:hover {
+  opacity: 0.8;
+}
+
+/* line 113, ../sass/default.scss */
+.clear {
+  clear: both;
 }

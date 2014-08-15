@@ -50,7 +50,19 @@ h2 {
 
     .pointer:hover {
       border-right: 1px solid #EEEEEE;
-      background-color: #F8F8F8;
+      border-left: 15px solid #444444;
+
+      &.first {
+        background-color: $purple;
+      }
+
+      &.second {
+        background-color: $green;
+      }
+
+      &.third {
+        background-color: $red;
+      }
     }
   }
 }
@@ -82,6 +94,22 @@ section {
   }
 }
 
-.fa {
-  color: #888888;
+.back {
+  text-decoration: none;
+  position: absolute;
+  margin-top: 11px;
+  margin-left: -3em;
+  opacity: 0.2;
+
+  .fa {
+    font-size: 2em;
+  }
+}
+
+.back:hover {
+  opacity: 0.8;
+}
+
+.clear {
+  clear: both;
 }
