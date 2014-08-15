@@ -1,4 +1,7 @@
 $background: #FFFFFF;
+$purple: #F9F2FF;
+$green: #F8FFF2;
+$red: #FFF5F2;
 
 body {
   background-color: $background;
@@ -8,7 +11,6 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #B9B9B9;
   font-family: "Calisto MT", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
@@ -22,5 +24,64 @@ h2 {
 }
 
 .container {
-  margin-top: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.toc {
+  li {
+    .pointer {
+      text-decoration: none;
+      display: block;
+      padding: 1.5em;
+
+      &.first {
+        border-left: solid 15px $purple;
+      }
+
+      &.second {
+        border-left: solid 15px $green;
+      }
+
+      &.third {
+        border-left: solid 15px $red;
+      }
+    }
+
+    .pointer:hover {
+      border-right: 1px solid #EEEEEE;
+      background-color: #F8F8F8;
+    }
+  }
+}
+
+section {
+  left: 0;
+  right: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  &.first {
+    background-color: $purple;
+  }
+
+  &.second {
+    background-color: $green;
+  }
+
+  &.third {
+    background-color: $red;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+
+  h1 {
+    margin-bottom: -10px;
+  }
+}
+
+.fa {
+  color: #888888;
 }

@@ -1,4 +1,4 @@
-/* line 3, ../sass/default.scss */
+/* line 6, ../sass/default.scss */
 body {
   background-color: white;
   font-size: 19px;
@@ -6,24 +6,82 @@ body {
   font-family: "Calisto MT", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-/* line 10, ../sass/default.scss */
+/* line 13, ../sass/default.scss */
 h1, h2, h3, h4, h5, h6 {
-  color: #B9B9B9;
   font-family: "Calisto MT", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-/* line 15, ../sass/default.scss */
+/* line 17, ../sass/default.scss */
 h1 {
   font-size: 76px;
   line-height: 100px;
 }
 
-/* line 20, ../sass/default.scss */
+/* line 22, ../sass/default.scss */
 h2 {
   line-height: 60px;
 }
 
-/* line 24, ../sass/default.scss */
+/* line 26, ../sass/default.scss */
 .container {
-  margin-top: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* line 33, ../sass/default.scss */
+.toc li .pointer {
+  text-decoration: none;
+  display: block;
+  padding: 1.5em;
+}
+/* line 38, ../sass/default.scss */
+.toc li .pointer.first {
+  border-left: solid 15px #f9f2ff;
+}
+/* line 42, ../sass/default.scss */
+.toc li .pointer.second {
+  border-left: solid 15px #f8fff2;
+}
+/* line 46, ../sass/default.scss */
+.toc li .pointer.third {
+  border-left: solid 15px #fff5f2;
+}
+/* line 51, ../sass/default.scss */
+.toc li .pointer:hover {
+  border-right: 1px solid #EEEEEE;
+  background-color: #F8F8F8;
+}
+
+/* line 58, ../sass/default.scss */
+section {
+  left: 0;
+  right: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+/* line 64, ../sass/default.scss */
+section.first {
+  background-color: #f9f2ff;
+}
+/* line 68, ../sass/default.scss */
+section.second {
+  background-color: #f8fff2;
+}
+/* line 72, ../sass/default.scss */
+section.third {
+  background-color: #fff5f2;
+}
+
+/* line 77, ../sass/default.scss */
+.title {
+  margin-bottom: 20px;
+}
+/* line 80, ../sass/default.scss */
+.title h1 {
+  margin-bottom: -10px;
+}
+
+/* line 85, ../sass/default.scss */
+.fa {
+  color: #888888;
 }
