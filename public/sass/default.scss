@@ -110,6 +110,13 @@ section {
   opacity: 0.8;
 }
 
-.clear {
-  clear: both;
+.face {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #444444;
+    border-radius: 60px;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    float: right;
+    margin-right: 1em;
 }
