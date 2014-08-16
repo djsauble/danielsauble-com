@@ -33,7 +33,8 @@ h2 {
     .pointer {
       text-decoration: none;
       display: block;
-      padding: 1.5em;
+      padding: 1em;
+      line-height: 28px;
 
       &.first {
         border-left: solid 15px $purple;
