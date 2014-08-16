@@ -123,3 +123,14 @@ section.third {
   float: right;
   margin-left: 1em;
 }
+
+/* line 125, ../sass/default.scss */
+.frame {
+  position: absolute;
+  background-image: url("../images/top_left_border.png");
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 1085px;
+  width: 100%;
+  top: 0;
+}
