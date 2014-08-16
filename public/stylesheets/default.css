@@ -15,86 +15,78 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 76px;
   line-height: 100px;
+  margin-top: 1em;
 }
 
-/* line 22, ../sass/default.scss */
+/* line 23, ../sass/default.scss */
 h2 {
   line-height: 60px;
 }
 
-/* line 26, ../sass/default.scss */
+/* line 27, ../sass/default.scss */
 .container {
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-/* line 33, ../sass/default.scss */
+/* line 34, ../sass/default.scss */
 .toc li .pointer {
   text-decoration: none;
   display: block;
   padding: 1em;
   line-height: 28px;
 }
-/* line 39, ../sass/default.scss */
+/* line 40, ../sass/default.scss */
 .toc li .pointer.first {
   border-left: solid 15px #f9f2ff;
 }
-/* line 43, ../sass/default.scss */
+/* line 44, ../sass/default.scss */
 .toc li .pointer.second {
   border-left: solid 15px #f8fff2;
 }
-/* line 47, ../sass/default.scss */
+/* line 48, ../sass/default.scss */
 .toc li .pointer.third {
   border-left: solid 15px #fff5f2;
 }
-/* line 52, ../sass/default.scss */
+/* line 53, ../sass/default.scss */
 .toc li .pointer:hover {
   border-right: 1px solid #EEEEEE;
   border-left: 15px solid #444444;
 }
-/* line 56, ../sass/default.scss */
+/* line 57, ../sass/default.scss */
 .toc li .pointer:hover.first {
   background-color: #f9f2ff;
 }
-/* line 60, ../sass/default.scss */
+/* line 61, ../sass/default.scss */
 .toc li .pointer:hover.second {
   background-color: #f8fff2;
 }
-/* line 64, ../sass/default.scss */
+/* line 65, ../sass/default.scss */
 .toc li .pointer:hover.third {
   background-color: #fff5f2;
 }
 
-/* line 71, ../sass/default.scss */
+/* line 72, ../sass/default.scss */
 section {
   left: 0;
   right: 0;
   padding-top: 30px;
   padding-bottom: 30px;
 }
-/* line 77, ../sass/default.scss */
+/* line 78, ../sass/default.scss */
 section.first {
   background-color: #f9f2ff;
 }
-/* line 81, ../sass/default.scss */
+/* line 82, ../sass/default.scss */
 section.second {
   background-color: #f8fff2;
 }
-/* line 85, ../sass/default.scss */
+/* line 86, ../sass/default.scss */
 section.third {
   background-color: #fff5f2;
 }
 
-/* line 90, ../sass/default.scss */
-.title {
-  margin-bottom: 20px;
-}
-/* line 93, ../sass/default.scss */
-.title h1 {
-  margin-bottom: -10px;
-}
-
-/* line 98, ../sass/default.scss */
+/* line 91, ../sass/default.scss */
 .back {
   text-decoration: none;
   position: absolute;
@@ -102,17 +94,17 @@ section.third {
   margin-left: -3em;
   opacity: 0.2;
 }
-/* line 105, ../sass/default.scss */
+/* line 98, ../sass/default.scss */
 .back .fa {
   font-size: 2em;
 }
 
-/* line 110, ../sass/default.scss */
+/* line 103, ../sass/default.scss */
 .back:hover {
   opacity: 0.8;
 }
 
-/* line 114, ../sass/default.scss */
+/* line 107, ../sass/default.scss */
 .face {
   width: 120px;
   height: 120px;
@@ -124,7 +116,7 @@ section.third {
   margin-left: 1em;
 }
 
-/* line 125, ../sass/default.scss */
+/* line 118, ../sass/default.scss */
 .frame {
   position: absolute;
   background-image: url("../images/top_left_border.png");
