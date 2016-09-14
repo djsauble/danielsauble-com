@@ -1,0 +1,65 @@
+img.mug {
+  width: 120px;
+  border-radius: 50%;
+  margin-left: 0.5em;
+  margin-bottom: 0.5em;
+  float: right;
+  border: 1px solid #333333;
+}
+
+.clear {
+  clear: both;
+}
+
+.projects {
+  list-style: none;
+  padding-left: 0;
+}
+
+.projects li {
+  margin-bottom: 1em;
+  position: relative;
+}
+
+.projects li:last-child {
+  margin-bottom: 0;
+}
+
+.projects li div {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  background-color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+  z-index: 10;
+}
+
+.projects li div p {
+  margin-left: 1em;
+}
+
+.projects li div p span {
+  text-decoration: underline;
+}
+
+.projects li div p small {
+  color: #000000;
+}
+
+.projects li:hover div {
+  border-color: #f7f3ff;
+  background-color: #f7f3ff;
+}
+
+.projects li img {
+  z-index: 0;
+}
+
+.projects li:hover img {
+  opacity: 0.4;
+}
+
+.date {
+  float: right;
+}
