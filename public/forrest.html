@@ -35,11 +35,11 @@
 
       <img src='images/forrest/zenrun_setup.jpg' alt='ZenRun setup' class='half border'/>
 
-      <p>In addition, I thought it would be interesting to have the ability to automatically suggest routes based on the number of miles you want to run. I used GIS data from Portland Metro to intelligently map routes, then use turn-by-turn directions to guide through the route.</p>
+      <p>In addition, I thought it would be interesting to have the ability to automatically suggest routes based on the number of miles you want to run. I used GIS data from Portland Metro to intelligently map routes, then used turn-by-turn directions to guide through the route.</p>
 
       <img src='images/forrest/zenrun_guide.jpg' alt='ZenRun turn-by-turn' class='half'/>
 
-      <p>This was one of those ideas that sounded good in theory, but didn&rsquo;t work in actuality. It was annoying to be told where to run, and since there are usually only a handful of good routes in any given area, once I&rsquo;ve become familiar with an area, I don't need turn-by-turn directions anymore.</p>
+      <p>This was one of those ideas that sounded good in theory, but didn&rsquo;t work in actuality. It was annoying to be told where to run, and since there are usually only a handful of good routes in any given area, once you&rsquo;ve become familiar with an area, you don't need turn-by-turn directions anymore. I removed this feature.</p>
 
       <p>Next, I decided to spruce up the web dashboard and add a nice landing page to explain how the whole thing works. I converted the backend to Node.js and the frontend to Backbone.js, so I could share NPM modules between them.</p>
 
@@ -52,9 +52,9 @@
 
       <p>The app uses WebSockets, so if new runs are submitted from the app, they will show up automatically, no refresh necessary.</p>
 
-      <p>This app is still in <a href='https://api-generator2.herokuapp.com'>active development</a>. Currently, I&rsquo;m integrating more closely with the Apple fitness API to make the offline experience better. For example, if you decide to go to a remote cabin and train for a race, it should be possible to see all this dashboard information with no web access.</p>
+      <p>This app is still in <a href='http://github.com/djsauble/api-generator'>active development</a>. Currently, I&rsquo;m integrating more closely with the Apple fitness API to make the offline experience better. For example, if you decide to go to a remote cabin and train for a race, it should be possible to see all this dashboard information with no web access.</p>
       
-      <p>Currently, this is what I have. Red indicates total distance spent walking or running. Blue indicates running distance each week. Green indicates average page each week (lower is better).</p>
+      <p>Below is a screenshot of the current state of the iOS app. Red indicates total distance spent walking or running. Blue indicates running distance each week. Green indicates average page each week (lower is better).</p>
       
       <img src='images/forrest/ios_app.jpg' alt='iOS app v2' class='two-thirds border'/>
 

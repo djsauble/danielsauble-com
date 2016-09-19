@@ -1,4 +1,4 @@
 = Development
 
     $ bundle install
-    $ ruby app.rb
+    $ rackup
