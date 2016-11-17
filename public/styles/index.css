@@ -30,8 +30,8 @@ img.mug {
   position: absolute;
   width: 100%;
   margin: 0;
-  background-color: #f1f1f1;
-  border: 1px solid #f1f1f1;
+  background-color: #b2f19c;
+  border: 1px solid #b2f19c;
   z-index: 10;
 }
 
@@ -48,8 +48,8 @@ img.mug {
 }
 
 .projects li:hover div {
-  border-color: #f7f3ff;
-  background-color: #f7f3ff;
+  border-color: #d7f1d4;
+  background-color: #d7f1d4;
 }
 
 .projects li img {
