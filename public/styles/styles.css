@@ -15,7 +15,6 @@ body {
   background-repeat: no-repeat;
 
   /* Footer */
-  padding-bottom: 2em;
   border-bottom: 40px solid #333333;
 }
 
@@ -33,6 +32,13 @@ h2 {
 
 img {
   width: 100%;
+}
+
+aside {
+  background-color: #faffcb;
+  border-radius: 1em;
+  padding: 5px 10px;
+  font-size: 80%;
 }
 
 .border {
@@ -56,7 +62,12 @@ img {
   display: block;
   margin: 0 auto;
 }
+
 .container {
   padding: 1em;
   padding-top: 4em;
+}
+
+.fa-external-link {
+  font-size: 80%;
 }
