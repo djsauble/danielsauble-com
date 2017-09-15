@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tree Browsing</title>
+    <script src="https://use.fontawesome.com/68deeed567.js"></script>
+    <link href='styles/styles.css' type='text/css' rel='Stylesheet'/>
+    <link href='styles/project.css' type='text/css' rel='Stylesheet'/>
+  </head>
+  <body>
+    <div class='container'>
+      <h1>Tree Browsing</h1>
+
+      <a href='index.html'>Back to home page</a>
+
+      <p>Developers care a lot about software modularity. The more code you can write once and reuse in other projects, the better. Nexus Repository is a tool intended to help developers store and consume these reusable components.</p>
+
+      <p>Many popular languages and tools have public repositories that serve as the authoritative store for their components. Maven has <a href='http://search.maven.org/' target='_new'>Maven Central <i class="fa fa-external-link" aria-hidden="true"></i></a>, Docker has <a href='https://hub.docker.com/' target='_new'>Docker Hub <i class="fa fa-external-link" aria-hidden="true"></i></a>, Node.js has <a href='https://www.npmjs.com/' target='_new'>npmjs.com <i class="fa fa-external-link" aria-hidden="true"></i></a>.</p>
+
+      <p>A common feature of these public repositories is the ability to browse for components that you can use in your own projects. Since Nexus Repository not only stores the components you write, but also proxies these public repositories, it follows that you might want to browse the components in your Nexus Repository as well.</p>
+
+      <p>The trick is that mature formats like Maven have tens or hundreds of thousands of components to choose from, making it difficult to find what you need. To make this easier, formats have adapted naming conventions. For example, Maven components follow a naming convention known as GAV (Group, Artifact, Version). You can visualize this as a tree, with versions sitting under artifacts, and artifacts sitting under groups. It turns out that most formats, even if they&rsquo;re not as structured as Maven, benefit from similar conventions.</p>
+
+      <p>When Nexus Repository 3 was first released, we decided to make browsing a very flat experience. Unfortunately, this resulted in people not being able to find what they were looking for. The interface simply didn&rsquo;t map to their mental model of how formats work.</p>
+
+      <img src='images/browse/current_interface.png' alt='Current browse interface'/>
+
+      <p>To solve this, we decided to represent the hierarchy in each format as a tree. Since different formats have slightly different hierarchies, we handled the display of each format in the way that would make most sense to a native user of that format. The result looked something like the following.</p>
+
+      <img src='images/browse/tree_browsing.png' alt='New browse interface'/>
+
+      <p>As you can see, the tree on the left is a clear representation of the GAV naming convention, with group <code>classworlds</code> at the top, artifact <code>classworlds</code> below it, and the different versions of the artifact (<code>1.1-alpha-2</code> and <code>1.1</code>) below that. Maven components can contain multiple assets, and those are represented in the tree as well.</p>
+
+      <p>To come to this solution, we conducted two rounds of interviews with Nexus Repository users. Beyond the simple mechanics of the tree view as mentioned above, we learned a few additional things which we incorporated into the final feature.<p>
+
+      <p>First, we learned that once people navigate to a specific asset or component in the tree, they often want to share it with their coworkers. To facilitate this, we made it possible to bookmark individual nodes in the tree.</p>
+
+      <p>Second, we learned that many people use the tree to get the most recent version of a component. These people don&rsquo;t necessarily need the full set of functionality we built: a simpler, streamlined version would do just as well. To address this, we delivered an HTML index view which lets you browse any repository as a series of static HTML pages.</p>
+
+      <img src='images/browse/html_index.png' alt='HTML index view'/>
+
+      <p>Third, we learned that performance is the most critical part of any browse experience. Because repositories can have millions of assets and complex security rules determining who can view what, we needed a browse experience that was performant in these extreme cases. This turned out to be the hardest part of the entire feature. In the end, we made it capable of displaying a tree containing three million assets in three seconds on standard laptop hardware.</p>
+
+      <p>The biggest thing I learned from the design and development of this feature is that it&rsquo;s very, very hard to deliver a compelling experience that&rsquo;s not merely a toy. When you&rsquo;re a resource-strapped startup building tools for Fortune 500 companies, very often it&rsquo;s better to deliver a UI that feels simplistic but is usable and performant.</p>
+
+      <p>We have plans to iterate on this initial feature, but we&rsquo;re very proud of the result.</p>
+
+      <a href='index.html'>Back to home page</a>
+
+    </div>
+  </body>
+</html>
