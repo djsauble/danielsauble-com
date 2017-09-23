@@ -36,11 +36,11 @@
 
       <p>The trick is that mature formats like Maven have tens or hundreds of thousands of components to choose from, making it difficult to find what you need. To make this easier, formats have adapted naming conventions. For example, Maven components follow a naming convention known as GAV (Group, Artifact, Version). You can visualize this as a tree, with versions sitting under artifacts, and artifacts sitting under groups. It turns out that most formats, even if they&rsquo;re not as structured as Maven, benefit from similar conventions.</p>
 
-      <p>When Nexus Repository 3 was first released, we decided to make browsing a very flat experience. Unfortunately, this resulted in people not being able to find what they were looking for. The interface simply didn&rsquo;t map to their mental model of how formats work.</p>
+      <p>When Nexus Repository 3 was first released, we decided to make browsing a very flat experience. Unfortunately, this resulted in people not being able to find what they were looking for. The interface simply didn&rsquo;t map to their mental model of how formats work. The following is an example of this flat browse experience for a Maven repository.</p>
 
       <img src='images/browse/current_interface.png' alt='Current browse interface'/>
 
-      <p>To solve this, we decided to represent the hierarchy in each format as a tree. Since different formats have slightly different hierarchies, we handled the display of each format in the way that would make most sense to a native user of that format. The result looked something like the following.</p>
+      <p>To solve this, we decided to represent the hierarchy in each format as a tree. Since different formats have slightly different hierarchies, we handled the display of each format in the way that would make most sense to a native user of that format. The following is an example of this hierarchical browse experience for a Maven repository.</p>
 
       <img src='images/browse/tree_browsing.png' alt='New browse interface'/>
 
