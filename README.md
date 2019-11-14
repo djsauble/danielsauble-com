@@ -1,7 +1,7 @@
 = Development
 
     $ bundle install
-    $ rackup
+    $ bundle exec rackup
 
 = Deployment
 
