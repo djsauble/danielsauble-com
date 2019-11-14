@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tree Browsing</title>
+    <title>Daniel Sauble - Tree Browsing</title>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -24,9 +24,11 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <div class='container'>
+      <a href='index.html'>&larr; Back to home page</a>
+
       <h1>Tree Browsing</h1>
 
-      <a href='index.html'>Back to home page</a>
+      <h2>The Problem</h2>
 
       <p>Developers care a lot about software modularity. The more code you can write once and reuse in other projects, the better. Nexus Repository is a tool intended to help developers store and consume these reusable components.</p>
 
@@ -39,6 +41,8 @@
       <p>When Nexus Repository 3 was first released, we decided to make browsing a very flat experience. Unfortunately, this resulted in people not being able to find what they were looking for. The interface simply didn&rsquo;t map to their mental model of how formats work. The following is an example of this flat browse experience for a Maven repository.</p>
 
       <img src='images/browse/current_interface.png' alt='Current browse interface'/>
+
+      <h2>The Solution</h2>
 
       <p>To solve this, we decided to represent the hierarchy in each format as a tree. Since different formats have slightly different hierarchies, we handled the display of each format in the way that would make most sense to a native user of that format. The following is an example of this hierarchical browse experience for a Maven repository.</p>
 
@@ -60,7 +64,7 @@
 
       <p>We have plans to iterate on this initial feature, but we&rsquo;re very proud of the result.</p>
 
-      <a href='index.html'>Back to home page</a>
+      <a href='index.html'>&larr; Back to home page</a>
 
     </div>
   </body>
