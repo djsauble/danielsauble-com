@@ -26,13 +26,9 @@ img.mug {
 }
 
 .projects li div {
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-  margin: 0;
   background-color: #b2f19c;
   border: 1px solid #b2f19c;
-  z-index: 10;
+  width: 100%;
 }
 
 .projects li div p {
