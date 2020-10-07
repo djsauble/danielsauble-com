@@ -1,13 +1,17 @@
-= Development
+# Setup
+
+    $ npm install
+
+# Development
 
     $ gatsby develop
 
-= Production
+# Production
 
     $ gatsby build
     $ gatsby serve
 
-= Deployment
+# Deployment
 
     $ gatsby build
     $ npm run-script deploy
