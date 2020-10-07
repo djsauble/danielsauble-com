@@ -1,9 +1,13 @@
 = Development
 
-    $ bundle install
-    $ bundle exec rackup
+    $ gatsby develop
+
+= Production
+
+    $ gatsby build
+    $ gatsby serve
 
 = Deployment
 
-    $ cd public
-    $ aws s3 sync . s3://www.danielsauble.com --delete
+    $ gatsby build
+    $ npm run-script deploy
