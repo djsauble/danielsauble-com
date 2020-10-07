@@ -1,6 +1,6 @@
 import Layout from "../components/layout"
-import { Link } from "gatsby"
 import SEO from "../components/seo"
+import ProjectHero from "../components/project_hero"
 import "../styles/index.css"
 import DanielImg from "../images/daniel.jpeg"
 import PackageFilteringImg from "../images/package_filtering/admin.png"
@@ -10,82 +10,55 @@ import ForrestCruiseImg from "../images/runbudget/forrest_cruise.png"
 
 export default Layout
 
-<SEO title="Home"/>
+<SEO title="Home" />
 
 # Daniel Sauble
 
-<img
-  src={DanielImg}
-  alt="me"
-  class="mug"
-/>
+<img src={DanielImg} alt="me" class="mug" />
 
-I&rsquo;m a Product Designer with 10+ years of experience solving problems for developers, security teams, and IT operations in B2B product startups.
+I&rsquo;m a Product Designer with 10+ years of experience solving problems for
+developers, security teams, and IT operations in B2B product startups.
 
-I currently work at New Relic, and am also a teaching faculty for an advanced machine learning class (CSCI E-82) at the Harvard Extension School. See <a href="https://www.linkedin.com/in/djsauble/">LinkedIn <i class="fa fa-external-link" aria-hidden="true"></i></a> for my full resume.
+I currently work at New Relic, and am also a teaching faculty for an advanced
+machine learning class (CSCI E-82) at the Harvard Extension School. See
+
+<a href="https://www.linkedin.com/in/djsauble/">
+  LinkedIn
+  <i class="fa fa-external-link" aria-hidden="true"></i>
+</a> for my full resume.
 
 ## Portfolio
 
-<ul class="projects">
-  <li>
-    <Link to="/package_filtering">
-      <img src={PackageFilteringImg} alt="Package Filtering" class="border" />
-      <div>
-        <p>
-          <span>Package Filtering</span>
-          <br />
-          <small>Keep bad npm packages out of your applications</small>
-          <br />
-        </p>
-      </div>
-    </Link>
-  </li>
-  <li>
-    <Link to="/ppm">
-      <img src={PuppetPatchManagerImg} alt="Patch Manager" class="border" />
-      <div>
-        <p>
-          <span>Puppet Patch Manager</span>
-          <br />
-          <small>
-            Easily patch your IT systems with an existing configuration
-            management tool
-          </small>
-          <br />
-        </p>
-      </div>
-    </Link>
-  </li>
-  <li>
-    <Link to="/browse">
-      <img src={TreeBrowsingImg} alt="Tree Browsing" class="border" />
-      <div>
-        <p>
-          <span>Tree Browsing</span>
-          <br />
-          <small>
-            Peruse the contents of your software repositories in a structured
-            way
-          </small>
-          <br />
-        </p>
-      </div>
-    </Link>
-  </li>
-  <li>
-    <Link to="/runbudget">
-      <img src={ForrestCruiseImg} alt="Run Budget" class="border" />
-      <div>
-        <p>
-          <span>Run Budget</span>
-          <br />
-          <small>
-            Visualization tool to help long-distance runners build their mileage
-            safely
-          </small>
-          <br />
-        </p>
-      </div>
-    </Link>
-  </li>
-</ul>
+<ProjectHero
+  to="/package_filtering"
+  title="Package Filtering"
+  description="Keep bad npm packages out of your applications"
+>
+  <img src={PackageFilteringImg} alt="Package Filtering" class="border" />
+</ProjectHero>
+
+<ProjectHero
+  to="/ppm"
+  title="Puppet Patch Manager"
+  description="Easily patch your IT systems with an existing configuration
+        management tool"
+>
+  <img src={PuppetPatchManagerImg} alt="Patch Manager" class="border" />
+</ProjectHero>
+
+<ProjectHero
+  to="/browse"
+  title="Tree Browsing"
+  description="Peruse the contents of your software repositories in a structured way"
+>
+  <img src={TreeBrowsingImg} alt="Tree Browsing" class="border" />
+</ProjectHero>
+
+<ProjectHero
+  to="/runbudget"
+  title="Run Budget"
+  description="Visualization tool to help long-distance runners build their mileage
+        safely"
+>
+  <img src={ForrestCruiseImg} alt="Run Budget" class="border" />
+</ProjectHero>

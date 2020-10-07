@@ -11,51 +11,6 @@ img.mug {
   clear: both;
 }
 
-.projects {
-  list-style: none;
-  padding-left: 0;
-}
-
-.projects li {
-  margin-bottom: 2em;
-  position: relative;
-}
-
-.projects li:last-child {
-  margin-bottom: 0;
-}
-
-.projects li div {
-  background-color: #b2f19c;
-  border: 1px solid #b2f19c;
-  width: 100%;
-}
-
-.projects li div p {
-  margin-left: 1em;
-}
-
-.projects li div p span {
-  text-decoration: underline;
-}
-
-.projects li div p small {
-  color: #000000;
-}
-
-.projects li:hover div {
-  border-color: #d7f1d4;
-  background-color: #d7f1d4;
-}
-
-.projects li img {
-  z-index: 0;
-}
-
-.projects li:hover img {
-  opacity: 0.4;
-}
-
 .date {
   float: right;
 }

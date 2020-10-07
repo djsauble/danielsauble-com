@@ -1,0 +1,42 @@
+.project_hero {
+  margin-bottom: 2em;
+  position: relative;
+  display: block;
+}
+
+.project_hero:last-child {
+  margin-bottom: 0;
+}
+
+.project_hero div {
+  background-color: #b2f19c;
+  border: 1px solid #b2f19c;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.project_hero div p {
+  margin-left: 1em;
+}
+
+.project_hero div p span {
+  text-decoration: underline;
+}
+
+.project_hero div p small {
+  color: #000000;
+}
+
+.project_hero:hover div {
+  border-color: #d7f1d4;
+  background-color: #d7f1d4;
+}
+
+.project_hero img {
+  z-index: 0;
+}
+
+.project_hero:hover img {
+  opacity: 0.4;
+}
