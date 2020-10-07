@@ -18,6 +18,11 @@ body {
   border-bottom: 40px solid #333333;
 }
 
+main {
+  padding: 1em;
+  padding-top: 4em;
+}
+
 h1 {
   font-size: 4em;
   font-weight: normal;
@@ -62,11 +67,6 @@ aside {
   width: 60%;
   display: block;
   margin: 0 auto;
-}
-
-.container {
-  padding: 1em;
-  padding-top: 4em;
 }
 
 .fa-external-link {
