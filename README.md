@@ -1,5 +1,6 @@
 # Setup
 
+    $ npm install -g gatsby-cli
     $ npm install
 
 # Development
