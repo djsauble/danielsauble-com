@@ -49,6 +49,7 @@ jobs:
     - name: Deploy Gatsby site to S3
       id: build-image
       run: |
+        npm install -g gatsby-cli
         npm install
         gatsby build
         npm run-script deploy
