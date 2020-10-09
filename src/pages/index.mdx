@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import ProjectHero from "../components/project_hero"
 import "../styles/index.css"
 import DanielImg from "../images/daniel.jpeg"
+import HomePageDarkModeImg from "../images/developer/home_page_dark_mode.png"
 import PackageFilteringImg from "../images/package_filtering/admin.png"
 import PuppetPatchManagerImg from "../images/ppm/patch_manager.png"
 import TreeBrowsingImg from "../images/browse/tree_browsing.png"
@@ -26,6 +27,14 @@ machine learning class (CSCI E-82) at the Harvard Extension School.
 Say ‘hi’ on <a href="https://www.twitter.com/djsauble" target="_blank">Twitter <i class="fa fa-external-link" aria-hidden="true"></i></a>, <a href="https://www.linkedin.com/in/djsauble/" target="_blank">LinkedIn <i class="fa fa-external-link" aria-hidden="true"></i></a>, or just check out my <Link to="/resume">resume</Link>.
 
 ## Portfolio
+
+<ProjectHero
+  to="/developer"
+  title="Developer Website"
+  description="Learn how to build custom apps on the New Relic platform"
+>
+  <img src={HomePageDarkModeImg} alt="Developer website" class="border" />
+</ProjectHero>
 
 <ProjectHero
   to="/package_filtering"
