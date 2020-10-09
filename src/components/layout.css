@@ -11,7 +11,7 @@ body {
 
   /* Background image */
   background-image: url(../images/top_left_border.png);
-  background-position: top center;
+  background-position: top left;
   background-repeat: no-repeat;
 
   /* Footer */
@@ -71,4 +71,18 @@ aside {
 
 .fa-external-link {
   font-size: 80%;
+}
+
+.home {
+  position: absolute;
+  top: 1.5em;
+  left: 2em;
+  color: #ffffff;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: none;
+}
+
+.home:hover {
+  background-color: rgb(37, 37, 37);
 }

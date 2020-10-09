@@ -5,9 +5,8 @@ import { Link } from "gatsby"
 const ProjectLayout = ({ children }) => {
   return (
     <Layout>
-      <Link to="/">&larr; Back to home page</Link>
+      <Link to="/" className="home"><i class="fa fa-2x fa-home"></i></Link>
       {children}
-      <Link to="/">&larr; Back to home page</Link>
     </Layout>
   )
 }
