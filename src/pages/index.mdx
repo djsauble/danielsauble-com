@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import ProjectHero from "../components/project_hero"
 import "../styles/index.css"
 import DanielImg from "../images/daniel.jpeg"
+import ApiKeyHighFidelityImg from "../images/api_keys/api_key_ui_high_fidelity.png"
 import HomePageDarkModeImg from "../images/developer/home_page_dark_mode.png"
 import PackageFilteringImg from "../images/package_filtering/admin.png"
 import PuppetPatchManagerImg from "../images/ppm/patch_manager.png"
@@ -27,6 +28,14 @@ machine learning class (CSCI E-82) at the Harvard Extension School.
 Say ‘hi’ on <a href="https://www.twitter.com/djsauble" target="_blank">Twitter <i class="fa fa-external-link" aria-hidden="true"></i></a>, <a href="https://www.linkedin.com/in/djsauble/" target="_blank">LinkedIn <i class="fa fa-external-link" aria-hidden="true"></i></a>, or just check out my <Link to="/resume">resume</Link>.
 
 ## Portfolio
+
+<ProjectHero
+  to="/api_keys"
+  title="API Keys"
+  description="Manage all of your New Relic API keys in a single place"
+>
+  <img src={ApiKeyHighFidelityImg} alt="API keys" class="border" />
+</ProjectHero>
 
 <ProjectHero
   to="/developer"

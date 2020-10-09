@@ -1,0 +1,99 @@
+import ChildLayout from "../components/child_layout"
+import SEO from "../components/seo"
+import ApiKeyMentalModelImg from "../images/api_keys/api_key_mental_model.png"
+import ApiKeyWorkflowsImg from "../images/api_keys/api_key_workflows.png"
+import ApiKeyListWireframeImg from "../images/api_keys/api_key_list_wireframe.png"
+import ApiKeyCreateWireframeImg from "../images/api_keys/api_key_create_wireframe.png"
+import ApiKeyUpdateWireframeImg from "../images/api_keys/api_key_update_wireframe.png"
+import ApiKeyDeleteWireframeImg from "../images/api_keys/api_key_delete_wireframe.png"
+import ApiKeyHighFidelityImg from "../images/api_keys/api_key_ui_high_fidelity.png"
+
+export default ChildLayout
+
+<SEO title="API Keys"/>
+
+# API Keys
+
+New Relic One is an observability platform, which means it allows for you to get
+data into and out of the platform. To do this programmatically requires API keys,
+of which we have several types that are managed in several different places in 
+the UI. After a large product release in June 2020, we realized we'd inadvertently
+broken the ability for our users to create new REST API keys. This served as a 
+catalyst to create a unified UI where you could manage all of your API keys. I 
+was asked to design this new experience.
+
+I started by identifying the personas and user stories for the project. I then 
+constructed a basic mental model for the lifecycle of API keys. In general, API 
+keys are created and then used in code. They are then (rarely) updated, and then 
+(even more rarely) deleted.
+
+<img src={ApiKeyMentalModelImg} alt="API key mental model" class="border" />
+
+To facilitate each step in the lifecycle of an API key, I constructed a workflow
+to let users comfortably achieve each task.
+
+<img src={ApiKeyWorkflowsImg} alt="API key workflows" class="border" />
+
+With these workflows in place, I was then able to string together a set of 
+wireframes representing the UI to interact with each step along the workflows.
+At this level of fidelity I was able to get stakeholder feedback and make any 
+needed adjustments before moving to the final step of high fidelity mocks.
+
+List API keys.
+
+<img src={ApiKeyListWireframeImg} alt="List API keys" class="border" />
+
+Create an API key.
+
+<img src={ApiKeyCreateWireframeImg} alt="Create API key" class="border" />
+
+Update an API key.
+
+<img src={ApiKeyUpdateWireframeImg} alt="Update API key" class="border" />
+
+Delete an API key.
+
+<img src={ApiKeyDeleteWireframeImg} alt="Delete API key" class="border" />
+
+Thanks to an excellent design pattern library, building these high fidelity 
+mocks was not difficult. This let me focus on the unique aspects of the design,
+in particular a right-rail used to show contextual help, describing the 
+different types of keys available. I added this in response to stakeholder 
+feedback that combining all key types into the same UI was likely to exacerbate
+the degree to which our users found the different key types confusing.
+
+<img src={ApiKeyHighFidelityImg} alt="High fidelity API key UI mocks" class="border" />
+
+Once the high fidelity mocks were ready, I took the final step of conducting 
+research to uncover any lurking usability issues prior to implementation. We
+verified that users found the different key types confusing, and additionally 
+uncovered the following issues:
+
+1. A couple users didn't notice the "Create key" button until we pointed it out
+   to them, indicating that it should be positioned closer to the table itself.
+2. A couple users were confused why the Insights and Admin keys weren't part
+   of the table. This was an unfortunate limitation of where we're at in our 
+   key migration process. Some key types aren't supported by our unified key
+   management service yet.
+3. People expressed concern about being able to find keys in the table after 
+   creating them. We addressed this in the design by highlighting rows in the
+   table pertaining to newly created keys, and showing a toast in the upper-right
+   hand corner of the screen to let people know that the key was copied to their
+   clipboard.
+4. When updating or deleting a key, users wanted to be absolutely certain they 
+   were updating the right one. To address this, we added additional metadata
+   fields to those modals to help users cross-reference.
+5. Users wanted to be able to see which keys they had deleted, and possibly
+   undelete them if they made a mistake. We opted to not take action on this, 
+   partly because recreating a key is not a difficult task, and also because 
+   it is rare that people delete a key, so the value/effort tradeoff wasn't
+   worth it to us.
+
+The great thing about this project is that we went from an idea to a completely
+validated idea very quickly. Because I was working mostly solo, I could move
+quickly and get feedback from stakeholders and users as needed, as opposed to 
+having a bunch of external dependencies requiring me to start and stop frequently.
+
+I also had great success in escalating some of the out-of-scope feedback items
+to product management. Our VP of Product Management is looking at how we can 
+reduce the number of key types to make key management in New Relic easier overall.
