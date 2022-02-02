@@ -86,15 +86,28 @@ aside {
   font-size: 80%;
 }
 
-.home {
+.nav-item {
   position: absolute;
+  padding: 0.5em 0.75em;
+  border-radius: 50%;
+  background-color: none;
+  z-index: 100;
+}
+
+.fork {
+  top: 1em;
+  right: 1em;
+  color: #333333;
+}
+
+.fork:hover {
+  background-color: #eeeeee;
+}
+
+.home {
   top: 1em;
   left: 1em;
   color: #ffffff;
-  padding: 0.5em;
-  border-radius: 0.5em;
-  background-color: none;
-  z-index: 100;
 }
 
 .home:hover {

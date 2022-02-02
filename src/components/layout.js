@@ -14,7 +14,10 @@ const Layout = ({ children }) => {
           <rect x="0" y="0" fill="#333333" width="1000" height="200" clip-path="url(#test)" />
         </svg>
       </header>
-      <main>{children}</main>
+      <main>
+        <a href="https://github.com/djsauble/danielsauble-com" target="_blank" className="fork nav-item"><i class="fa fa-2x fa-github" aria-hidden="true"></i></a>
+        {children}
+      </main>
     </>
   )
 }
