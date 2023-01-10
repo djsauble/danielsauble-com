@@ -1,9 +1,13 @@
+import { MDXProvider } from "@mdx-js/react"
 import React from "react"
+import SEO from "../components/seo"
 import "./layout.css"
+
+const shortcodes = { SEO }
 
 const Layout = ({ children }) => {
   return (
-    <>
+    <MDXProvider components={shortcodes}>
       <header>
         <svg className="header" viewBox="0 0 1000 200" preserveAspectRatio="none">
           <defs>
@@ -18,7 +22,7 @@ const Layout = ({ children }) => {
         <a href="https://github.com/djsauble/danielsauble-com" target="_blank" className="fork nav-item"><i class="fa fa-2x fa-github" aria-hidden="true"></i></a>
         {children}
       </main>
-    </>
+    </MDXProvider>
   )
 }
 
