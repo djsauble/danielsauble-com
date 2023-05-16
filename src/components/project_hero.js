@@ -5,17 +5,13 @@ import "./project_hero.css"
 
 const ProjectHero = ({to, title, description, children}) => {
   return (
-    <Link to={to} className="project_hero">
-      {children}
-      <div>
-        <p>
-          <span>{title}</span>
-          <br />
-          <small>{description}</small>
-          <br />
-        </p>
-      </div>
-    </Link>
+    <div className="project_hero">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <Link to={to}>
+        {children}
+      </Link>
+    </div>
   )
 }
 
