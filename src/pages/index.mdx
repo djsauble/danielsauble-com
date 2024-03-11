@@ -6,6 +6,7 @@ import DanielImg from "../images/daniel.jpeg"
 import DependencyGraphImg from "../images/endor_labs/05_dependency_graph.png"
 import HomePageDarkModeImg from "../images/developer/home_page_dark_mode.png"
 import VectorDbImg from "../images/vector_db/01_new_landing_page.png"
+import JobsSidebar from "../images/iterative/04_remote_code_execution.png"
 import PackageFilteringImg from "../images/package_filtering/admin.png"
 import PuppetPatchManagerImg from "../images/ppm/patch_manager.png"
 import TreeBrowsingImg from "../images/browse/tree_browsing.png"
@@ -29,9 +30,17 @@ Want to work with me? Send a note to <a href="mailto:djsauble@gmail.com">djsaubl
 ## Portfolio
 
 <ProjectHero
+  to="/iterative"
+  title="Iterative"
+  description="Remote code execution for ML models"
+>
+  <img src={JobsSidebar} alt="Remote Code Execution" class="border" />
+</ProjectHero>
+
+<ProjectHero
   to="/vector_db"
-  title="DataStax Astra DB docs"
-  description="Documentation for a vector database"
+  title="DataStax"
+  description="Docs site to learn how to use a vector database"
 >
   <img src={VectorDbImg} alt="DataStax Vector DB" class="border" />
 </ProjectHero>
@@ -46,15 +55,15 @@ Want to work with me? Send a note to <a href="mailto:djsauble@gmail.com">djsaubl
 
 <ProjectHero
   to="/developer"
-  title="Developer Website"
-  description="Learn how to build custom apps on the New Relic platform"
+  title="New Relic"
+  description="Docs site to learn how to build custom apps on the New Relic platform"
 >
   <img src={HomePageDarkModeImg} alt="Developer website" class="border" />
 </ProjectHero>
 
 <ProjectHero
   to="/package_filtering"
-  title="Package Filtering"
+  title="npm"
   description="Keep bad npm packages out of your applications"
 >
   <img src={PackageFilteringImg} alt="Package Filtering" class="border" />
@@ -62,7 +71,7 @@ Want to work with me? Send a note to <a href="mailto:djsauble@gmail.com">djsaubl
 
 <ProjectHero
   to="/ppm"
-  title="Puppet Patch Manager"
+  title="Puppet"
   description="Easily patch your IT systems with an existing configuration
         management tool"
 >
@@ -71,7 +80,7 @@ Want to work with me? Send a note to <a href="mailto:djsauble@gmail.com">djsaubl
 
 <ProjectHero
   to="/browse"
-  title="Tree Browsing"
+  title="Sonatype"
   description="Peruse the contents of your software repositories in a structured way"
 >
   <img src={TreeBrowsingImg} alt="Tree Browsing" class="border" />
@@ -79,7 +88,7 @@ Want to work with me? Send a note to <a href="mailto:djsauble@gmail.com">djsaubl
 
 <ProjectHero
   to="/runbudget"
-  title="Run Budget"
+  title="Personal project"
   description="Visualization tool to help long-distance runners build their mileage
         safely"
 >
