@@ -1,6 +1,9 @@
-img.mug {
-  width: 120px;
+
+.mug {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+  overflow: hidden;
   margin-left: 0.5em;
   margin-bottom: 0.5em;
   float: right;

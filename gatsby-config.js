@@ -13,7 +13,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -27,7 +26,20 @@ module.exports = {
         icon: `src/images/daniel.jpeg`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-mdx`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1200,
+              disableBgImageOnAlpha: true,
+            }
+          }
+        ],
+      }
+    },
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -56,6 +68,13 @@ module.exports = {
       options: {
         name: "pages",
         path: `${__dirname}/src/pages/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

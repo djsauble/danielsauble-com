@@ -1,7 +1,4 @@
 import ChildLayout from "../components/child_layout"
-import SecureStoryMapImg from "../images/package_filtering/secure_story_map.jpg"
-import PackageFilteringAdminImg from "../images/package_filtering/admin.png"
-import PolicyViolationsImg from "../images/package_filtering/policy_violations.png"
 
 export default ChildLayout
 
@@ -61,7 +58,7 @@ they trust.
 We built a story map which illustrates these needs, alongside the development
 journey and the accompanying stories.
 
-<img src={SecureStoryMapImg} alt="package filtering story map" />
+![package filtering story map](../images/package_filtering/secure_story_map.jpg)
 
 Many competitors in this space have overly complicated policy settings that are
 difficult to understand and use, so we kept our initial MVP to just three
@@ -74,13 +71,13 @@ settings:
 To meet the needs of the npm Enterprise admin, we built a new admin section in
 npm Enterprise that lets people configure package filtering.
 
-<img src={PackageFilteringAdminImg} alt="package filtering admin UI" />
+![package filtering admin UI](../images/package_filtering/admin.png)
 
 After setting a blocking policy, developer could no longer install those
 packages. To make it obvious what was going on, we let the npm Enterprise admin
 set a custom message to display in the terminal whenever packages were blocked.
 
-<img src={PolicyViolationsImg} alt="terminal showing a blocked package" />
+![terminal showing a blocked package](../images/package_filtering/policy_violations.png)
 
 However, this is only half of a solution. The reason most security products are
 despised by developers is because they're built for security teams, not

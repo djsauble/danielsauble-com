@@ -1,8 +1,4 @@
 import ChildLayout from "../components/child_layout"
-import Nexus2BrowseImg from "../images/browse/nexus_2_browse_ui.png"
-import CurrentInterfaceImg from "../images/browse/current_interface.png"
-import TreeBrowsingImg from "../images/browse/tree_browsing.png"
-import HTMLIndexImg from "../images/browse/html_index.png"
 
 export default ChildLayout
 
@@ -22,7 +18,7 @@ The trick is that mature formats like Maven have tens or hundreds of thousands o
 
 In Nexus Repository Manager 2, this hierarchy is represented as a tree when browsing repositories. However, the UI used a split-pane pattern that kept a lot of extra UI on the screen made it difficult to navigate without resizing the panes.
 
-<img src={Nexus2BrowseImg} alt="Nexus Repository Manager 2 browse UI" />
+![Nexus Repository Manager 2 browse UI](../images/browse/nexus_2_browse_ui.png)
 
 <p>
   When Nexus Repository 3 was first released, we decided to simplify this UI by
@@ -33,7 +29,7 @@ In Nexus Repository Manager 2, this hierarchy is represented as a tree when brow
   browse experience for a Maven repository.
 </p>
 
-<img src={CurrentInterfaceImg} alt="Current browse interface" />
+![Current browse interface](../images/browse/current_interface.png)
 
 ## The Solution
 
@@ -41,7 +37,7 @@ To solve this, we decided to bring back the tree representation of the component
 
 We also brought back a split view so you could view the hierarchy and details for a specific component side-by-side (we kept the list of repositories out, however). The following is an example of this hierarchical browse experience for a Maven repository.
 
-<img src={TreeBrowsingImg} alt="New browse interface" />
+![New browse interface](../images/browse/tree_browsing.png)
 
 As you can see, the tree on the left is a clear representation of the GAV naming convention, with group `classworlds` at the top, artifact `classworlds` below it, and the different versions of the artifact (`1.1-alpha-2` and `1.1`) below that. Maven components can contain multiple assets, and those are represented in the tree as well.
 
@@ -51,7 +47,7 @@ First, we learned that once people navigate to a specific asset or component in 
 
 Second, we learned that many people use the tree to get the most recent version of a component. These people don&rsquo;t necessarily need the full set of functionality we built: a simpler, streamlined version would do just as well. To address this, we delivered an HTML index view which lets you browse any repository as a series of static HTML pages.
 
-<img src={HTMLIndexImg} alt="HTML index view" />
+![HTML index view](../images/browse/html_index.png)
 
 Third, we learned that performance is the most critical part of any browse experience. Because repositories can have millions of assets and complex security rules determining who can view what, we needed a browse experience that was performant in these extreme cases. This turned out to be the hardest part of the entire feature. In the end, we made it capable of displaying a tree containing three million assets in three seconds on standard laptop hardware.
 

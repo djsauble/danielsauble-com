@@ -1,9 +1,4 @@
 import ChildLayout from "../components/child_layout"
-import PageArchetypesImg from "../images/developer/page_archetypes.png"
-import IAStructureImg from "../images/developer/IA_structural_model.png"
-import DocSiteIAImg from "../images/developer/doc_site_IA.png"
-import HomePageImg from "../images/developer/home_page.png"
-import HomePageDarkModeImg from "../images/developer/home_page_dark_mode.png"
 
 export default ChildLayout
 
@@ -19,7 +14,7 @@ I started by understanding the information architecture of the new site. First,
 we assembled a list of page archetypes, mapping to the different types of content
 we wanted to put on the site.
 
-<img src={PageArchetypesImg} alt="page archetypes" class="border" />
+![page archetypes](../images/developer/page_archetypes.png)
 
 Once we established the archetypes, the next step was to create a mental model of 
 how we expected people to traverse these different types of content. We went for a 
@@ -27,13 +22,13 @@ an approach of starting at a high level overview and quickly descending to the
 details as needed. At any level of granularity, users could choose to either go
 deeper to skip to the next topic at the same level of granularity.
 
-<img src={IAStructureImg} alt="IA structure" class="border" />
+![IA structure](../images/developer/IA_structural_model.png)
 
 Finally, following this structural framework, we assembled the archetypes
 into an IA diagram that would inform the development of the site and its 
 navigation.
 
-<img src={DocSiteIAImg} alt="doc site IA" class="border" />
+![doc site IA](../images/developer/doc_site_IA.png)
 
 With this framework in place, we could proceed with the design and implementation 
 of the site. Thanks to other sites in our portfolio, we had a partial pattern 
@@ -41,13 +36,13 @@ library to follow, so only had to design specific components. Most of my design
 effort was spent on the sidebar nav, header nav, banner, and right rail (for 
 linking to related content, not pictured).
 
-<img src={HomePageImg} alt="home page" class="border" />
+![home page](../images/developer/home_page.png)
 
 As a stretch goal, we decided to support dark mode on the website. I paired with
 one of our front-end developers to come up with an appropriate color palette. It 
 turned out quite nicely.
 
-<img src={HomePageDarkModeImg} alt="home page dark mode" class="border" />
+![home page dark mode](../images/developer/home_page_dark_mode.png)
 
 Because our next project is to replatform the New Relic docs site, we wanted to
 reuse components from the developer site. To achieve this, the developer team created 

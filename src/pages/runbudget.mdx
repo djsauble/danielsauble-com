@@ -1,14 +1,4 @@
 import ChildLayout from "../components/child_layout"
-import RunBudgetAPIGeneratorImg from '../images/runbudget/api_generator.png'
-import ZenRunSetupImg from '../images/runbudget/zenrun_setup.jpg'
-import ZenRunGuideImg from '../images/runbudget/zenrun_guide.jpg'
-import ForrestCruiseLandingPageImg from '../images/runbudget/forrest_cruise_landing_page.png'
-import ForrestCruiseLandingPage2Img from '../images/runbudget/forrest_cruise_landing_page2.png'
-import ForrestCruiseDashboardImg from '../images/runbudget/forrest_cruise_dashboard.png'
-import ForrestCruiseIOSAppImg from '../images/runbudget/ios_app.jpg'
-import RunBudgetIOSImg from '../images/runbudget/runbudget_ios.jpg'
-import RunBudgetLargeComplicationImg from '../images/runbudget/runbudget_large_complication.png'
-import RunBudgetSmallComplicationImg from '../images/runbudget/runbudget_small_complication.png'
 
 export default ChildLayout
 
@@ -34,7 +24,7 @@ I started by building a SAAS solution to store my runs. In retrospect, I could h
 
 The initial service was written in Ruby, hosted on Heroku, with data stored in a CouchDB database. It supported multiple users, and persisted run data POSTed to its REST API.
 
-<img src={RunBudgetAPIGeneratorImg} alt='Run aggregator'/>
+![Run aggregator](../images/runbudget/api_generator.png)
 
 With this basic service in place, I built an iOS app to record runs and submit them to the service. At this point, I had a way to persist run data and was ready to start designing the right solution for my problem.
 
@@ -44,13 +34,13 @@ The 10% rule is a time-established way to ensure that you don&rsquo;t increase y
 
 My first idea was to make this mapping process easier. To do this, I wrote an app telling people exactly where and how far they should run. Each time they went for a run, they would choose a distance, and the app would select an appropriate local route for them.
 
-<img src={ZenRunSetupImg} alt='ZenRun setup' class='half border'/>
+![ZenRun setup](../images/runbudget/zenrun_setup.jpg)
 
 To do this, I used GIS data from <a href='https://gis.oregonmetro.gov' target='_new'>Portland Metro <i class='fa fa-external-link'></i></a> to intelligently map routes, and used turn-by-turn directions to guide people through the route. This way, there was no need to train the app on your routes, since all the available routes were known beforehand.
 
 In the screenshot below, black represents running trails, and green represents walking directions to the beginning of each segment. Again, I was able to generate all of this automatically.
 
-<img src={ZenRunGuideImg} alt='ZenRun turn-by-turn' class='half'/>
+![ZenRun turn-by-turn](../images/runbudget/zenrun_guide.jpg)
 
 There were a number of problems with this approach:
 
@@ -69,21 +59,21 @@ Again, I didn&rsquo;t want to burden people with needing to create/maintain/adhe
 
 To visualize this information, I wrote a new web front-end in Backbone.js, and rewrote the backend in Node.js. This allowed me to share NPM modules between the front- and backend, and made the whole experience work much better.
 
-<img src={ForrestCruiseLandingPageImg} alt='Forrest Cruise Landing Page'/>
+![Forrest Cruise Landing Page](../images/runbudget/forrest_cruise_landing_page.png)
 
 On the <a href='http://api-generator2.herokuapp.com/login'>landing page</a>, I let people enter information about their running habits, and see the training it would require to achieve their goal.
 
-<img src={ForrestCruiseLandingPage2Img} alt='Forrest Cruise Explanation'/>
+![Forrest Cruise Explanation](../images/runbudget/forrest_cruise_landing_page2.png)
 
 Finally, I created a dashboard showing goal and trending information, along with a list of runs and a map showing individual routes. You can change your goal at any time, and the goal algorithm adjusts to help you slowly increase your mileage as needed.
 
-<img src={ForrestCruiseDashboardImg} alt='Forrest Cruise Dashboard'/>
+![Forrest Cruise Dashboard](../images/runbudget/forrest_cruise_dashboard.png)
 
 As a final touch, I implemented a WebSockets API, allowing the iOS app and web dashboard can communicate with each other in real-time. If you submit a run from the app, it is immediately displayed in the dashboard and updates the trends/goals.
 
 A screenshot of the iOS app is below. Red indicates total distance spent walking or running. Blue indicates running distance each week. Green indicates average pace each week (lower is better).
 
-<img src={ForrestCruiseIOSAppImg} alt='iOS app v2' class='two-thirds border'/>
+![iOS app v2](../images/runbudget/ios_app.jpg)
 
 Unfortunately, I had to abandon this solution for a couple of reasons:
 
@@ -106,15 +96,15 @@ Furthermore, WatchOS has HealthKit support, so you can consume data produced by 
 
 The new iOS app is very simple, and consists solely of the following screen:
 
-<img src={RunBudgetIOSImg} alt='iOS app v3' class='half border'/>
+![iOS app v3](../images/runbudget/runbudget_ios.jpg)
 
 The complications are also quite simple. They range from a complication which shows your running budget, progress against your weekly goal, and last week&rsquo;s mileage...
 
-<img src={RunBudgetLargeComplicationImg} alt='WatchOS large complication' class='quarter'/>
+![WatchOS large complication](../images/runbudget/runbudget_large_complication.png)
 
 ...to a very simple complication which only shows your running budget:
 
-<img src={RunBudgetSmallComplicationImg} alt='WatchOS small complication' class='quarter'/>
+![WatchOS small complication](../images/runbudget/runbudget_small_complication.png)
 
 These complications all support Time Travel, so you can easily speed ahead and see how much budget you&rsquo;ll have at various points throughout your day.
 

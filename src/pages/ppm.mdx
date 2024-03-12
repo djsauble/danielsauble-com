@@ -1,10 +1,4 @@
 import ChildLayout from "../components/child_layout"
-import PPMStoryMapImg from "../images/ppm/story_map.jpg"
-import PPMRoughWireframeImg from "../images/ppm/rough_wireframes.jpg"
-import PPMBalsamiqPrototypeImg from "../images/ppm/balsamiq_prototype.png"
-import PPMMVPWorkflowImg from "../images/ppm/mvp_workflow.jpg"
-import PPMMVPWireframesImg from "../images/ppm/mvp_wireframes.jpg"
-import PuppetPatchManagerImg from "../images/ppm/patch_manager.png"
 
 export default ChildLayout
 
@@ -28,26 +22,26 @@ The problem is, every operating system manages software updates differently. If 
 
 To start, I worked with my product owner to define stories and organize them in terms of the mental modal we were aiming for.
 
-<img src={PPMStoryMapImg} alt="Story map" />
+![Story map](../images/ppm/story_map.jpg)
 
 With the high-level workflow in place (install, discover, apply, monitor, verify, history), we were able to break the stories into a workflow. We set aside any obviously out-of-scope stories for consideration in future releases.
 
 The next step in the process was to develop rough wireframes for the various screens in the workflow (blue stickies in the image above).
 
-<img src={PPMRoughWireframeImg} alt="Rough wireframes" />
+![Rough wireframes](../images/ppm/rough_wireframes.jpg)
 
 At this point, we had a relatively good grasp of the UI we thought we needed to build. Next, we converted these rough sketches to a Balsamiq prototype and performed several rounds of user testing.
 
-<img src={PPMBalsamiqPrototypeImg} alt="Balsamiq prototype" class="border" />
+![Balsamiq prototype](../images/ppm/balsamiq_prototype.png)
 
 Until this point, the design was based on our theoretical view of the world. Testing with users helped make the design more concrete and allowed us to cull parts of the workflow that were really not needed in an MVP. The (much simplified) workflow became as follows:
 
-<img src={PPMMVPWorkflowImg} alt="MVP workflow" />
+![MVP workflow](../images/ppm/mvp_workflow.jpg)
 
 Instead of multiple pages, we were able to keep the entire workflow to a single page. This made it much easier to build, and easier to reason about from a design standpoint.
 
-<img src={PPMMVPWireframesImg} alt="MVP wireframes" />
+![MVP wireframes](../images/ppm/mvp_wireframes.jpg)
 
 I collaborated heavily with our visual designer and front-end engineer to create the final prototype. We ended up not shipping Patch Manager, due to a lack of paying customers, but the process of designing and shipping a prototype was a key part of coming to that conclusion.
 
-<img src={PuppetPatchManagerImg} alt="PPM prototype" class="border" />
+![PPM prototype](../images/ppm/patch_manager.png)

@@ -1,9 +1,4 @@
 import ChildLayout from "../components/child_layout"
-import MentalModel from "../images/iterative/01_mental_model.png"
-import InitialPrototype from "../images/iterative/02_initial_prototype.png"
-import FinalPrototype from "../images/iterative/03_final_prototype.png"
-import JobsSidebar from "../images/iterative/04_remote_code_execution.png"
-import ManageCompute from "../images/iterative/05_configure_compute.png"
 
 export default ChildLayout
 
@@ -24,16 +19,16 @@ To started, I wanted to think about the happy path of someone onboarding to DVCX
 * Existing DVC user? This is someone who has already been onboarded to our open-source DVC tooling, so they have a working Git repository to start with.
 * Existing Studio user? This is someone who is already onboarded into Studio, and so only needs to learn how to onboard with DVCX.
 
-<img src={MentalModel} alt="Mental models" class="border" />
+![Mental models](../images/iterative/01_mental_model.png)
 
 I started this exercise by thinking through the new to ML and new to DVC paths, since these make the fewest assumptions about the people coming into the product.
 I built out a few iterations of this flow, but we ultimately decided to pivot the company away from our MLOps focus and to go all-in on DVCX.
 
-<img src={InitialPrototype} alt="Initial prototype" class="border" />
+![Initial prototype](../images/iterative/02_initial_prototype.png)
 
 Because of our new focus on DVCX, I repivoted the prototype to take new signups directly to DVCX, side-stepping the MLOps side of Studio entirely.
 
-<img src={FinalPrototype} alt="Final prototype" class="border" />
+![Final prototype](../images/iterative/03_final_prototype.png)
 
 This new focus resonated strongly with potential customers, who found dataset management to be a much more challenging problem to solve in-house than MLOps.
 These customers today use tools like Spark or Databricks, and get frustrated with how complex these tools are to set up.
@@ -49,8 +44,8 @@ You can keep this open or collapse it if you want to focus on your current task.
 
 * The Sources, Datasets, and Tasks on the left let you keep track of your data sources, registered datasets from other queries, and any tasks that are scheduled to run on a recurring basis.
 
-<img src={JobsSidebar} alt="Jobs sidebar" class="border" />
+![Jobs sidebar](../images/iterative/04_remote_code_execution.png)
 
 If you want to providion more compute, or manage your existing compute resources, you can do so through Settings.
 
-<img src={ManageCompute} alt="Manage compute resources" class="border" />
+![Manage compute resources](../images/iterative/05_configure_compute.png)
