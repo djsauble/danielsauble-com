@@ -1,7 +1,7 @@
 body {
   margin: 0 auto;
   min-width: 200px;
-  max-width: 1024px;
+  max-width: 960px;
   width: 100%;
   background-color: #f8f8f8;
 
@@ -23,7 +23,7 @@ body {
 }
 
 main {
-  padding: 3em;
+  padding: 6em 3em 3em 3em;
   background-color: #ffffff;
   border-left: solid 5px #eeeeee;
   border-right: solid 5px #eeeeee;
@@ -38,7 +38,7 @@ main {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 3em;
   font-weight: normal;
   line-height: 1.25em;
   margin-bottom: 14px;
@@ -63,10 +63,6 @@ aside {
   padding: 5px 10px;
   font-size: 80%;
   border: 1px solid #f1f1cd;
-}
-
-.border {
-  border: 1px solid #f1f1f1;
 }
 
 .quarter {
