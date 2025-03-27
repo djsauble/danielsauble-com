@@ -32,7 +32,7 @@ main {
 
 @media (max-width: 400px) {
   main {
-    padding: 4em 0.5em 0 0.5em;
+    padding: 8em 0.5em 0 0.5em;
     border: none;
   }
 }
@@ -47,6 +47,7 @@ h1 {
 h2 {
   font-size: 2em;
   font-weight: normal;
+  line-height: 1.25em;
 }
 
 h3 {
