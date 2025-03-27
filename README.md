@@ -1,18 +1,17 @@
 # Setup
 
-    $ npm install -g gatsby-cli
     $ npm install
 
 # Development
 
-    $ gatsby develop
+    $ npx gatsby develop
 
 # Production
 
-    $ gatsby build
-    $ gatsby serve
+    $ npx gatsby build
+    $ npx gatsby serve
 
 # Deployment
 
-    $ gatsby build
+    $ npx gatsby build
     $ npm run-script deploy
