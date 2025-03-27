@@ -8,8 +8,9 @@ export default ChildLayout
 
 ## Intro
 
-This is a sample of work from my role as the founding product designer at Endor Labs, a dependency lifecycle management tool for software developers and application security people.
+I was the founding product designer at Endor Labs, a dependency lifecycle management tool for software developers and application security people.
 The product is a combination of a CLI which performs static call graph analysis on source code, a GitHub Action that manages how repositories are scanned, and a web UI that helps people view and prioritize findings in their code.
+
 I owned the design of our first product from conception (March 2022) to launch (October 2022), to our first few customers (January 2023).
 
 ## Early user journey map
@@ -42,13 +43,17 @@ Some of the external users were design partners also interested in purchasing th
 
 ![Usability research results matrix](../images/endor_labs/09_research_results_matrix.png)
 
-## Project and default version overview
+## Product screenshots
+
+Here's a sample of the work that I shipped during my time at Endor Labs.
+
+### Project and default version overview
 
 Once a company onboards their code repositories, either by installing a GitHub app or scanning locally using our CLI, they can view the health of those repositories using our web UI.
 
 ![Project Overview Dashboard UI](../images/endor_labs/01_project_overview.png)
 
-## Project scan history with CI status
+### Project scan history with CI status
 
 Endor Labs performs static analysis of code.
 This scanned data is uploaded to our service and the history can be viewed in the UI.
@@ -56,7 +61,7 @@ Depending on how policy is configured, these scans may block the company’s CI 
 
 ![Project CI Runs UI](../images/endor_labs/02_ci_runs.png)
 
-## Policy configuration with Rego editor
+### Policy configuration with Rego editor
 
 Users can configure policy rules using either existing templates or from scratch using the Rego policy language.
 We use the Monaco editor to embed a VSCode-like experience in the web UI, including a linter.
@@ -64,7 +69,7 @@ Once defined, policy rules are assigned to projects using tags.
 
 ![Create Policy Action UI](../images/endor_labs/03_create_policy_action.png)
 
-## Finding details with call paths drawer
+### Finding details with call paths drawer
 
 Findings are essentially insights about your projects.
 Every finding has a type and severity associated with it, as well as a large amount of metadata.
@@ -74,7 +79,7 @@ Depending on policy, a finding could result in a blocked CI pipeline as well.
 
 ![Findings / Call Paths Drawer UI](../images/endor_labs/04_findings_call_paths_drawer.png)
 
-## Dependency graph with detail drawer
+### Dependency graph with detail drawer
 
 Most software projects depend on a large number of open source dependencies.
 This dependency graph is used to interactively explore the graph, either starting from the package and working towards its dependencies or from one of the dependencies and working towards the package that imported it.
