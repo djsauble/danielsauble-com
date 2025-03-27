@@ -8,8 +8,145 @@ export default ChildLayout
 
 ## Intro
 
-TBD
+I was the lead designer for Prefect Cloud, a product used to help data engineers and data platform operators manage their orchestrated workflows.
+Workflows are collections of Python functions that are run on cloud infrastructure, typically in an automated way, whether scheduled or trigged from events (e.g. webhooks).
 
-## TBD
+## Runs page redesign
 
-TBD
+One of the problems I tackled during my time was to make improvements to the main **Runs** page.
+The runs page is used to monitor the behavior of all workflows over time.
+We had done a soft launch when we got feedback from customers that made us aware of a significant problem with the bar chart on the **Runs** tab.
+
+![Runs page](../images/prefect/00_original_runs_bar_chart.png)
+
+For context, this bar chart shows the count of runs for each day in the selected time span (one week by default).
+
+## The Ball Pit
+
+The original version of this page had a component that we dubbed the "Ball Pit".
+I've overlaid it on top of the bar chart to give you an idea of what it looked like.
+
+![Runs page with ball pit overlay](../images/prefect/01_superimposed_ball_plot.png)
+
+It's a scatterplot, where each dot represents an individual run.
+The color of the dot represents the status of the run (for example, pending, running, completed, failed).
+The y-axis represents the duration of the run.
+The x-axis represents the time when the run started.
+
+## Initial exploration
+
+The ball pit has a significant problems.
+When there are more than 200 runs, the API truncates the response and only returns the 200 most recent runs.
+This is why the plot looks oddly truncated and broken much of the time.
+Most enterprise customers have more than 20,000 runs per week, so they're only seeing a small fraction of their runs.
+
+This is why we replaced it with a simpler bar chart.
+We couldn't show all of the individual runs, but we could show a statistical aggregation of all runs (the count of runs).
+However, when we got feedback that people missed the ball chart, we tried to see if we could bring back more of the granularity from the original.
+
+My first idea was to do statistical aggregation by showing p-value thresholds instead of a total count.
+I went off and did several iterations to explore this idea:
+
+1. A clustered bar chart:
+
+   ![Clustered bar chart](../images/prefect/02_p_value_exploration_v1.png)
+
+2. A modified box and whiskers plot:
+
+   ![Modified box and whiskers plot](../images/prefect/03_p_value_exploration_v2.png)
+
+3. A stacked bar chart:
+
+   ![Stacked bar chart](../images/prefect/04_p_value_exploration_v3.png)
+
+4. A traditional line chart:
+
+   ![Traditional line chart](../images/prefect/05_p_value_exploration_v4.png)
+
+5. A nested stacked bar chart, where the vertical bars represent p-values for duration, and the horizontal bars show the proportion of run states within each band.
+
+   ![Nested stacked bar chart](../images/prefect/06_p_value_exploration_v5a.png)
+
+   On hover, we'd highlight the horizontal bars to make it easier to focus on the state of runs for a given day.
+
+   ![Nested stacked bar chart - hover state](../images/prefect/06_p_value_exploration_v5b.png)
+
+In the end, we decided to use the traditional line chart for each of the high level tabs, with the exception of the **Runs** tab.
+The **Runs** tab is what needed to solve the ball pit problem, and unfortunately these approaches didn't quite get us there.
+
+## Multi-dimension exploration
+
+While these explorations avoided the 200 run limit of the original ball chart, when we talked to customers they told us that what they really liked about the ball pit was its glanceability.
+In the current design, you have to know in advance which metric is problematic (Run Count, Failure Rate, SLA Violations, Duration, Lateness), and _then_ click the relevant tab.
+What customers want is to have a single pane of glass they can look at to passively see if there are any anomalies in any of these dimensions.
+While the ball pit had significant shortcomings, it solves the single pane of glass problem very well.
+
+I tried a couple of explorations to see if I could represent all of these dimensions in a single plot.
+
+![Overlay multiple metrics](../images/prefect/07_multiple_metrics_overlay_v1.png)
+
+![Mutiple metrics with clustered bar chart](../images/prefect/08_multiple_metrics_overlay_v2.png)
+
+However, these didn't quite resonate with the team or our users, so I went back to the drawing board and approached this from a first principles approach.
+
+## Going even further
+
+These explorations came further to being replacements for the ball pit, but before going off and building them, we wanted to do some blue sky thinking.
+What are the observability problems that customers have which the ball pit _doesn't_ solve?
+
+1. Many run failures are caused by changes to code or infrastructure.
+
+   ![Infrastructure annotations](../images/prefect/09_infra_or_code_change_annotations_wireframe.png)
+
+2. Users want to see anomalies in run duration, but they want to see the deviation fom the median run for each run's parent deployment, not the mean for all runs as a whole.
+
+   ![Deviation from the mean](../images/prefect/10_deviation_from_mean_wireframe.png)
+
+3. If a run fails, users want to be able to see if this is a recurring pattern for other runs in the same workflow.
+
+   ![Highlight related runs](../images/prefect/11_related_runs_wireframe.png)
+
+Interestingly, these problems are best solved by a scatterplot instead of the statistical aggregations from the previous explorations.
+Users need to be able to see failure at the granularity of an individual run, which a statistical aggregation can't do well.
+
+## Putting it all together
+
+Given all of these explorations, we realized we probably wanted to enhance the ball pit rather than replacing it with an entirely new visualization.
+However, we couldn't do this with a hard limit of 200 runs.
+Given that, I went back to engineering to ask if this was a law of physics or something we could find a creative solution for (progressive loading, optimizing the payload from the API, etc).
+
+It turned out that we could create a new API endpoint specific to the ball pit which would let us load up to 10,000 runs at a time.
+While not perfect, we decided this was good enough for most customers, since they could simply restrict the timespan to a day instead of the default (a week).
+
+With that limitation lifted, I went ahead and designed the solution that we ended up building.
+
+![New and improved ball pit](../images/prefect/12_prototype_start.png)
+
+When you hover over an individual run in the chart, we highlight the other runs from the same workflow and show a trend line.
+
+![Hover over a run](../images/prefect/13_prototype_hover_over_run.png)
+
+When you click a run, we show a floating dialog with some additional metadata about the run.
+
+![Click a run](../images/prefect/14_prototype_click_run.png)
+
+When you hover over an annotation on the x-axis, we show the associated infrastructure or code change.
+
+![Hover over an annotation](../images/prefect/15_prototype_hover_over_annotation.png)
+
+The Runs tab has a settings dialog that lets you dial in the chart to your preferences.
+
+![Tab settings](../images/prefect/16_prototype_click_tab_settings.png)
+
+Even though we realized that users care more about deviation from the median parent workflow, we didn't want to confuse people accustomed to the original y-axis from the ball pit (absolute duration).
+As a result, we made the new y-axis opt-in.
+Later, we could potentially make this setting the default.
+
+![Y-axis setting](../images/prefect/17_prototype_change_y_axis.png)
+
+If you do change the y-axis to show the change from median, we show an additional setting that lets you control how the median is calculated.
+For example, you can show the median deviation from the parent deployment or the parent work pool (the infrastructure on which flows are run).
+
+![Median calculation](../images/prefect/18_prototype_relative_to_dropdown.png)
+
+![Options for median calculation](../images/prefect/19_prototype_change_relative_to.png)
