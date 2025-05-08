@@ -13,6 +13,19 @@ The product is a combination of a CLI which performs static call graph analysis 
 
 I owned the design of our first product from conception (March 2022) to launch (October 2022), to our first few customers (January 2023).
 
+## Team and collaboration
+
+I reported to the CEO, and collaborated most closely with the co-founders (CEO and CTO), product manager, and lead front-end developer.
+
+![Team map](../images/endor_labs/00_team.png)
+
+Every week, I held a design review with our CEO, CTO, and product manager, to review the current state of design, discuss feedback from prospects, and untangle any misalignment between backend and frontend design.
+Separately, I met with our lead front-end developer (and occasionally other members of the front-end team) on an as-needed basis to review the current state of front-end development and untangle any misalignment between design and engineering.
+
+Aside from these regular meetings, I worked in a largely async mode, surfacing regularly to share the state of design (using Loom and public Slack channels) and get feedback from internal stakeholders (including backend engineering as needed).
+We worked with a bias towards shipping, so that our CEO could demo to prospects and so that we could get feedback from early adopters.
+In general, we avoided long-running discrete projects, and instead shipped incremental improvements in response to feedback we were getting throughout the initial few sales cycles.
+
 ## Early user journey map
 
 Very early in product development, before we had a dedicated product manager, I interviewed multiple internal stakeholders, including the co-founders, and built a map of personas, jobs to be done, and an initial set of workflows.
@@ -30,9 +43,12 @@ We also began running discovery interviews with external folks to understand if 
 
 ## Early data viz exploration
 
-We realized early on that a product with nothing but tables was likely to have limited utility.
-As our data collection efforts continued, we began to see interesting trends, graphs, and rollups that needed to be shown in a non-tabular representation.
-I began to explore different ways to visualize this data in the UI and even though these early attempts were wrong, they facilitated great discussions that helped us understand the limitations of the data (especially with regards to trends) and the feasibility of different data visualizations.
+When we showed the early prototype to users, we discovered that CISOs didn't care about the granular details of which packages are affected by which vulnerabilities.
+CISOs know that the list of vulnerabilities is always long, and the important thing is that the most important vulnerabilities are being dealt with and that the long-term trend is down.
+The solution to this is time-series aggregations that help identify medium-term trends so that decision makers can allocate resources effectively.
+
+Since the product needed to serve both management and ICs, I decided to explore a dedicated high-level dashboard specifically for the buyers of our software.
+Our CEO showed this view a lot in product demos to prospects, and while the initial explorations weren't quite right, over time we iterated to a useful view for these personas.
 
 ![Early data viz exploration](../images/endor_labs/08_data_viz_exploration.png)
 
