@@ -30,13 +30,14 @@ Projects generally took 1-2 months to complete, depending on resource availabili
 
 One of the problems I tackled was a redesign of the main **Runs** page.
 The runs page is used to monitor the behavior of all workflows over time.
+We wanted to provide a more powerful timeline view of runs (inspired by Pydantic Logfire) and to add some additional top-level metrics (SLA Violations).
 
-We had gotten all the way to a soft launch of the new experience when we starting getting feedback from customers that made us aware of a significant problem with the bar chart on the **Runs** tab.
-This bar chart shows the count of runs for each day in the selected time span (one week by default).
+However, we had gotten all the way to a soft launch of the new experience when we starting getting feedback from customers that made us aware of a significant problem with the bar chart on the **Runs** tab.
+The bar chart in question shows the count of runs for each day in the selected time span (one week by default).
 
 ![Runs page](../images/prefect/00_original_runs_bar_chart.png)
 
-People missed the original data visualization on this page, that we dubbed "The Ball Pit".
+People missed the original data visualization on this page, which we had dubbed "The Ball Pit".
 My job was to figure out why they missed it and what to do about it.
 
 ## The Ball Pit
