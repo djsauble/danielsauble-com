@@ -44,23 +44,23 @@ My job was to figure out why they missed it and what to do about it.
 
 I've overlaid the Ball Pit on top of the bar chart to give you an idea of what it looked like.
 
-The ball pit is a scatterplot, where each dot represents an individual run.
+The Ball Pit is a scatterplot, where each dot represents an individual run.
 The color of the dot represents the status of the run (for example, pending, running, completed, failed).
 The y-axis represents the duration of the run.
 The x-axis represents the time when the run started.
 
-![Runs page with ball pit overlay](../images/prefect/01_superimposed_ball_plot.png)
+![Runs page with Ball Pit overlay](../images/prefect/01_superimposed_ball_plot.png)
 
-## Initial exploration
+## Statistical aggregation exploration
 
-The ball pit has a significant problem.
+The Ball Pit has a significant problem.
 When there are more than 200 runs, the API truncates the response and only returns the 200 most recent runs.
 This is why the plot looks oddly broken much of the time.
 Most of Prefect's enterprise customers have tens of thousands of runs per week, so they're only seeing a small fraction of their runs.
 
-This was the original motivation behind replacing the ball pit with a simpler bar chart.
+This was the original motivation behind replacing the Ball Pit with a simpler bar chart.
 We couldn't show all of the individual runs, but we _could_ show a statistical aggregation of all runs (the count of runs).
-However, after getting feedback that people missed the ball chart, we tried to see if we could bring back more of the granularity from the ball pit.
+However, after getting feedback that people missed the ball chart, we tried to see if we could bring back more of the granularity from the Ball Pit.
 
 My first idea was to do statistical aggregation by showing p-value thresholds instead of a total count.
 I did a few iterations to explore this idea:
@@ -90,15 +90,15 @@ I did a few iterations to explore this idea:
    ![Nested stacked bar chart - hover state](../images/prefect/06_p_value_exploration_v5b.png)
 
 In the end, we decided to use the traditional line chart for each of the high level tabs, with the exception of the **Runs** tab.
-The **Runs** tab is what needed to solve the ball pit problem, and unfortunately these approaches didn't quite get us there.
+The **Runs** tab is what needed to solve the Ball Pit problem, and unfortunately these approaches didn't quite get us there.
 
 ## Multi-dimension exploration
 
-While those initial explorations avoided the 200 run limit of the original ball chart, users told us they still missed the glanceability of the ball pit.
+While those initial explorations avoided the 200 run limit of the original ball chart, users told us they still missed the glanceability of the Ball Pit.
 Users don't want to have to choose a metric (Run Count, Failure Rate, SLA Violations, Duration, Lateness) in order to see if that metric has anomalies.
 What users want is to have a single pane of glass they can look at to passively see if there are anomalies in any dimensions, after which they can drill down futher.
 
-While the ball pit had significant shortcomings, it solved the single pane of glass problem very well.
+While the Ball Pit had significant shortcomings, it solved the single pane of glass problem very well.
 I tried a couple of explorations to see if I could represent all of these dimensions in a single plot.
 
 1. Show P99 thresholds where that makes sense (Duration, Lateness), and show other metrics sized according to their absolute counts (Failure, SLA Violations).
@@ -111,10 +111,10 @@ I tried a couple of explorations to see if I could represent all of these dimens
 
 However, these visualizations didn't resonate with internal stakeholders or our users, so I went back to the drawing board and approached the problem from a first principles approach.
 
-## Back to the basics
+## Observability first principles
 
-Those explorations came further to being replacements for the ball pit, but we didn't have enough confidence in them.
-Rather of shipping a mediocre experience, I revisited the core observability problems that users have, including problems that even the ball pit _doesn't_ solve.
+Those explorations came further to being replacements for the Ball Pit, but we didn't have enough confidence in them.
+Rather of shipping a mediocre experience, I revisited the core observability problems that users have, including problems that even the Ball Pit _doesn't_ solve.
 
 1. Most run failures are caused by changes to code, infrastructure, or run duration.
 
@@ -131,13 +131,13 @@ Rather of shipping a mediocre experience, I revisited the core observability pro
 Interestingly, these problems are better solved by a scatterplot versus the statistical aggregations from the previous explorations.
 Users need to be able to see failure at the granularity of individual runs, which statistical aggregations can't do well.
 
-## Putting it all together
+## Ball Pit redux
 
-Given all of these explorations, we realized we probably wanted to enhance the ball pit rather than replacing it with an entirely new visualization.
+Given all of these explorations, we realized we probably wanted to enhance the Ball Pit rather than replacing it with an entirely new visualization.
 However, we couldn't do this with a hard limit of 200 runs.
 Given that, I went back to engineering to ask if this was a law of physics or something we could find a creative solution for (progressive loading, optimizing the payload from the API, etc).
 
-It turned out that we could create a new API endpoint specific to the ball pit which would let us load up to 10,000 runs at a time.
+It turned out that we could create a new API endpoint specific to the Ball Pit which would let us load up to 10,000 runs at a time.
 While not perfect, we decided this was good enough for most users, since:
 
 1. Users can restrict the timespan to limit the number of runs that are shown.
@@ -145,7 +145,7 @@ While not perfect, we decided this was good enough for most users, since:
 
 With that limitation resolved, I went ahead and designed the solution that we ended up building.
 
-![New and improved ball pit](../images/prefect/12_prototype_start.png)
+![New and improved Ball Pit](../images/prefect/12_prototype_start.png)
 
 When you hover over an individual run in the chart, we highlight the other runs from the same workflow and show a trend line.
 
