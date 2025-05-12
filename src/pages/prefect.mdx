@@ -51,8 +51,6 @@ The x-axis represents the time when the run started.
 
 ![Runs page with Ball Pit overlay](../images/prefect/01_superimposed_ball_plot.png)
 
-## Statistical aggregation exploration
-
 The Ball Pit has a significant problem.
 When there are more than 200 runs, the API truncates the response and only returns the 200 most recent runs.
 This is why the plot looks oddly broken much of the time.
@@ -61,6 +59,8 @@ Most of Prefect's enterprise customers have tens of thousands of runs per week, 
 This was the original motivation behind replacing the Ball Pit with a simpler bar chart.
 We couldn't show all of the individual runs, but we _could_ show a statistical aggregation of all runs (the count of runs).
 However, after getting feedback that people missed the ball chart, we tried to see if we could bring back more of the granularity from the Ball Pit.
+
+## Statistical aggregation exploration
 
 My first idea was to do statistical aggregation by showing p-value thresholds instead of a total count.
 I did a few iterations to explore this idea:
