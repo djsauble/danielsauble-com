@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import teamMap from '../../public/images/prefect/00_team.png';
 import originalRunsBarChart from '../../public/images/prefect/00_original_runs_bar_chart.png';
@@ -24,9 +24,11 @@ import tabSettings from '../../public/images/prefect/16_prototype_click_tab_sett
 import yAxisSetting from '../../public/images/prefect/17_prototype_change_y_axis.png';
 import medianCalculation from '../../public/images/prefect/18_prototype_relative_to_dropdown.png';
 import optionsForMedianCalculation from '../../public/images/prefect/19_prototype_change_relative_to.png';
+
+const title = "Prefect";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>Prefect</h1>
 
   <h2>Intro</h2>
@@ -208,4 +210,4 @@ import optionsForMedianCalculation from '../../public/images/prefect/19_prototyp
   <Image src={medianCalculation} alt="Median calculation" />
 
   <Image src={optionsForMedianCalculation} alt="Options for median calculation" />
-</ChildLayout>
+</Layout>

@@ -1,8 +1,10 @@
 ---
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
+
+const title = "Daniel Sauble - Resume";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>Daniel Sauble</h1>
 
   Product Designer focused on data engineering for the AI/ML space
@@ -150,4 +152,4 @@ import ChildLayout from "../layouts/ChildLayout.astro";
   - <a href="https://www.packtpub.com/product/offline-first-web-development/9781785884573" target="_blank">Offline First Web Development <i class="fa fa-external-link" aria-hidden="true"></i></a>, Packt Publishing, 2015
   - <a href="https://uxdesign.cc/offline-93c2f8396124" target="_blank">Offline: When Your Apps Can't Connect to the Internet <i class="fa fa-external-link" aria-hidden="true"></i></a>, Medium, 2015
   - <a href="https://www.smashingmagazine.com/2014/11/how-to-run-user-tests-at-a-conference/" target="_blank">How To Run User Tests At A Conference <i class="fa fa-external-link" aria-hidden="true"></i></a>, Smashing Magazine, 2014
-</ChildLayout>
+</Layout>

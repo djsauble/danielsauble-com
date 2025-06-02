@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import apiGenerator from '../../public/images/runbudget/api_generator.png';
 import zenrunSetup from '../../public/images/runbudget/zenrun_setup.jpg';
@@ -12,9 +12,11 @@ import iosApp from '../../public/images/runbudget/ios_app.jpg';
 import runbudgetIos from '../../public/images/runbudget/runbudget_ios.jpg';
 import runbudgetLargeComplication from '../../public/images/runbudget/runbudget_large_complication.png';
 import runbudgetSmallComplication from '../../public/images/runbudget/runbudget_small_complication.png';
+
+const title = "Run Budget";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>Run Budget</h1>
 
   <h2>The Problem</h2>
@@ -130,4 +132,4 @@ import runbudgetSmallComplication from '../../public/images/runbudget/runbudget_
   <p>You can download the finished app from the App Store <a href="https://itunes.apple.com/us/app/run-budget/id1176825176?ls=1&mt=8" target="_new">here <i class="fa fa-external-link" aria-hidden="true"></i></a>. If you want to be a beta tester for upcoming features, please send me an email at <a href='mailto:djsauble@gmail.com'>djsauble@gmail.com</a>.</p>
 
   <p>Due to the long-term nature of the problems this app solves, it may be awhile before we know if a run budget is the right approach, but at the moment it feels closer than any approach thus far.</p>
-</ChildLayout>
+</Layout>

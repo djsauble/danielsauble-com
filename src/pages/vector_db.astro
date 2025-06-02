@@ -1,13 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import oldLandingPage from '../../public/images/vector_db/00_old_landing_page.png';
 import newLandingPage from '../../public/images/vector_db/01_new_landing_page.png';
 import newQuickstartPage from '../../public/images/vector_db/02_new_quickstart_page.png';
+
+const title = "DataStax Astra DB docs";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>DataStax Astra DB docs</h1>
 
   <p>Astra DB Serverless is a new vector database by DataStax.
@@ -165,4 +167,4 @@ import newQuickstartPage from '../../public/images/vector_db/02_new_quickstart_p
   <p>Check out the <a href="https://docs.datastax.com/en/astra/astra-db-vector/get-started/quickstart.html" target="_blank">quickstart page as it currently exists</a>, or see the following screenshot for how the site looked at the end of my involvement.</p>
 
   <Image src={newQuickstartPage} alt="Old serverless docs landing page" />
-</ChildLayout>
+</Layout>

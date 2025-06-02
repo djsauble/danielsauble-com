@@ -1,14 +1,16 @@
 ---
 import { Image } from 'astro:assets';
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import nexus2BrowseUi from '../../public/images/browse/nexus_2_browse_ui.png';
 import currentInterface from '../../public/images/browse/current_interface.png';
 import treeBrowsing from '../../public/images/browse/tree_browsing.png';
 import htmlIndex from '../../public/images/browse/html_index.png';
+
+const title = "Tree Browsing";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>Tree Browsing</h1>
 
   <h2>The Problem</h2>
@@ -59,4 +61,4 @@ import htmlIndex from '../../public/images/browse/html_index.png';
   <p>The biggest thing I learned from the design and development of this feature is that it&rsquo;s very, very hard to deliver a compelling experience that&rsquo;s not merely a toy. When you&rsquo;re a resource-strapped startup building tools for Fortune 500 companies, very often it&rsquo;s better to deliver a UI that feels simplistic but is usable and performant.</p>
 
   <p>We have plans to iterate on this initial feature, but we&rsquo;re very proud of the result.</p>
-</ChildLayout>
+</Layout>

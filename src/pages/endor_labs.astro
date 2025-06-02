@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import teamMap from '../../public/images/endor_labs/00_team.png';
 import userJourneyMap from '../../public/images/endor_labs/06_user_journey_map.png';
@@ -12,9 +12,11 @@ import ciRuns from '../../public/images/endor_labs/02_ci_runs.png';
 import createPolicyAction from '../../public/images/endor_labs/03_create_policy_action.png';
 import findingsCallPathsDrawer from '../../public/images/endor_labs/04_findings_call_paths_drawer.png';
 import dependencyGraph from '../../public/images/endor_labs/05_dependency_graph.png';
+
+const title = "Endor Labs";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>Endor Labs</h1>
 
   <h2>Intro</h2>
@@ -114,4 +116,4 @@ import dependencyGraph from '../../public/images/endor_labs/05_dependency_graph.
   Additional details about any dependency can be viewed via a drawer mechanism.</p>
 
   <Image src={dependencyGraph} alt="Dependency graph UI" />
-</ChildLayout>
+</Layout>

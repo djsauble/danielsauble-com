@@ -1,13 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import secureStoryMap from '../../public/images/package_filtering/secure_story_map.jpg';
 import admin from '../../public/images/package_filtering/admin.png';
 import policyViolations from '../../public/images/package_filtering/policy_violations.png';
+
+const title = "Package Filtering";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>Package Filtering</h1>
 
   <h2>The Problem</h2>
@@ -163,4 +165,4 @@ import policyViolations from '../../public/images/package_filtering/policy_viola
   misclassified, or isn't used in a way that will exercise the vulnerability.
   Providing developers with the ability to request an exemption will make this
   even better.</p>
-</ChildLayout>
+</Layout>

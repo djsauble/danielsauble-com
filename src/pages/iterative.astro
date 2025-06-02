@@ -1,15 +1,17 @@
 ---
 import { Image } from 'astro:assets';
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import mentalModels from '../../public/images/iterative/01_mental_model.png';
 import initialPrototype from '../../public/images/iterative/02_initial_prototype.png';
 import finalPrototype from '../../public/images/iterative/03_final_prototype.png';
 import jobsSidebar from '../../public/images/iterative/04_remote_code_execution.png';
 import manageComputeResources from '../../public/images/iterative/05_configure_compute.png';
+
+const title = "Dataset management for GenAI";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>Dataset management for GenAI</h1>
 
   <p>DVCX is a dataset management tool for Generative AI.
@@ -59,4 +61,4 @@ import manageComputeResources from '../../public/images/iterative/05_configure_c
   <p>Here's my full walkthrough of the run compute and manage compute flows.</p>
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/9fX9o50yoWg" title="YouTube video player" frameborder="0" allow="fullscreen"></iframe>
-</ChildLayout>
+</Layout>

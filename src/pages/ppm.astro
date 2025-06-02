@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import ChildLayout from "../layouts/ChildLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import storyMap from '../../public/images/ppm/story_map.jpg';
 import roughWireframes from '../../public/images/ppm/rough_wireframes.jpg';
@@ -8,9 +8,11 @@ import balsamiqPrototype from '../../public/images/ppm/balsamiq_prototype.png';
 import mvpWorkflow from '../../public/images/ppm/mvp_workflow.jpg';
 import mvpWireframes from '../../public/images/ppm/mvp_wireframes.jpg';
 import ppmPrototype from '../../public/images/ppm/patch_manager.png';
+
+const title = "Patch Manager";
 ---
 
-<ChildLayout>
+<Layout title={title}>
   <h1>Patch Manager</h1>
 
   <h2>The Problem</h2>
@@ -52,4 +54,4 @@ import ppmPrototype from '../../public/images/ppm/patch_manager.png';
   <p>I collaborated heavily with our visual designer and front-end engineer to create the final prototype. We ended up not shipping Patch Manager, due to a lack of paying customers, but the process of designing and shipping a prototype was a key part of coming to that conclusion.</p>
 
   <Image src={ppmPrototype} alt="PPM prototype" />
-</ChildLayout>
+</Layout>
