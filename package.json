@@ -20,5 +20,6 @@
   },
   "devDependencies": {
     "sharp": "^0.34.2"
-  }
+  },
+  "packageManager": "yarn@4.9.1"
 }

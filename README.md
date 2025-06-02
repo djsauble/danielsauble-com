@@ -1,5 +1,6 @@
 # Setup
 
+    $ yarn --version # You must be running Yarn >=2
     $ yarn install
 
 # Development
