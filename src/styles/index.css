@@ -1,19 +1,33 @@
+body {
+  margin: 0 auto;
+  min-width: 200px;
+  max-width: 960px;
+  width: 100%;
+  background-color: #f8f8f8;
 
-.mug {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-left: 0.5em;
-  margin-bottom: 0.5em;
-  float: right;
-  border: 1px solid #333333;
+  /* Fonts */
+  font-family: 'Calisto MT', 'HelveticaNeue', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
-.clear {
-  clear: both;
+h1 {
+  font-size: 3em;
+  font-weight: normal;
+  line-height: 1.25em;
+  margin-bottom: 14px;
 }
 
-.date {
-  float: right;
+h2 {
+  font-size: 2em;
+  font-weight: normal;
+  line-height: 1.25em;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+.fa-external-link {
+  font-size: 80%;
 }

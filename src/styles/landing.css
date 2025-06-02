@@ -1,0 +1,9 @@
+.mug {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #333333;
+}
