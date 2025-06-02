@@ -6,6 +6,7 @@
 
 .project_hero img {
   z-index: 0;
+  height: auto;
 }
 
 .project_hero img:hover {

@@ -1,0 +1,211 @@
+---
+import { Image } from 'astro:assets';
+import ChildLayout from "../layouts/ChildLayout.astro";
+
+import teamMap from '../../public/images/prefect/00_team.png';
+import originalRunsBarChart from '../../public/images/prefect/00_original_runs_bar_chart.png';
+import superimposedBallPlot from '../../public/images/prefect/01_superimposed_ball_plot.png';
+import pValueExplorationV1 from '../../public/images/prefect/02_p_value_exploration_v1.png';
+import pValueExplorationV2 from '../../public/images/prefect/03_p_value_exploration_v2.png';
+import pValueExplorationV3 from '../../public/images/prefect/04_p_value_exploration_v3.png';
+import pValueExplorationV4 from '../../public/images/prefect/05_p_value_exploration_v4.png';
+import pValueExplorationV5a from '../../public/images/prefect/06_p_value_exploration_v5a.png';
+import pValueExplorationV5b from '../../public/images/prefect/06_p_value_exploration_v5b.png';
+import multipleMetricsOverlayV1 from '../../public/images/prefect/07_multiple_metrics_overlay_v1.png';
+import multipleMetricsOverlayV2 from '../../public/images/prefect/08_multiple_metrics_overlay_v2.png';
+import infrastructureAnnotations from '../../public/images/prefect/09_infra_or_code_change_annotations_wireframe.png';
+import deviationFromTheMean from '../../public/images/prefect/10_deviation_from_mean_wireframe.png';
+import highlightRelatedRuns from '../../public/images/prefect/11_related_runs_wireframe.png';
+import prototypeStart from '../../public/images/prefect/12_prototype_start.png';
+import hoverOverRun from '../../public/images/prefect/13_prototype_hover_over_run.png';
+import clickRun from '../../public/images/prefect/14_prototype_click_run.png';
+import hoverOverAnnotation from '../../public/images/prefect/15_prototype_hover_over_annotation.png';
+import tabSettings from '../../public/images/prefect/16_prototype_click_tab_settings.png';
+import yAxisSetting from '../../public/images/prefect/17_prototype_change_y_axis.png';
+import medianCalculation from '../../public/images/prefect/18_prototype_relative_to_dropdown.png';
+import optionsForMedianCalculation from '../../public/images/prefect/19_prototype_change_relative_to.png';
+---
+
+<ChildLayout>
+  <h1>Prefect</h1>
+
+  <h2>Intro</h2>
+
+  <p>I was the lead designer for Prefect Cloud, a product used to help data engineers and data platform operators manage their orchestrated workflows.
+  Workflows are collections of Python functions that are run on cloud infrastructure, typically in an automated way, whether scheduled or trigged from events (e.g. webhooks).</p>
+
+  <h2>Team and collaboration</h2>
+
+  <p>I reported to the VP of Product, and collaborated most closely with our CEO, lead front-end developer, and technical product manager.</p>
+
+  <Image src={teamMap} alt="Team map" />
+
+  <p>This is how we collaborated on projects:</p>
+
+  <ul>
+    <li>The CEO or VP of Product would come to me with a problem to be solved, and I would hold an initial requirements gathering meeting where we would hash out the problem and create an epic in Linear.</li>
+    <li>I then built out low-fidelity exploratory prototypes in Figma, sharing explorations daily in Slack, until we converged on a design that felt right and that satisfied the original requirements.</li>
+    <li>Because of the speed of front-end engineering, our approach to gathering user feedback was to implement the Figma prototypes in code, and release them to production behind a feature flag.</li>
+    <li>As we got feedback from early adopters (or internal stakeholders—such as technical PMs and sales engineering), we'd iterate on the implementation until it met our quality bar and then we'd release it.</li>
+  </ul>
+
+  <p>Projects generally took 1-2 months to complete, depending on resource availability.</p>
+
+  <h2>Runs page redesign problem</h2>
+
+  <p>One of the problems I tackled was a redesign of the main <strong>Runs</strong> page.
+  The runs page is used to monitor the behavior of all workflows over time.
+  We wanted to provide a more powerful timeline view of runs (inspired by Pydantic Logfire) and to add some additional top-level metrics (SLA Violations).</p>
+
+  <p>However, we had gotten all the way to a soft launch of the new experience when we starting getting feedback from customers that made us aware of a significant problem with the bar chart on the <strong>Runs</strong> tab.
+  The bar chart in question shows the count of runs for each day in the selected time span (one week by default).</p>
+
+  <Image src={originalRunsBarChart} alt="Runs page" />
+
+  <p>People said they missed the original data visualization on this page, which we had dubbed "The Ball Pit".
+  My job was to figure out why they missed it and what to do about it.</p>
+
+  <h2>The Ball Pit</h2>
+
+  <p>I've overlaid the Ball Pit on top of the bar chart to give you an idea of what it looked like.</p>
+
+  <p>The Ball Pit is a scatterplot, where each dot represents an individual run.
+  The color of the dot represents the status of the run (for example, pending, running, completed, failed).
+  The y-axis represents the duration of the run.
+  The x-axis represents the time when the run started.</p>
+
+  <Image src={superimposedBallPlot} alt="Runs page with Ball Pit overlay" />
+
+  <p>The Ball Pit has a significant problem.
+  When there are more than 200 runs, the API truncates the response and only returns the 200 most recent runs.
+  This is why the plot looks oddly broken much of the time.
+  Most of Prefect's enterprise customers have tens of thousands of runs per week, so they're only seeing a small fraction of their runs.</p>
+
+  <p>This was the original motivation behind replacing the Ball Pit with a simpler bar chart.
+  We couldn't show all of the individual runs, but we _could_ show a statistical aggregation of all runs (the count of runs).
+  However, after getting feedback that people missed the ball chart, we tried to see if we could bring back more of the granularity from the Ball Pit.</p>
+
+  <h2>Statistical aggregation exploration</h2>
+
+  <p>My first idea was to do statistical aggregation by showing p-value thresholds instead of a total count.
+  I did a few iterations to explore this idea:</p>
+
+  <ol>
+    <li>A clustered bar chart, where each color represents a specific threshold:
+
+       <Image src={pValueExplorationV1} alt="Clustered bar chart" />
+
+    <li>A modified box and whiskers plot, which shows both the thresholds and the delta between thresholds:
+
+       <Image src={pValueExplorationV2} alt="Modified box and whiskers plot" />
+
+    <li>A stacked bar chart, which shows the same information but in a less visually noisy way:
+
+       <Image src={pValueExplorationV3} alt="Stacked bar chart" />
+
+    <li>A traditional line chart overlaid on top of daily run counts, which is closer to the industry standard for this type of visualization:
+
+       <Image src={pValueExplorationV4} alt="Traditional line chart" />
+
+    <li>A nested stacked bar chart, where the vertical bars represents the daily run counts and thresholds.
+
+       <Image src={pValueExplorationV5a} alt="Nested stacked bar chart" />
+
+       And when you hover, we highlight the horizontal bars which represent the proportion of run states within each theshold band.
+
+       <Image src={pValueExplorationV5b} alt="Nested stacked bar chart - hover state" />
+  </ol>
+
+  <p>In the end, we decided to use the traditional line chart for each of the high level tabs, with the exception of the <strong>Runs</strong> tab.
+  The <strong>Runs</strong> tab is what needed to solve the Ball Pit problem, and unfortunately these approaches didn't quite get us there.</p>
+
+  <h2>Multi-dimension exploration</h2>
+
+  <p>While those initial explorations avoided the 200 run limit of the original ball chart, users told us they still missed the glanceability of the Ball Pit.
+  Users don't want to have to choose a metric (Run Count, Failure Rate, SLA Violations, Duration, Lateness) in order to see if that metric has anomalies.
+  What users want is to have a single pane of glass they can look at to passively see if there are anomalies in any dimensions, after which they can drill down futher.</p>
+
+  <p>While the Ball Pit had significant shortcomings, it solved the single pane of glass problem very well.
+  I tried a couple of explorations to see if I could represent all of these dimensions in a single plot.</p>
+
+  <ol>
+    <li>Show P99 thresholds where that makes sense (Duration, Lateness), and show other metrics sized according to their absolute counts (Failure, SLA Violations).
+
+       <Image src={multipleMetricsOverlayV1} alt="Overlay multiple metrics" />
+
+    <li>Show all metrics as a clustered bar chart, which is simpler and less clever.
+
+       <Image src={multipleMetricsOverlayV2} alt="Mutiple metrics with clustered bar chart" />
+  </ol>
+
+  <p>However, these visualizations didn't resonate with internal stakeholders or our users, so I went back to the drawing board and approached the problem from a first principles approach.</p>
+
+  <h2>Observability first principles</h2>
+
+  <p>Those explorations came further to being replacements for the Ball Pit, but we didn't have enough confidence in them.
+  Rather than shipping a mediocre experience, I revisited the core observability problems that users have, including problems that even the Ball Pit _doesn't_ solve.</p>
+
+  <ol>
+    <li>Most run failures are caused by changes to code, infrastructure, or run duration.
+
+       <Image src={infrastructureAnnotations} alt="Infrastructure annotations" />
+
+    <li>Users want to see anomalies in run duration, but they want to see the deviation fom the median run for each run's parent deployment or work pool, not the mean for all runs as a whole.
+
+       <Image src={deviationFromTheMean} alt="Deviation from the mean" />
+
+    <li>If a run fails, users want to be able to see if this is a recurring pattern for other runs in the same workflow.
+
+       <Image src={highlightRelatedRuns} alt="Highlight related runs" />
+  </ol>
+
+  <p>Interestingly, these problems are better solved by a scatterplot versus the statistical aggregations from the previous explorations.
+  Users need to be able to see failure at the granularity of individual runs, which statistical aggregations can't do well.</p>
+
+  <h2>Ball Pit redux</h2>
+
+  <p>Given all of these explorations, we realized we probably wanted to enhance the Ball Pit rather than replacing it with an entirely new visualization.
+  However, we couldn't do this with a hard limit of 200 runs.
+  Given that, I went back to engineering to ask if this was a law of physics or something we could find a creative solution for (progressive loading, optimizing the payload from the API, etc).</p>
+
+  <p>It turned out that we could create a new API endpoint specific to the Ball Pit which would let us load up to 10,000 runs at a time.
+  While not perfect, we decided this was good enough for most users, since:</p>
+
+  <ol>
+    <li>Users can restrict the timespan to limit the number of runs that are shown.</li>
+    <li>We can introduce additional filters to hide runs that are less interesting (for example, successful runs, which are the majority of all runs).</li>
+  </ol>
+
+  <p>With that limitation resolved, I went ahead and designed the solution that we ended up building.</p>
+
+  <Image src={prototypeStart} alt="New and improved Ball Pit" />
+
+  <p>When you hover over an individual run in the chart, we highlight the other runs from the same workflow and show a trend line.</p>
+
+  <Image src={hoverOverRun} alt="Hover over a run" />
+
+  <p>When you click a run, we show a floating dialog with some additional metadata about the run.</p>
+
+  <Image src={clickRun} alt="Click a run" />
+
+  <p>When you hover over an annotation on the x-axis, we show the associated infrastructure or code change.</p>
+
+  <Image src={hoverOverAnnotation} alt="Hover over an annotation" />
+
+  <p>The Runs tab has a settings dialog that lets you dial in the chart to your preferences.
+  One important function is the ability to hide specific run states (for example, Completed) if there is too much visual noise or if there are too many runs to display at once.</p>
+
+  <Image src={tabSettings} alt="Tab settings" />
+
+  <p>We decided to make the new relative duration y-axis opt-in.
+  Even though users care more about deviation from the median parent workflow, we didn't want to confuse people accustomed to the original y-axis (absolute duration).</p>
+
+  <Image src={yAxisSetting} alt="Y-axis setting" />
+
+  <p>If you do change the y-axis to show the change from median, we show an additional setting that lets you control how the median is calculated.
+  For example, you can show the median deviation from the parent deployment or the parent work pool (the infrastructure on which flows are run).</p>
+
+  <Image src={medianCalculation} alt="Median calculation" />
+
+  <Image src={optionsForMedianCalculation} alt="Options for median calculation" />
+</ChildLayout>

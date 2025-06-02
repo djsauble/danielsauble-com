@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import ProjectHero from "../components/project_hero.jsx";
+import "../styles/index.css";
+import Layout from '../layouts/Layout.astro';
+
+import mug from '../../public/images/daniel.jpeg';
+import prefectImage from '../../public/images/prefect/13_prototype_hover_over_run.png';
+import endorLabsImage from '../../public/images/endor_labs/05_dependency_graph.png';
+import iterativeImage from '../../public/images/iterative/04_remote_code_execution.png';
+import vectorDbImage from '../../public/images/vector_db/01_new_landing_page.png';
+import developerImage from '../../public/images/developer/home_page_dark_mode.png';
+import packageFilteringImage from '../../public/images/package_filtering/admin.png';
+import ppmImage from '../../public/images/ppm/patch_manager.png';
+import browseImage from '../../public/images/browse/tree_browsing.png';
+import runbudgetImage from '../../public/images/runbudget/forrest_cruise.png';
+---
+
+<Layout>
+  <h1>Daniel Sauble</h1>
+
+  <Image src={mug} alt="mug" class="mug" />
+
+  <p>I&rsquo;m a Product Designer specializing in ML tools for software developers.</p>
+
+  <p>I currently work at <a href="https://prefect.io" target="_blank">Prefect</a> on workflow orchestration for data engineers and am also a teaching faculty for software engineering at the Harvard Extension School.
+  More details in my <a href="/resume">resume</a>.</p>
+
+  <p>Want to work with me? Send a note to <a href="mailto:djsauble@gmail.com">djsauble@gmail.com</a>.</p>
+
+  <h2>Portfolio</h2>
+
+  <ProjectHero
+    to="/prefect"
+    title="Prefect"
+    description="Visualize the state of your orchestrated flows"
+  >
+    <Image src={prefectImage} alt="Prefect" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/endor_labs"
+    title="Endor Labs"
+    description="Secure your software supply chain"
+  >
+    <Image src={endorLabsImage} alt="Endor Labs" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/iterative"
+    title="Iterative"
+    description="Remote code execution for ML models"
+  >
+    <Image src={iterativeImage} alt="Remote Code Execution" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/vector_db"
+    title="DataStax"
+    description="Learn how to use a vector database"
+  >
+    <Image src={vectorDbImage} alt="DataStax Vector DB" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/developer"
+    title="New Relic"
+    description="Learn how to build custom apps on the New Relic platform"
+  >
+    <Image src={developerImage} alt="Developer website" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/package_filtering"
+    title="npm"
+    description="Keep bad npm packages out of your applications"
+  >
+    <Image src={packageFilteringImage} alt="Package Filtering" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/ppm"
+    title="Puppet"
+    description="Easily patch your IT systems with an existing configuration management tool"
+  >
+    <Image src={ppmImage} alt="Patch Manager" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/browse"
+    title="Sonatype"
+    description="Peruse the contents of your software repositories in a structured way"
+  >
+    <Image src={browseImage} alt="Tree Browsing" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/runbudget"
+    title="Personal project"
+    description="Visualization tool to help long-distance runners build their mileage safely"
+  >
+    <Image src={runbudgetImage} alt="Run Budget" />
+  </ProjectHero>
+</Layout>

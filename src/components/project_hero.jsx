@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 import "./project_hero.css"
 
 const ProjectHero = ({to, title, description, children}) => {
@@ -8,9 +7,9 @@ const ProjectHero = ({to, title, description, children}) => {
     <div className="project_hero">
       <h3>{title}</h3>
       <p>{description}</p>
-      <Link to={to}>
+      <a href={to}>
         {children}
-      </Link>
+      </a>
     </div>
   )
 }

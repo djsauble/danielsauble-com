@@ -26,5 +26,6 @@ jobs:
       with:
         node-version: 19
     - run: npm install
-    - run: npx gatsby-cli build
-    - run: npx gatsby-plugin-s3 deploy
+    - run: npm run build
+    - name: Deploy to S3
+      run: aws s3 sync dist/ s3://www.danielsauble.com --delete

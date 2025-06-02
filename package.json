@@ -1,59 +1,20 @@
 {
-  "name": "danielsauble-com",
-  "private": true,
-  "description": "Daniel's portfolio",
-  "version": "0.1.0",
-  "author": "Daniel Sauble <djsauble@gmail.com>",
-  "dependencies": {
-    "@mdx-js/mdx": "*",
-    "@mdx-js/react": "*",
-    "gatsby": "*",
-    "gatsby-cli": "^5.14.0",
-    "gatsby-image": "*",
-    "gatsby-plugin-google-gtag": "*",
-    "gatsby-plugin-image": "*",
-    "gatsby-plugin-manifest": "*",
-    "gatsby-plugin-mdx": "*",
-    "gatsby-plugin-offline": "*",
-    "gatsby-plugin-react-helmet": "*",
-    "gatsby-plugin-s3": "*",
-    "gatsby-plugin-sharp": "*",
-    "gatsby-remark-images": "*",
-    "gatsby-source-filesystem": "*",
-    "prop-types": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-helmet": "*"
-  },
-  "devDependencies": {
-    "eslint": "*",
-    "eslint-config-airbnb": "*",
-    "eslint-plugin-import": "*",
-    "eslint-plugin-jsx-a11y": "*",
-    "eslint-plugin-mdx": "*",
-    "eslint-plugin-react": "*",
-    "eslint-plugin-react-hooks": "*",
-    "prettier": "*"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
+  "name": "astro-site",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "deploy": "gatsby-plugin-s3 deploy",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/djsauble/danielsauble-com"
-  },
-  "bugs": {
-    "url": "https://github.com/djsauble/danielsauble-com/issues"
+  "dependencies": {
+    "@astrojs/react": "^4.3.0",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "astro": "^5.8.1",
+    "prop-types": "^15.8.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }
