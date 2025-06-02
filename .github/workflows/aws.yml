@@ -25,11 +25,13 @@ jobs:
       uses: actions/setup-node@v3.6.0
       with:
         node-version: 24
-    - name: Install the apppropriate version of Yarn
-      run: yarn set version 4.x
     - name: Install Node dependencies
-      run: yarn install
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: install
     - name: Build static site
-      run: yarn run build
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: run build
     - name: Deploy to S3
       run: aws s3 sync dist/ s3://www.danielsauble.com --delete
