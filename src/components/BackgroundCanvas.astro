@@ -1,0 +1,124 @@
+---
+---
+
+<canvas id="background-canvas"></canvas>
+
+<script is:inline>
+  const canvas = document.getElementById('background-canvas');
+  const ctx = canvas.getContext('2d');
+
+  const spacing = 50; // Spacing between dots in pixels
+  let gridWidth;
+  let gridHeight;
+  let grid;
+  let previousGrid;
+
+  function initializeGrid() {
+    gridWidth = Math.ceil(canvas.width / spacing);
+    gridHeight = Math.ceil(canvas.height / spacing);
+    grid = Array(gridWidth).fill(null).map(() => Array(gridHeight).fill(0));
+    previousGrid = Array(gridWidth).fill(null).map(() => Array(gridHeight).fill(0));
+  }
+
+  function updateSimulation() {
+    const damping = 0.4; // Controls how quickly waves dissipate
+
+    for (let i = 1; i < gridWidth - 1; i++) {
+      for (let j = 1; j < gridHeight - 1; j++) {
+        // Apply a simplified 2D wave equation
+        const newValue = (
+          grid[i - 1][j] + grid[i + 1][j] +
+          grid[i][j - 1] + grid[i][j + 1]
+        ) / 2 - previousGrid[i][j];
+        previousGrid[i][j] = grid[i][j];
+        grid[i][j] = newValue * damping;
+      }
+    }
+  }
+
+  function drawAnimation() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const baseDotSize = 1;
+    const maxDisplacementSize = 3; // Max size increase based on displacement
+    const baseColor = [204, 204, 204]; // Subtle grey color (RGB)
+
+    for (let i = 0; i < gridWidth; i++) {
+      for (let j = 0; j < gridHeight; j++) {
+        const displacement = grid[i][j];
+        const dotSize = baseDotSize + Math.abs(displacement) * maxDisplacementSize;
+
+        // Vary color based on displacement
+        const colorIntensity = Math.min(255, Math.abs(displacement) * 100); // Adjust multiplier for desired intensity
+        const r = baseColor[0] - colorIntensity;
+        const g = baseColor[1] - colorIntensity;
+        const b = baseColor[2] - colorIntensity;
+        ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+
+
+        const x = i * spacing;
+        const y = j * spacing;
+
+        ctx.beginPath();
+        ctx.arc(x, y, dotSize, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+
+  // Initial draw and resize handling
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initializeGrid();
+    drawAnimation(); // Redraw on resize
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas(); // Initial size
+
+  // Animation loop
+  let lastTime = 0;
+  const fps = 30;
+  const frameDuration = 1000 / fps;
+
+  function animate(currentTime) {
+    requestAnimationFrame(animate);
+
+    const deltaTime = currentTime - lastTime;
+
+    if (deltaTime > frameDuration) {
+      lastTime = currentTime - (deltaTime % frameDuration);
+      updateSimulation();
+      drawAnimation();
+    }
+  }
+  animate(0); // Start the animation loop
+
+  // Mouse interaction
+  canvas.addEventListener('click', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    const gridX = Math.floor(mouseX / spacing);
+    const gridY = Math.floor(mouseY / spacing);
+
+    if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+      // Apply a displacement pulse at the mouse location
+      grid[gridX][gridY] = 100; // Adjust the magnitude of the pulse as needed
+    }
+  });
+
+</script>
+
+<style>
+  #background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+</style>
