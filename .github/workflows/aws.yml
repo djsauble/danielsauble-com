@@ -22,9 +22,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-west-2
     - name: Setup Node.js environment
-      uses: actions/setup-node@v3.6.0
+      uses: actions/setup-node@v3
       with:
         node-version: 24
+    - name: Enable Corepack
+      run: corepack enable
     - name: Install Node dependencies
       uses: borales/actions-yarn@v4
       with:
