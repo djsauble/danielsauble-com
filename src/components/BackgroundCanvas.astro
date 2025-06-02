@@ -8,15 +8,14 @@
   const ctx = canvas.getContext('2d');
 
   const spacing = 50; // Spacing between dots in pixels. Range: 20 to 100.
-  const damping = 1.1; // Controls how quickly waves dissipate. Range: 0.1 to 0.9.
-  const baseDotSize = 20; // Base size of the dots. Range: 0.5 to 3.
+  const damping = 1.1; // Controls how quickly waves dissipate. Range: 0.1 to 0.9.=
   const baseColor = [240, 240, 240]; // Subtle grey color (RGB). Range: [0, 0, 0] to [255, 255, 255].
-  const colorIntensityMultiplier = 100; // Multiplier for color intensity based on displacement. Range: 50 to 200.
+  const targetColor = [255, 255, 255]; // Target color for the animation (RGB). Range: [0, 0, 0] to [255, 255, 255].
+  const colorIntensityMultiplier = 1.5; // Multiplier for color intensity based on displacement. Range: 50 to 200.
   const fps = 30; // Frames per second for the animation. Range: 20 to 60.
   const pulseMagnitude = 100; // Magnitude of the displacement pulse on click. Range: 50 to 200.
 
   const hexHeight = spacing * Math.sqrt(Math.PI);
-  const hexWidth = spacing * 2;
   const vertSpacing = hexHeight * 0.5 - 2;
   const horizSpacing = spacing * 3;
 
@@ -69,6 +68,7 @@
   }
 
   function drawAnimation() {
+    console.log("Animating!");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < gridWidth; i++) {
@@ -76,10 +76,35 @@
         const displacement = grid[i][j];
 
         // Vary color based on displacement
-        const colorIntensity = Math.min(255 - 240, Math.abs(displacement) * colorIntensityMultiplier);
-        const r = baseColor[0] + colorIntensity;
-        const g = baseColor[1] + colorIntensity;
-        const b = baseColor[2] + colorIntensity;
+        const colorDelta = Math.abs(displacement) * colorIntensityMultiplier;
+        let r = 255;
+        let g = 255;
+        let b = 255;
+
+        // Red channel
+        if (baseColor[0] < targetColor[0]) {
+          r = Math.min(targetColor[0], baseColor[0] + colorDelta);
+        }
+        else {
+          r = Math.max(targetColor[0], baseColor[0] - colorDelta);
+        }
+
+        // Green channel
+        if (baseColor[1] < targetColor[1]) {
+          g = Math.min(targetColor[1], baseColor[1] + colorDelta);
+        }
+        else {
+          g = Math.max(targetColor[1], baseColor[1] - colorDelta);
+        }
+
+        // Blue channel
+        if (baseColor[2] < targetColor[2]) {
+          b = Math.min(targetColor[2], baseColor[2] + colorDelta);
+        }
+        else {
+          b = Math.max(targetColor[2], baseColor[2] - colorDelta);
+        }
+
         ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
 
         const x = i * horizSpacing + (j % 2) * (horizSpacing / 2);
@@ -137,7 +162,6 @@
 
     let gridY = Math.floor(mouseY / vertSpacing);
     let gridX = Math.floor((mouseX - (gridY % 2) * (horizSpacing / 2)) / horizSpacing);
-
 
     if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
       // Apply a displacement pulse at the mouse location
