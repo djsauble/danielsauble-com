@@ -1,12 +1,12 @@
 # Setup
 
-    $ npm install
+    $ yarn install
 
 # Development
 
-    $ npm run dev
+    $ yarn run dev
 
 # Production
 
-    $ npm run build
-    $ npm run preview
+    $ yarn run build
+    $ yarn run preview
