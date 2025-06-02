@@ -1,4 +1,6 @@
 body {
+  max-width: 960px;
+
   /* Footer */
   border-bottom: 100px solid transparent;
 }
