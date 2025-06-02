@@ -25,7 +25,11 @@ jobs:
       uses: actions/setup-node@v3.6.0
       with:
         node-version: 19
-    - run: npm install
-    - run: npm run build
+    - name: Install image processing dependency
+      run: sudo apt-get update && sudo apt-get install -y libvips-dev
+    - name: Install npm dependencies
+      run: npm install
+    - name: Build static site
+      run: npm run build
     - name: Deploy to S3
       run: aws s3 sync dist/ s3://www.danielsauble.com --delete
