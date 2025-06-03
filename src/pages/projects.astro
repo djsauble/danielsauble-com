@@ -91,10 +91,10 @@ const timelineItemsOriginal = [
 <Layout title={title}>
   <h1>Projects</h1>
 
-  <div class="button-container">
+  <!-- <div class="button-container">
     <HighlightsToggle client:load items={timelineItemsOriginal} />
     <SortToggle client:load items={timelineItemsOriginal} />
-  </div>
+  </div> -->
 
   <div class="timeline">
     {(() => {
@@ -109,6 +109,7 @@ const timelineItemsOriginal = [
               description={item.description}
               to={item.to}
               image={item.image}
+              index={i}
               child={nestedItems}
             />
         );

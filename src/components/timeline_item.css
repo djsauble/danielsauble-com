@@ -1,57 +1,54 @@
 .timeline-year {
-  width: 40px;
-  flex-shrink: 0;
-  text-align: right;
-  padding-right: 4px;
-  font-weight: bold;
   position: sticky;
-  top: 0em; /* Stick to the top of the viewport */
-  margin-right: 1em; /* Add space between year and timeline item content */
-  text-decoration: none; /* Remove underline from link */
-  color: inherit; /* Inherit color from parent */
+  bottom: 0;
+  display: block;
+  background-color: #eeeeee;
+  width: 40px;
+  padding: 4px;
+  text-align: center;
+  color: #000000;
+  text-decoration: none;
+  z-index: 100;
 }
 
 .timeline-year:hover {
   text-decoration: underline; /* Add underline on hover */
 }
 
-.timeline-item {
-  display: flex;
-  position: relative;
-  align-items: flex-start; /* Align items to the top */
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 4em;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: #ccc;
-}
-
 .timeline-content {
-  flex-grow: 1;
-  padding-left: 30px;
-  padding-bottom: 4em;
+  padding-left: 4em;
   position: relative;
+
 }
 
 .timeline-content::before {
   content: '';
+  display: block;
+  width: 2px;
   position: absolute;
-  left: 0px;
-  top: 7px;
-  width: 10px;
-  height: 10px;
-  background-color: #333;
-  border-radius: 50%;
+  left: 24px;
+  top: 0px;
+  bottom: 0;
+  background-color: #EEEEEE;
+  z-index: -100;
 }
 
 .timeline-content h3 {
   margin-top: 0;
   margin-bottom: 0.5em;
+}
+
+.timeline-content h3::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  left: 21px;
+  top: 24px;
+  bottom: 0;
+  background-color: #000000;
+  z-index: -50;
 }
 
 .timeline-content p {
