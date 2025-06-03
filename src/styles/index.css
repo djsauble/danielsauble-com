@@ -10,6 +10,11 @@ body {
   line-height: 1.5em;
 }
 
+main {
+  position: relative;
+  z-index: 2;
+}
+
 h1 {
   font-size: 3em;
   font-weight: normal;

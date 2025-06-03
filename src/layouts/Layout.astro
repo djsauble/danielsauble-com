@@ -6,6 +6,8 @@ interface Props {
   title?: string;
 }
 
+import BackgroundCanvas from '../components/BackgroundCanvas.astro';
+
 const { title = 'Daniel Sauble' } = Astro.props;
 ---
 
@@ -19,3 +21,4 @@ const { title = 'Daniel Sauble' } = Astro.props;
 <main>
   <slot />
 </main>
+<BackgroundCanvas />
