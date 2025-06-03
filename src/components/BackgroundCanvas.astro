@@ -26,6 +26,7 @@
   let gridHeight;
   let grid;
   let previousGrid;
+  let highlightedCell = null; // To store the coordinates of the highlighted cell [i, j]
 
   function initializeGrid() {
     gridWidth = Math.ceil(canvas.width / (spacing * 3));
@@ -87,7 +88,12 @@
         g = colors[currentColor][1] + displacement;
         b = colors[currentColor][2] + displacement;
 
-        ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+        // Check if the current cell is the highlighted cell
+        if (highlightedCell && highlightedCell[0] === i && highlightedCell[1] === j) {
+          ctx.fillStyle = '#FFFF00'; // Highlight color (bright yellow)
+        } else {
+          ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+        }
 
         const x = i * horizSpacing + (j % 2) * (horizSpacing / 2);
         const y = j * vertSpacing;
@@ -183,6 +189,37 @@
     }
 
     animate(0); // Start the animation loop
+  });
+
+  // Mouseover interaction
+  canvas.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    let gridY = Math.floor(mouseY / vertSpacing);
+    let gridX = Math.floor(mouseX / horizSpacing);
+
+    // Check if the mouse is over a valid cell and if it's a different cell than currently highlighted
+    if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+      if (!highlightedCell || highlightedCell[0] !== gridX || highlightedCell[1] !== gridY) {
+        highlightedCell = [gridX, gridY];
+        drawAnimation(); // Redraw to show the highlight
+      }
+    } else {
+      // If mouse is not over any cell, clear highlight
+      if (highlightedCell) {
+        highlightedCell = null;
+        drawAnimation(); // Redraw to remove the highlight
+      }
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    if (highlightedCell) {
+      highlightedCell = null;
+      drawAnimation(); // Redraw to remove the highlight
+    }
   });
 
 </script>
