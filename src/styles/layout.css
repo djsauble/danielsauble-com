@@ -14,14 +14,19 @@ main {
   border: solid 5px #eeeeee;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 960px) {
   body {
     border-top: 0;
   }
 
   main {
-    padding: 1em 0.5em 0 0.5em;
+    padding: 1em 1em 0 1em;
     border: none;
+  }
+
+  ul {
+    padding: inherit;
+    padding-top: 0;
   }
 }
 
