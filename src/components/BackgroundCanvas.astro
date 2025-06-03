@@ -9,16 +9,16 @@
 
   const fps = 30; // Frames per second for the animation. Range: 20 to 60.
   const frameDuration = 1000 / fps;
-  const convergenceThreshold = 0.95; // Displacement value close to zero
-  const convergencePercentage = 0.9; // Percentage of cells that must be converged
+  const convergenceThreshold = 0.99; // Displacement value close to zero
+  const convergencePercentage = 0.99; // Percentage of cells that must be converged
 
   const spacing = 60; // Spacing between dots in pixels. Range: 20 to 100.
   const damping = 1.2; // Controls how quickly waves dissipate. Range: 0.1 to 0.9.=
   const colors = [[240, 240, 240], [242, 228, 246], [205, 205, 239], [255, 243, 194], [215, 238, 215]]; // Subtle grey color (RGB). Range: [0, 0, 0] to [255, 255, 255].
   let currentColor = 0;
   let nextColor = 1;
-  const colorIntensityMultiplier = 100; // Multiplier for color intensity based on displacement. Range: 50 to 200.
-  const pulseMagnitude = 100; // Magnitude of the displacement pulse on click. Range: 50 to 200.
+  const colorIntensityMultiplier = 1; // Multiplier for color intensity based on displacement. Range: 50 to 200.
+  const pulseMagnitude = 20; // Magnitude of the displacement pulse on click. Range: 50 to 200.
 
   const hexHeight = spacing * Math.sqrt(Math.PI);
   const vertSpacing = hexHeight * 0.5 - 2;
@@ -30,8 +30,8 @@
   let previousGrid;
 
   function initializeGrid() {
-    gridWidth = Math.ceil(canvas.width / (spacing * 1.5)) + 1;
-    gridHeight = Math.ceil(canvas.height / vertSpacing) + 1;
+    gridWidth = Math.ceil(canvas.width / (spacing * 3));
+    gridHeight = Math.ceil(canvas.height / vertSpacing);
 
     grid = Array(gridWidth).fill(null).map(() => Array(gridHeight).fill(0));
     previousGrid = Array(gridWidth).fill(null).map(() => Array(gridHeight).fill(0));
@@ -47,14 +47,14 @@
 
         // Hexagonal neighbors
         const neighbors = [
-          [i - 1, j], [i + 1, j], // Left and right
-          [i, j - 1], [i, j + 1], // Top and bottom
+          [i, j - 2], [i, j + 2],
+          [i, j - 1], [i, j + 1],
         ];
 
         if (j % 2 === 0) { // Even rows
           neighbors.push([i - 1, j - 1], [i - 1, j + 1]);
-        } else { // Odd rows
-          neighbors.push([i + 1, j - 1], [i + 1, j + 1]);
+        } else {
+          neighbors.push([i + 1, j - 1], [i + 1, j + 1]); 
         }
 
         for (const [ni, nj] of neighbors) {
@@ -115,7 +115,14 @@
         const y = j * vertSpacing;
 
         drawHexagon(x, y, spacing);
-      }
+
+        // Draw coordinates for debugging
+        ctx.fillStyle = 'black'; // Set text color
+        ctx.font = '12px Arial'; // Set font
+        ctx.textAlign = 'center'; // Center text horizontally
+        ctx.textBaseline = 'middle'; // Center text vertically
+        ctx.fillText(`${Math.round(displacement)}`, x, y); // Draw the coordinates
+        }
     }
   }
 
