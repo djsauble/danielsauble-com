@@ -99,13 +99,6 @@
         const y = j * vertSpacing;
 
         drawHexagon(x, y, spacing);
-
-        // // Draw coordinates for debugging
-        // ctx.fillStyle = 'black'; // Set text color
-        // ctx.font = '12px Arial'; // Set font
-        // ctx.textAlign = 'center'; // Center text horizontally
-        // ctx.textBaseline = 'middle'; // Center text vertically
-        // ctx.fillText(`${Math.round(displacement)}`, x, y); // Draw the coordinates
       }
     }
   }
@@ -198,7 +191,7 @@
     const mouseY = event.clientY - rect.top;
 
     let gridY = Math.floor(mouseY / vertSpacing);
-    let gridX = Math.floor(mouseX / horizSpacing);
+    let gridX = Math.floor((mouseX - (gridY % 2) * (horizSpacing / 2)) / horizSpacing);
 
     // Check if the mouse is over a valid cell and if it's a different cell than currently highlighted
     if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
