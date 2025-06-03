@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import TimelineItem from "../components/timeline_item.astro";
+import HighlightsToggle from "../components/HighlightsToggle.jsx";
+import SortToggle from "../components/SortToggle.jsx";
 import "../styles/index.css";
 import Layout from '../layouts/Layout.astro';
 
@@ -16,7 +18,7 @@ import runbudgetImage from '../../public/images/runbudget/forrest_cruise.png';
 
 const title = "Daniel Sauble";
 
-const timelineItems = [
+const timelineItemsOriginal = [
   {
     year: 2025,
     title: "Prefect",
@@ -84,19 +86,38 @@ const timelineItems = [
     highlight: true,
   },
 ];
+
+// Start with a mutable copy of the original items
+let processedItems = [...timelineItemsOriginal];
+
+// Get query parameters for initial state
+const urlParams = new URLSearchParams(Astro.url.search);
+const filterParam = urlParams.get('filter');
+const sortParam = urlParams.get('sort');
+
+// Apply initial filtering based on URL params
+if (filterParam === 'highlights') {
+  processedItems = processedItems.filter(item => item.highlight === true);
+}
+
+// Apply initial sorting based on URL params
+if (sortParam === 'chronological') {
+  processedItems.sort((a, b) => a.year - b.year);
+} else {
+  processedItems.sort((a, b) => b.year - a.year);
+}
 ---
 
 <Layout title={title}>
   <h1>Projects</h1>
 
-  <p>
-    <a href="?filter=highlights">Highlights</a> ·
-    <a href="?sort=reverse-chronological">Reverse Chronological</a> ·
-    <a href="?sort=chronological">Chronological</a>
-  </p>
+  <div>
+    <HighlightsToggle client:load />
+    <SortToggle client:load />
+  </div>
 
   <div class="timeline">
-    {timelineItems.map((item) => (
+    {processedItems.map((item) => (
       <TimelineItem
         year={item.year}
         title={item.title}
