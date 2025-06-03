@@ -14,9 +14,9 @@ import ppmImage from '../../public/images/ppm/patch_manager.png';
 import browseImage from '../../public/images/browse/tree_browsing.png';
 import runbudgetImage from '../../public/images/runbudget/forrest_cruise.png';
 
-const title = "Daniel Sauble";
+const pageTitle = "Daniel Sauble";
 
-const timelineItems = [
+const timelineItemsOriginal = [
   {
     year: 2025,
     title: "Prefect",
@@ -84,25 +84,45 @@ const timelineItems = [
     highlight: true,
   },
 ];
+
+// Get query parameters
+const filterParam = Astro.url.searchParams.get('filter');
+const sortParam = Astro.url.searchParams.get('sort');
+
+// Start with a mutable copy of the original items
+let processedItems = [...timelineItemsOriginal];
+
+// 1. Apply Filtering
+if (filterParam === 'highlights') {
+  processedItems = processedItems.filter(item => item.highlight === true);
+}
+
+// 2. Apply Sorting
+if (sortParam === 'chronological') {
+  processedItems.sort((a, b) => a.year - b.year);
+} else {
+  processedItems.sort((a, b) => b.year - a.year);
+}
 ---
 
-<Layout title={title}>
+<Layout title={pageTitle}>
   <h1>Projects</h1>
 
   <p>
     <a href="?filter=highlights">Highlights</a> ·
     <a href="?sort=reverse-chronological">Reverse Chronological</a> ·
     <a href="?sort=chronological">Chronological</a>
-  </p>
+    </p>
 
   <div class="timeline">
-    {timelineItems.map((item) => (
+    {processedItems.map((item) => (
       <TimelineItem
         year={item.year}
         title={item.title}
         description={item.description}
         to={item.to}
         image={item.image}
+        // Pass `highlight={item.highlight}` if your TimelineItem component uses it for styling
       />
     ))}
   </div>
