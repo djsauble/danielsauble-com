@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+import './timeline_item.css';
+
+const { year, title, description, to, image } = Astro.props;
+---
+
+<div class="timeline-item">
+  <div class="timeline-year">{year}</div>
+  <div class="timeline-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    {image && (
+      <a href={to}>
+        <Image src={image} alt={title} />
+      </a>
+    )}
+  </div>
+</div>
