@@ -1,15 +1,18 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from "../layouts/Layout.astro";
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 
 import secureStoryMap from '../../public/images/package_filtering/secure_story_map.jpg';
 import admin from '../../public/images/package_filtering/admin.png';
 import policyViolations from '../../public/images/package_filtering/policy_violations.png';
 
 const title = "Package Filtering";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
 ---
 
-<Layout title={title}>
+<Layout title={title} breadcrumbs={breadcrumbs}>
   <h1>Package Filtering</h1>
 
   <h2>The Problem</h2>

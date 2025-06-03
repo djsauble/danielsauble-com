@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from "../layouts/Layout.astro";
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 
 import teamMap from '../../public/images/endor_labs/00_team.png';
 import userJourneyMap from '../../public/images/endor_labs/06_user_journey_map.png';
@@ -14,9 +14,12 @@ import findingsCallPathsDrawer from '../../public/images/endor_labs/04_findings_
 import dependencyGraph from '../../public/images/endor_labs/05_dependency_graph.png';
 
 const title = "Endor Labs";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
 ---
 
-<Layout title={title}>
+<Layout title={title} breadcrumbs={breadcrumbs}>
   <h1>Endor Labs</h1>
 
   <h2>Intro</h2>

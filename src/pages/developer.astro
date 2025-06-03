@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from "../layouts/Layout.astro";
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 
 import pageArchetypes from '../../public/images/developer/page_archetypes.png';
 import iaStructure from '../../public/images/developer/IA_structural_model.png';
@@ -9,9 +9,12 @@ import homePage from '../../public/images/developer/home_page.png';
 import homePageDarkMode from '../../public/images/developer/home_page_dark_mode.png';
 
 const title = "Developer Website";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
 ---
 
-<Layout title={title}>
+<Layout title={title} breadcrumbs={breadcrumbs}>
   <h1>Developer Website</h1>
 
   <p>New Relic One is an observability platform, which means you can build and host

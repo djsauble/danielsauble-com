@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from "../layouts/Layout.astro";
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 
 import mentalModels from '../../public/images/iterative/01_mental_model.png';
 import initialPrototype from '../../public/images/iterative/02_initial_prototype.png';
@@ -9,9 +9,12 @@ import jobsSidebar from '../../public/images/iterative/04_remote_code_execution.
 import manageComputeResources from '../../public/images/iterative/05_configure_compute.png';
 
 const title = "Dataset management for GenAI";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
 ---
 
-<Layout title={title}>
+<Layout title={title} breadcrumbs={breadcrumbs}>
   <h1>Dataset management for GenAI</h1>
 
   <p>DVCX is a dataset management tool for Generative AI.

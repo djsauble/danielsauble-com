@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from "../layouts/Layout.astro";
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 
 import apiGenerator from '../../public/images/runbudget/api_generator.png';
 import zenrunSetup from '../../public/images/runbudget/zenrun_setup.jpg';
@@ -14,9 +14,12 @@ import runbudgetLargeComplication from '../../public/images/runbudget/runbudget_
 import runbudgetSmallComplication from '../../public/images/runbudget/runbudget_small_complication.png';
 
 const title = "Run Budget";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
 ---
 
-<Layout title={title}>
+<Layout title={title} breadcrumbs={breadcrumbs}>
   <h1>Run Budget</h1>
 
   <h2>The Problem</h2>

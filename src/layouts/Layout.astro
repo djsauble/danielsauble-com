@@ -2,13 +2,19 @@
 import '../styles/index.css';
 import '../styles/layout.css';
 
+export interface BreadcrumbLink {
+  text: string;
+  href: string;
+}
+
 interface Props {
   title?: string;
+  breadcrumbs?: BreadcrumbLink[];
 }
 
 import BackgroundCanvas from '../components/BackgroundCanvas.astro';
 
-const { title = 'Daniel Sauble' } = Astro.props;
+const { title = 'Daniel Sauble', breadcrumbs } = Astro.props;
 ---
 
 <head>
@@ -19,6 +25,15 @@ const { title = 'Daniel Sauble' } = Astro.props;
   <title>{title}</title>
 </head>
 <main>
+  <nav class="breadcrumbs">
+    <a href="/">Home</a>
+    {breadcrumbs && breadcrumbs.map((crumb, index) => (
+      <>
+        {' / '}
+        <a href={crumb.href}>{crumb.text}</a>
+      </>
+    ))}
+  </nav>
   <slot />
 </main>
 <BackgroundCanvas />

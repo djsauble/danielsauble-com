@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from "../layouts/Layout.astro";
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 
 import nexus2BrowseUi from '../../public/images/browse/nexus_2_browse_ui.png';
 import currentInterface from '../../public/images/browse/current_interface.png';
@@ -8,9 +8,12 @@ import treeBrowsing from '../../public/images/browse/tree_browsing.png';
 import htmlIndex from '../../public/images/browse/html_index.png';
 
 const title = "Tree Browsing";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
 ---
 
-<Layout title={title}>
+<Layout title={title} breadcrumbs={breadcrumbs}>
   <h1>Tree Browsing</h1>
 
   <h2>The Problem</h2>

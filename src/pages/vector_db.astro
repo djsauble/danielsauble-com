@@ -1,15 +1,18 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from "../layouts/Layout.astro";
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 
 import oldLandingPage from '../../public/images/vector_db/00_old_landing_page.png';
 import newLandingPage from '../../public/images/vector_db/01_new_landing_page.png';
 import newQuickstartPage from '../../public/images/vector_db/02_new_quickstart_page.png';
 
 const title = "DataStax Astra DB docs";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
 ---
 
-<Layout title={title}>
+<Layout title={title} breadcrumbs={breadcrumbs}>
   <h1>DataStax Astra DB docs</h1>
 
   <p>Astra DB Serverless is a new vector database by DataStax.

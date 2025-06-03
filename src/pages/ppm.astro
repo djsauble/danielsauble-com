@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from "../layouts/Layout.astro";
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 
 import storyMap from '../../public/images/ppm/story_map.jpg';
 import roughWireframes from '../../public/images/ppm/rough_wireframes.jpg';
@@ -10,9 +10,12 @@ import mvpWireframes from '../../public/images/ppm/mvp_wireframes.jpg';
 import ppmPrototype from '../../public/images/ppm/patch_manager.png';
 
 const title = "Patch Manager";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
 ---
 
-<Layout title={title}>
+<Layout title={title} breadcrumbs={breadcrumbs}>
   <h1>Patch Manager</h1>
 
   <h2>The Problem</h2>
