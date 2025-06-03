@@ -157,14 +157,10 @@
       if (checkConvergence()) {
         cancelAnimationFrame(animationFrameId);
         initializeGrid(); // Reset grid for next interaction
-        //advanceColor()
+        highlightedCell = null; // Clear highlighted cell
         drawAnimation();
       }
     }
-  }
-
-  function advanceColor() {
-    currentColor = (currentColor + 1) % colors.length;
   }
 
   // Mouse interaction
