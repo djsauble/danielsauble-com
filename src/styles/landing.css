@@ -12,6 +12,7 @@ main {
   align-items: center;
   padding: 3em;
   border-radius: 1em;
+  text-align: center;
 }
 
 .mug {
