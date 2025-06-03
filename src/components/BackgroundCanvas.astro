@@ -14,7 +14,7 @@
 
   const spacing = 20; // Spacing between dots in pixels. Range: 20 to 100.
   const damping = .95; // Controls how quickly waves dissipate. Range: 0.1 to 0.9.=
-  const colors = [[240, 240, 240], [242, 228, 246], [205, 205, 239], [255, 243, 194], [215, 238, 215]]; // Subtle grey color (RGB). Range: [0, 0, 0] to [255, 255, 255].
+  const colors = [[240, 240, 240], [242, 228, 246], [205, 205, 239], [255, 243, 194], [215, 238, 215]];
   let currentColor = 0;
   const pulseMagnitude = 50; // Magnitude of the displacement pulse on click. Range: 50 to 200.
 
@@ -90,7 +90,7 @@
 
         // Check if the current cell is the highlighted cell
         if (highlightedCell && highlightedCell[0] === i && highlightedCell[1] === j) {
-          ctx.fillStyle = '#FFFF00'; // Highlight color (bright yellow)
+          ctx.fillStyle = '#FFFFA0'; // Highlight color (bright yellow)
         } else {
           ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
         }
@@ -163,25 +163,7 @@
     }
   }
 
-  // Mouse interaction
-  canvas.addEventListener('click', (event) => {
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-
-    let gridY = Math.floor(mouseY / vertSpacing);
-    let gridX = Math.floor((mouseX - (gridY % 2) * (horizSpacing / 2)) / horizSpacing);
-
-    if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
-      // Apply a displacement pulse at the mouse location
-      grid[gridX][gridY] = pulseMagnitude; // Adjust the magnitude of the pulse as needed
-    }
-
-    animate(0); // Start the animation loop
-  });
-
-  // Mouseover interaction
-  canvas.addEventListener('mousemove', (event) => {
+  function highlightCell(event) {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
@@ -202,9 +184,31 @@
         drawAnimation(); // Redraw to remove the highlight
       }
     }
+  }
+
+  // Mouse interaction
+  canvas.addEventListener('click', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    let gridY = Math.floor(mouseY / vertSpacing);
+    let gridX = Math.floor((mouseX - (gridY % 2) * (horizSpacing / 2)) / horizSpacing);
+
+    if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+      // Apply a displacement pulse at the mouse location
+      grid[gridX][gridY] = pulseMagnitude; // Adjust the magnitude of the pulse as needed
+    }
+
+    animate(0); // Start the animation loop
   });
 
-  canvas.addEventListener('mouseleave', () => {
+  // Mouseover interaction
+  canvas.addEventListener('pointermove', (event) => {
+    highlightCell(event);
+  });
+
+  canvas.addEventListener('pointerleave', () => {
     if (highlightedCell) {
       highlightedCell = null;
       drawAnimation(); // Redraw to remove the highlight
