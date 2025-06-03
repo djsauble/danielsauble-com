@@ -7,12 +7,17 @@
   const canvas = document.getElementById('background-canvas');
   const ctx = canvas.getContext('2d');
 
-  const spacing = 50; // Spacing between dots in pixels. Range: 20 to 100.
-  const damping = 1.1; // Controls how quickly waves dissipate. Range: 0.1 to 0.9.=
-  const baseColor = [240, 240, 240]; // Subtle grey color (RGB). Range: [0, 0, 0] to [255, 255, 255].
-  const targetColor = [255, 255, 255]; // Target color for the animation (RGB). Range: [0, 0, 0] to [255, 255, 255].
-  const colorIntensityMultiplier = 1.5; // Multiplier for color intensity based on displacement. Range: 50 to 200.
   const fps = 30; // Frames per second for the animation. Range: 20 to 60.
+  const frameDuration = 1000 / fps;
+  const convergenceThreshold = 0.95; // Displacement value close to zero
+  const convergencePercentage = 0.9; // Percentage of cells that must be converged
+
+  const spacing = 60; // Spacing between dots in pixels. Range: 20 to 100.
+  const damping = 1.2; // Controls how quickly waves dissipate. Range: 0.1 to 0.9.=
+  const colors = [[240, 240, 240], [238, 192, 250], [170, 170, 255], [255, 243, 194], [186, 245, 186]]; // Subtle grey color (RGB). Range: [0, 0, 0] to [255, 255, 255].
+  let currentColor = 0;
+  let nextColor = 1;
+  const colorIntensityMultiplier = 100; // Multiplier for color intensity based on displacement. Range: 50 to 200.
   const pulseMagnitude = 100; // Magnitude of the displacement pulse on click. Range: 50 to 200.
 
   const hexHeight = spacing * Math.sqrt(Math.PI);
@@ -68,7 +73,6 @@
   }
 
   function drawAnimation() {
-    console.log("Animating!");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < gridWidth; i++) {
@@ -82,27 +86,27 @@
         let b = 255;
 
         // Red channel
-        if (baseColor[0] < targetColor[0]) {
-          r = Math.min(targetColor[0], baseColor[0] + colorDelta);
+        if (colors[currentColor][0] < colors[nextColor][0]) {
+          r = Math.min(colors[nextColor][0], colors[currentColor][0] + colorDelta);
         }
         else {
-          r = Math.max(targetColor[0], baseColor[0] - colorDelta);
+          r = Math.max(colors[nextColor][0], colors[currentColor][0] - colorDelta);
         }
 
         // Green channel
-        if (baseColor[1] < targetColor[1]) {
-          g = Math.min(targetColor[1], baseColor[1] + colorDelta);
+        if (colors[currentColor][1] < colors[nextColor][1]) {
+          g = Math.min(colors[nextColor][1], colors[currentColor][1] + colorDelta);
         }
         else {
-          g = Math.max(targetColor[1], baseColor[1] - colorDelta);
+          g = Math.max(colors[nextColor][1], colors[currentColor][1] - colorDelta);
         }
 
         // Blue channel
-        if (baseColor[2] < targetColor[2]) {
-          b = Math.min(targetColor[2], baseColor[2] + colorDelta);
+        if (colors[currentColor][2] < colors[nextColor][2]) {
+          b = Math.min(colors[nextColor][2], colors[currentColor][2] + colorDelta);
         }
         else {
-          b = Math.max(targetColor[2], baseColor[2] - colorDelta);
+          b = Math.max(colors[nextColor][2], colors[currentColor][2] - colorDelta);
         }
 
         ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
@@ -139,10 +143,25 @@
 
   // Animation loop
   let lastTime = 0;
-  const frameDuration = 1000 / fps;
+  let animationFrameId;
+
+  function checkConvergence() {
+    let convergedCount = 0;
+    const totalCells = gridWidth * gridHeight;
+
+    for (let i = 0; i < gridWidth; i++) {
+      for (let j = 0; j < gridHeight; j++) {
+        if (Math.abs(grid[i][j]) > convergenceThreshold) {
+          convergedCount++;
+        }
+      }
+    }
+
+    return convergedCount / totalCells >= convergencePercentage;
+  }
 
   function animate(currentTime) {
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
 
     const deltaTime = currentTime - lastTime;
 
@@ -150,9 +169,22 @@
       lastTime = currentTime - (deltaTime % frameDuration);
       updateSimulation();
       drawAnimation();
+
+      if (checkConvergence()) {
+        cancelAnimationFrame(animationFrameId);
+        initializeGrid(); // Reset grid for next interaction
+        advanceColors();
+        drawAnimation();
+        console.log("Animation stopped: Most cells converged.");
+      }
     }
   }
-  animate(0); // Start the animation loop
+
+  function advanceColors() {
+    currentColor = (currentColor + 1) % colors.length;
+    nextColor = (nextColor + 1) % colors.length;
+    return;
+  }
 
   // Mouse interaction
   canvas.addEventListener('click', (event) => {
@@ -167,6 +199,8 @@
       // Apply a displacement pulse at the mouse location
       grid[gridX][gridY] = pulseMagnitude; // Adjust the magnitude of the pulse as needed
     }
+
+    animate(0); // Start the animation loop
   });
 
 </script>
