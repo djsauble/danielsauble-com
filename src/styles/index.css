@@ -39,3 +39,9 @@ h3 {
 .timeline {
   margin-top: 2em;
 }
+
+.button-container {
+  display: flex;
+  gap: 1em;
+  padding-top: 1em;
+}
