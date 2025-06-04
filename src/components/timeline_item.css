@@ -3,6 +3,7 @@
   position: relative;
 }
 
+/* The main vertical line in the timeline */
 .timeline-item::before {
   content: '';
   position: absolute;
@@ -10,7 +11,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background-color: #ccc;
+  background-color: #eee;
 }
 
 .timeline-year {
@@ -28,6 +29,7 @@
   position: relative;
 }
 
+/* The dot next to each timeline item */
 .timeline-content::before {
   content: '';
   position: absolute;
