@@ -27,7 +27,7 @@ const HighlightsToggle = ({ items }) => {
 
   return (
     <button className="highlights-toggle" onClick={handleToggle}>
-      {isHighlightsEnabled ? 'Top Projects' : 'All Projects'}
+      {isHighlightsEnabled ? '● Highlights' : '◌ Highlights'}
     </button>
   );
 };
