@@ -2,13 +2,13 @@
 import { Image } from 'astro:assets';
 import './timeline_item.css';
 
-const { year, title, description, to, image, index, child } = Astro.props;
+const { year, title, description, to, image, child } = Astro.props;
 
 const sectionId = title.replace(/\s+/g, '-').toLowerCase();
 ---
 
 <div class="timeline-item" id={sectionId} data-item-id={title.replace(/\s+/g, '-').toLowerCase()}>
-  <a href={`#${sectionId}`} class="timeline-year" style={`top: ${(index + 1) * 2}em`}>
+  <a href={`#${sectionId}`} class="timeline-year">
     {year}
   </a>
   <div class="timeline-content">
