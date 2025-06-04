@@ -99,10 +99,7 @@ const timelineItemsOriginal = [
 
   <div class="timeline">
     {timelineItemsOriginal.map((item) => (
-      <div class="timeline-item" id={item.title.replace(/\s+/g, '-').toLowerCase()} data-item-id={item.title.replace(/\s+/g, '-').toLowerCase()}>
-        <a href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`} class="timeline-year">
-          {item.year}
-        </a>
+      <div class="timeline-item" data-item-id={item.title.replace(/\s+/g, '-').toLowerCase()}>
         <TimelineItem
           year={item.year}
           title={item.title}
@@ -113,6 +110,4 @@ const timelineItemsOriginal = [
       </div>
     ))}
   </div>
-
-  <script src="../scripts/timeline.js"></script>
 </Layout>
