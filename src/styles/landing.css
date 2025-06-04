@@ -22,3 +22,9 @@ main {
   overflow: hidden;
   border: 1px solid #333333;
 }
+
+.button-container {
+  display: flex;
+  gap: 1em;
+  padding-top: 1em;
+}

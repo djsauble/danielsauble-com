@@ -87,27 +87,44 @@ const timelineItemsOriginal = [
   },
 ];
 
+// Start with a mutable copy of the original items
+let processedItems = [...timelineItemsOriginal];
+
+// Get query parameters for initial state
+const urlParams = new URLSearchParams(Astro.url.search);
+const filterParam = urlParams.get('filter');
+const sortParam = urlParams.get('sort');
+
+// Apply initial filtering based on URL params
+if (filterParam === 'highlights') {
+  processedItems = processedItems.filter(item => item.highlight === true);
+}
+
+// Apply initial sorting based on URL params
+if (sortParam === 'chronological') {
+  processedItems.sort((a, b) => a.year - b.year);
+} else {
+  processedItems.sort((a, b) => b.year - a.year);
+}
 ---
 
 <Layout title={title}>
   <h1>Projects</h1>
 
-  <div class="button-container">
-    <HighlightsToggle client:load items={timelineItemsOriginal} />
-    <SortToggle client:load items={timelineItemsOriginal} />
+  <div>
+    <HighlightsToggle client:load />
+    <SortToggle client:load />
   </div>
 
   <div class="timeline">
-    {timelineItemsOriginal.map((item) => (
-      <div class="timeline-item" data-item-id={item.title.replace(/\s+/g, '-').toLowerCase()}>
-        <TimelineItem
-          year={item.year}
-          title={item.title}
-          description={item.description}
-          to={item.to}
-          image={item.image}
-        />
-      </div>
+    {processedItems.map((item) => (
+      <TimelineItem
+        year={item.year}
+        title={item.title}
+        description={item.description}
+        to={item.to}
+        image={item.image}
+      />
     ))}
   </div>
 </Layout>
