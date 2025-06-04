@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import TimelineItem from "../components/timeline_item.astro";
+import ProjectHero from "../components/project_hero.jsx";
 import "../styles/index.css";
 import Layout from '../layouts/Layout.astro';
 
@@ -15,95 +15,80 @@ import browseImage from '../../public/images/browse/tree_browsing.png';
 import runbudgetImage from '../../public/images/runbudget/forrest_cruise.png';
 
 const title = "Daniel Sauble";
-
-const timelineItems = [
-  {
-    year: 2025,
-    title: "Prefect",
-    description: "Visualize the state of your orchestrated flows",
-    to: "/prefect",
-    image: prefectImage,
-    highlight: true,
-  },
-  {
-    year: 2023,
-    title: "Iterative",
-    description: "Remote code execution for ML models",
-    to: "/iterative",
-    image: iterativeImage,
-  },
-  {
-    year: 2022,
-    title: "Endor Labs",
-    description: "Secure your software supply chain",
-    to: "/endor_labs",
-    image: endorLabsImage,
-    highlight: true,
-  },
-  {
-    year: 2021,
-    title: "DataStax",
-    description: "Learn how to use a vector database",
-    to: "/vector_db",
-    image: vectorDbImage,
-  },
-  {
-    year: 2020,
-    title: "New Relic",
-    description: "Learn how to build custom apps on the New Relic platform",
-    to: "/developer",
-    image: developerImage,
-  },
-  {
-    year: 2019,
-    title: "npm",
-    description: "Keep bad npm packages out of your applications",
-    to: "/package_filtering",
-    image: packageFilteringImage,
-  },
-  {
-    year: 2018,
-    title: "Sonatype",
-    description: "Peruse the contents of your software repositories in a structured way",
-    to: "/browse",
-    image: browseImage,
-  },
-  {
-    year: 2017,
-    title: "Personal project",
-    description: "Visualization tool to help long-distance runners build their mileage safely",
-    to: "/runbudget",
-    image: runbudgetImage,
-  },
-  {
-    year: 2014,
-    title: "Puppet",
-    description: "Easily patch your IT systems with an existing configuration management tool",
-    to: "/ppm",
-    image: ppmImage,
-    highlight: true,
-  },
-];
 ---
 
 <Layout title={title}>
   <h1>Projects</h1>
 
-  <p>
-    <a href="?filter=highlights">Highlights</a> ·
-    <a href="?sort=reverse-chronological">Reverse Chronological</a> ·
-    <a href="?sort=chronological">Chronological</a>
-  </p>
+  <ProjectHero
+    to="/prefect"
+    title="Prefect"
+    description="Visualize the state of your orchestrated flows"
+  >
+    <Image src={prefectImage} alt="Prefect" />
+  </ProjectHero>
 
-  <div class="timeline">
-    {timelineItems.map((item) => (
-      <TimelineItem
-        year={item.year}
-        title={item.title}
-        description={item.description}
-        to={item.to}
-        image={item.image}
-      />
-    ))}
-  </div>
+  <ProjectHero
+    to="/endor_labs"
+    title="Endor Labs"
+    description="Secure your software supply chain"
+  >
+    <Image src={endorLabsImage} alt="Endor Labs" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/iterative"
+    title="Iterative"
+    description="Remote code execution for ML models"
+  >
+    <Image src={iterativeImage} alt="Remote Code Execution" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/vector_db"
+    title="DataStax"
+    description="Learn how to use a vector database"
+  >
+    <Image src={vectorDbImage} alt="DataStax Vector DB" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/developer"
+    title="New Relic"
+    description="Learn how to build custom apps on the New Relic platform"
+  >
+    <Image src={developerImage} alt="Developer website" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/package_filtering"
+    title="npm"
+    description="Keep bad npm packages out of your applications"
+  >
+    <Image src={packageFilteringImage} alt="Package Filtering" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/ppm"
+    title="Puppet"
+    description="Easily patch your IT systems with an existing configuration management tool"
+  >
+    <Image src={ppmImage} alt="Patch Manager" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/browse"
+    title="Sonatype"
+    description="Peruse the contents of your software repositories in a structured way"
+  >
+    <Image src={browseImage} alt="Tree Browsing" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/runbudget"
+    title="Personal project"
+    description="Visualization tool to help long-distance runners build their mileage safely"
+  >
+    <Image src={runbudgetImage} alt="Run Budget" />
+  </ProjectHero>
 </Layout>
