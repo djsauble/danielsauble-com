@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import TimelineItem from "../components/timeline_item.astro";
 import HighlightsToggle from "../components/HighlightsToggle.jsx";
 import SortToggle from "../components/SortToggle.jsx";
@@ -97,24 +98,21 @@ const timelineItemsOriginal = [
   </div>
 
   <div class="timeline">
-    {(() => {
-      let nestedItems = null;
-
-      for (let i = timelineItemsOriginal.length - 1; i >= 0; i--) {
-        const item = timelineItemsOriginal[i];
-        const currentItem = (
-            <TimelineItem
-              year={item.year}
-              title={item.title}
-              description={item.description}
-              to={item.to}
-              image={item.image}
-              child={nestedItems}
-            />
-        );
-        nestedItems = currentItem;
-      }
-      return nestedItems;
-    })()}
+    {timelineItemsOriginal.map((item) => (
+      <div class="timeline-item" id={item.title.replace(/\s+/g, '-').toLowerCase()} data-item-id={item.title.replace(/\s+/g, '-').toLowerCase()}>
+        <a href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`} class="timeline-year">
+          {item.year}
+        </a>
+        <TimelineItem
+          year={item.year}
+          title={item.title}
+          description={item.description}
+          to={item.to}
+          image={item.image}
+        />
+      </div>
+    ))}
   </div>
+
+  <script src="../scripts/timeline.js"></script>
 </Layout>

@@ -2,15 +2,10 @@
 import { Image } from 'astro:assets';
 import './timeline_item.css';
 
-const { year, title, description, to, image, child } = Astro.props;
-
-const sectionId = title.replace(/\s+/g, '-').toLowerCase();
+const { title, description, to, image } = Astro.props;
 ---
 
-<div class="timeline-item" id={sectionId} data-item-id={title.replace(/\s+/g, '-').toLowerCase()}>
-  <a href={`#${sectionId}`} class="timeline-year">
-    {year}
-  </a>
+<div>
   <div class="timeline-content">
     <h3>{title}</h3>
     <p>{description}</p>
@@ -20,5 +15,4 @@ const sectionId = title.replace(/\s+/g, '-').toLowerCase();
       </a>
     )}
   </div>
-  { child }
 </div>
