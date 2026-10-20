@@ -38,7 +38,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <h2>Building a base platform</h2>
 
-  <p>I started by building a SAAS solution to store my runs. In retrospect, I could have used Strava or Garmin Connect as an out-of-the-box solution, but I wanted to own my data, and was wary of the control I would yield by giving it to a 3rd party API.</p>
+  <p>I started by building a SAAS solution to store my runs. In retrospect, I could have used Strava or Garmin Connect as an out-of-the-box solution, but I wanted to own my data, and was wary of the control I would yield by giving it to a 3rd-party API.</p>
 
   <p>The initial service was written in Ruby, hosted on Heroku, with data stored in a CouchDB database. It supported multiple users, and persisted run data POSTed to its REST API.</p>
 
@@ -75,7 +75,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <p>My second idea was to take the 10% rule and apply it to goals. If you know how much you run now, and how much you want to run in the future, it should be possible to automatically generate a running plan to get you there.</p>
 
-  <p>Again, I didn&rsquo;t want to burden people with needing to create/maintain/adhere to a strict training plan. I used weeks as the unit of progress. Each week, I set a goal of 10% (or less) of the previous week&rsquo;s mileage, showing past weeks to help people see how good they were doing at being consistent.</p>
+  <p>Again, I didn&rsquo;t want to burden people with needing to create/maintain/adhere to a strict training plan. I used weeks as the unit of progress. Each week, I set a goal of 10% (or less) of the previous week&rsquo;s mileage, showing past weeks to help people see how well they were doing at being consistent.</p>
 
   <p>To visualize this information, I wrote a new web front-end in Backbone.js, and rewrote the backend in Node.js. This allowed me to share NPM modules between the front- and backend, and made the whole experience work much better.</p>
 
@@ -89,7 +89,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <Image src={forrestCruiseDashboard} alt="Forrest Cruise Dashboard" />
 
-  <p>As a final touch, I implemented a WebSockets API, allowing the iOS app and web dashboard to communicate with each other in real-time. If you submit a run from the app, it is immediately displayed in the dashboard and updates the trends/goals.</p>
+  <p>As a final touch, I implemented a WebSockets API, allowing the iOS app and web dashboard to communicate with each other in real time. If you submit a run from the app, it is immediately displayed in the dashboard and updates the trends/goals.</p>
 
   <p>A screenshot of the iOS app is below. Red indicates total distance spent walking or running. Blue indicates running distance each week. Green indicates average pace each week (lower is better).</p>
 
@@ -108,7 +108,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <p>I bought an Apple Watch Series 2 shortly after they came out. While playing with it, I realized that complications are the perfect way to manage training consistency. Since they&rsquo;re always visible and unobtrusive, they&rsquo;re the perfect way to understand what you should do next in your plan.</p>
 
-  <p>I created the concept of a running budget. A running budget is a number which helps you answer a simple question: &ldquo;if I went running right now, how far should I go?&rdquo; It gives you the freedom to decide when and how much to run, without committing to an inflexible schedule. It&rsquo;s the perfect thing to display in a complication.</p>
+  <p>I created the concept of a running budget. A running budget is a number which helps you answer a simple question: &ldquo;If I went running right now, how far should I go?&rdquo; It gives you the freedom to decide when and how much to run, without committing to an inflexible schedule. It&rsquo;s the perfect thing to display in a complication.</p>
 
   <p>Each Monday, your budget is reset. As the week progresses, it gradually increases. When you go for a run, it decreases by the amount you ran. The goal is to ensure your budget is zero by the end of the week.</p>
 
@@ -134,5 +134,5 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <p>You can download the finished app from the App Store <a href="https://itunes.apple.com/us/app/run-budget/id1176825176?ls=1&mt=8" target="_blank">here</a>. If you want to be a beta tester for upcoming features, please send me an email at <a href='mailto:djsauble@gmail.com'>djsauble@gmail.com</a>.</p>
 
-  <p>Due to the long-term nature of the problems this app solves, it may be awhile before we know if a run budget is the right approach, but at the moment it feels closer than any approach thus far.</p>
+  <p>Due to the long-term nature of the problems this app solves, it may be a while before we know if a run budget is the right approach, but at the moment it feels closer than any approach thus far.</p>
 </Layout>

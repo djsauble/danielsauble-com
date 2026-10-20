@@ -22,7 +22,7 @@ const breadcrumbs: BreadcrumbLink[] = [
   of applications with a single well-placed supply chain attack.</p>
 
   <p>For example, in npm, it's not uncommon for an application with a couple dozen
-  top level dependencies to pull in hundreds or thousands of transitive
+  top-level dependencies to pull in hundreds or thousands of transitive
   dependencies via the install process. For web apps, about 97% of the code is
   pulled in this way, so it&rsquo;s almost impossible for developers to know the
   true surface area of the code in their applications.</p>
@@ -34,7 +34,7 @@ const breadcrumbs: BreadcrumbLink[] = [
   <h2>The Solution</h2>
 
   <p>The typical developer workflow is to create a package.json file where they
-  define their top level dependencies. When <code>npm install</code> is run, npm
+  define their top-level dependencies. When <code>npm install</code> is run, npm
   constructs the dependency tree and fetches all packages (as tarballs) from the
   configured upstream registry.</p>
 
@@ -62,7 +62,7 @@ const breadcrumbs: BreadcrumbLink[] = [
   replacement packages. The npm Enterprise admins need an easy way to set
   security policy dictated to them by the security team. The security team needs
   a way to enforce policy so they don't have to spend time verifying manual
-  compliance, which is very time consuming. Finally, the CTO or engineering
+  compliance, which is very time-consuming. Finally, the CTO or engineering
   manager wants a tool that makes their developers happy and is from a company
   they trust.</p>
 
@@ -113,7 +113,7 @@ const breadcrumbs: BreadcrumbLink[] = [
   the packument, it could also tell the difference between a package that was not
   found, and a package that was blocked. A nice side effect of this approach is
   that legacy versions of the CLI would still work, even though they would lose
-  the ability to distinguish between the blocked and not found cases.</p>
+  the ability to distinguish between the blocked and not-found cases.</p>
 
   <p>With these changes in place, developers would have a much more pleasant
   experience. For example, suppose a developer tried installing a specific bad

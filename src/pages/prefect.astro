@@ -37,7 +37,7 @@ const breadcrumbs: BreadcrumbLink[] = [
   <h2>Intro</h2>
 
   <p>I was the lead designer for Prefect Cloud, a product used to help data engineers and data platform operators manage their orchestrated workflows.
-  Workflows are collections of Python functions that are run on cloud infrastructure, typically in an automated way, whether scheduled or triggered from events (e.g. webhooks).</p>
+  Workflows are collections of Python functions that are run on cloud infrastructure, typically in an automated way, whether scheduled or triggered from events (e.g., webhooks).</p>
 
   <h2>Team and collaboration</h2>
 
@@ -48,7 +48,7 @@ const breadcrumbs: BreadcrumbLink[] = [
   <p>This is how we collaborated on projects:</p>
 
   <ul>
-    <li>The CEO or VP of Product would come to me with a problem to be solved, and I would hold an initial requirements gathering meeting where we would hash out the problem and create an epic in Linear.</li>
+    <li>The CEO or VP of Product would come to me with a problem to be solved, and I would hold an initial requirements-gathering meeting where we would hash out the problem and create an epic in Linear.</li>
     <li>I then built out low-fidelity exploratory prototypes in Figma, sharing explorations daily in Slack, until we converged on a design that felt right and that satisfied the original requirements.</li>
     <li>Because of the speed of front-end engineering, our approach to gathering user feedback was to implement the Figma prototypes in code, and release them to production behind a feature flag.</li>
     <li>As we got feedback from early adopters (or internal stakeholders—such as technical PMs and sales engineering), we'd iterate on the implementation until it met our quality bar and then we'd release it.</li>
@@ -100,9 +100,9 @@ const breadcrumbs: BreadcrumbLink[] = [
 
        <Image src={pValueExplorationV1} alt="Clustered bar chart" />
 
-    <li>A modified box and whiskers plot, which shows both the thresholds and the delta between thresholds:
+    <li>A modified box-and-whiskers plot, which shows both the thresholds and the delta between thresholds:
 
-       <Image src={pValueExplorationV2} alt="Modified box and whiskers plot" />
+       <Image src={pValueExplorationV2} alt="Modified box-and-whiskers plot" />
 
     <li>A stacked bar chart, which shows the same information but in a less visually noisy way:
 
@@ -121,16 +121,16 @@ const breadcrumbs: BreadcrumbLink[] = [
        <Image src={pValueExplorationV5b} alt="Nested stacked bar chart - hover state" />
   </ol>
 
-  <p>In the end, we decided to use the traditional line chart for each of the high level tabs, with the exception of the <strong>Runs</strong> tab.
+  <p>In the end, we decided to use the traditional line chart for each of the high-level tabs, with the exception of the <strong>Runs</strong> tab.
   The <strong>Runs</strong> tab is what needed to solve the Ball Pit problem, and unfortunately these approaches didn't quite get us there.</p>
 
   <h2>Multi-dimension exploration</h2>
 
-  <p>While those initial explorations avoided the 200 run limit of the original ball chart, users told us they still missed the glanceability of the Ball Pit.
+  <p>While those initial explorations avoided the 200-run limit of the original ball chart, users told us they still missed the glanceability of the Ball Pit.
   Users don't want to have to choose a metric (Run Count, Failure Rate, SLA Violations, Duration, Lateness) in order to see if that metric has anomalies.
   What users want is to have a single pane of glass they can look at to passively see if there are anomalies in any dimensions, after which they can drill down further.</p>
 
-  <p>While the Ball Pit had significant shortcomings, it solved the single pane of glass problem very well.
+  <p>While the Ball Pit had significant shortcomings, it solved the single-pane-of-glass problem very well.
   I tried a couple of explorations to see if I could represent all of these dimensions in a single plot.</p>
 
   <ol>
@@ -143,11 +143,11 @@ const breadcrumbs: BreadcrumbLink[] = [
        <Image src={multipleMetricsOverlayV2} alt="Multiple metrics with clustered bar chart" />
   </ol>
 
-  <p>However, these visualizations didn't resonate with internal stakeholders or our users, so I went back to the drawing board and approached the problem from a first principles approach.</p>
+  <p>However, these visualizations didn't resonate with internal stakeholders or our users, so I went back to the drawing board and approached the problem from a first-principles approach.</p>
 
   <h2>Observability first principles</h2>
 
-  <p>Those explorations came further to being replacements for the Ball Pit, but we didn't have enough confidence in them.
+  <p>Those explorations came closer to being replacements for the Ball Pit, but we didn't have enough confidence in them.
   Rather than shipping a mediocre experience, I revisited the core observability problems that users have, including problems that even the Ball Pit <em>doesn't</em> solve.</p>
 
   <ol>
@@ -164,14 +164,14 @@ const breadcrumbs: BreadcrumbLink[] = [
        <Image src={highlightRelatedRuns} alt="Highlight related runs" />
   </ol>
 
-  <p>Interestingly, these problems are better solved by a scatterplot versus the statistical aggregations from the previous explorations.
+  <p>Interestingly, these problems are better solved by a scatterplot than the statistical aggregations from the previous explorations.
   Users need to be able to see failure at the granularity of individual runs, which statistical aggregations can't do well.</p>
 
   <h2>Ball Pit redux</h2>
 
   <p>Given all of these explorations, we realized we probably wanted to enhance the Ball Pit rather than replacing it with an entirely new visualization.
   However, we couldn't do this with a hard limit of 200 runs.
-  Given that, I went back to engineering to ask if this was a law of physics or something we could find a creative solution for (progressive loading, optimizing the payload from the API, etc).</p>
+  Given that, I went back to engineering to ask if this was a law of physics or something we could find a creative solution for (progressive loading, optimizing the payload from the API, etc.).</p>
 
   <p>It turned out that we could create a new API endpoint specific to the Ball Pit which would let us load up to 10,000 runs at a time.
   While not perfect, we decided this was good enough for most users, since:</p>
