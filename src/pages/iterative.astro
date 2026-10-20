@@ -23,12 +23,14 @@ const breadcrumbs: BreadcrumbLink[] = [
   <p>One of the bigger initiatives I've taken on is a feature intended to help ML Engineers train models on remote compute that they configure in the product.</p>
 
   <p>DVCX is a new product that has been bolted onto a legacy MLOps product known as Studio.
-  To started, I wanted to think about the happy path of someone onboarding to DVCX, but from the perspective of different users at varying points in their user journey with Studio.</p>
+  To start, I wanted to think about the happy path of someone onboarding to DVCX, but from the perspective of different users at varying points in their user journey with Studio.</p>
 
-  * New to ML? This is someone who is just getting into ML, but doesn't have much experience with MLOps and certainly not Iterative's product.
-  * New to DVC? This is someone who knows what ML and MLOps are, but isn't familiar with our particular flavor of MLOps.
-  * Existing DVC user? This is someone who has already been onboarded to our open-source DVC tooling, so they have a working Git repository to start with.
-  * Existing Studio user? This is someone who is already onboarded into Studio, and so only needs to learn how to onboard with DVCX.
+  <ul>
+    <li>New to ML? This is someone who is just getting into ML, but doesn't have much experience with MLOps and certainly not Iterative's product.</li>
+    <li>New to DVC? This is someone who knows what ML and MLOps are, but isn't familiar with our particular flavor of MLOps.</li>
+    <li>Existing DVC user? This is someone who has already been onboarded to our open-source DVC tooling, so they have a working Git repository to start with.</li>
+    <li>Existing Studio user? This is someone who is already onboarded into Studio, and so only needs to learn how to onboard with DVCX.</li>
+  </ul>
 
   <Image src={mentalModels} alt="Mental models" />
 
@@ -45,19 +47,21 @@ const breadcrumbs: BreadcrumbLink[] = [
   <p>These customers today use tools like Spark or Databricks, and get frustrated with how complex these tools are to set up.
   The design of DVCX tries to optimize for simplicity, similar to modern data warehouse tools like Snowflake or Clickhouse.</p>
 
-  * VSCode-like editing experience, allowing you to write and share code from your browser.
+  <ul>
+    <li>VSCode-like editing experience, allowing you to write and share code from your browser.</li>
 
-  * Compute switcher lets you specify where you want your code to execute.
-  You can choose from different GPU and CPU instances.
+    <li>Compute switcher lets you specify where you want your code to execute.
+    You can choose from different GPU and CPU instances.</li>
 
-  * The Jobs sidebar lets you keep track of the progress of queued jobs.
-  You can keep this open or collapse it if you want to focus on your current task.
+    <li>The Jobs sidebar lets you keep track of the progress of queued jobs.
+    You can keep this open or collapse it if you want to focus on your current task.</li>
 
-  * The Sources, Datasets, and Tasks on the left let you keep track of your data sources, registered datasets from other queries, and any tasks that are scheduled to run on a recurring basis.
+    <li>The Sources, Datasets, and Tasks on the left let you keep track of your data sources, registered datasets from other queries, and any tasks that are scheduled to run on a recurring basis.</li>
+  </ul>
 
   <Image src={jobsSidebar} alt="Jobs sidebar" />
 
-  If you want to provision more compute, or manage your existing compute resources, you can do so through Settings.
+  <p>If you want to provision more compute, or manage your existing compute resources, you can do so through Settings.</p>
 
   <Image src={manageComputeResources} alt="Manage compute resources" />
 

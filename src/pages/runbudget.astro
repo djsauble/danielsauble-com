@@ -66,7 +66,7 @@ const breadcrumbs: BreadcrumbLink[] = [
     <li>It was annoying to be told where to run. I run to get away from electronics,
        and the app provided a constant reminder of this.</li>
     <li>Since there are only a handful of good routes in any given area, once I
-       became familiar with an area (a month or two at most), I&rsquo;t need turn-by-turn directions anymore.</li>
+       became familiar with an area (a month or two at most), I didn&rsquo;t need turn-by-turn directions anymore.</li>
     <li>This approach required a large amount of data scraping ahead of time. As a
        one-person team, I don&rsquo;t have the financial resources to build out a comprehensive database of all running routes in my metro area, let alone my state, country, or the world.</li>
   </ol>
@@ -89,7 +89,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <Image src={forrestCruiseDashboard} alt="Forrest Cruise Dashboard" />
 
-  <p>As a final touch, I implemented a WebSockets API, allowing the iOS app and web dashboard can communicate with each other in real-time. If you submit a run from the app, it is immediately displayed in the dashboard and updates the trends/goals.</p>
+  <p>As a final touch, I implemented a WebSockets API, allowing the iOS app and web dashboard to communicate with each other in real-time. If you submit a run from the app, it is immediately displayed in the dashboard and updates the trends/goals.</p>
 
   <p>A screenshot of the iOS app is below. Red indicates total distance spent walking or running. Blue indicates running distance each week. Green indicates average pace each week (lower is better).</p>
 
@@ -99,16 +99,16 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <ol>
     <li>People won't pay for a hosted solution to store their runs when they can get
-       Strava, Nike+, or Garmin Connect for free, and I&rsquo;t have the financial resources to provide a free hosting solution that scales.</li>
+       Strava, Nike+, or Garmin Connect for free, and I don&rsquo;t have the financial resources to provide a free hosting solution that scales.</li>
     <li>Even though showing goal information is nice, it&rsquo;s too high-level a
        solution to help people manage their training each week. This is what a training log does very well, and something my solution did not.</li>
   </ol>
 
   <h2>Solution #3: Run budgeting</h2>
 
-  <p>I bought an Apple Watch Series 2 shortly after they came out. While playing with it, I realized that complications are the perfect way to managing training consistency. Since they&rsquo;re always visible and unobtrusive, they&rsquo;re the perfect way to understand what you should do next in your plan.</p>
+  <p>I bought an Apple Watch Series 2 shortly after they came out. While playing with it, I realized that complications are the perfect way to manage training consistency. Since they&rsquo;re always visible and unobtrusive, they&rsquo;re the perfect way to understand what you should do next in your plan.</p>
 
-  <p>I created the concept of a running budget. A running budget is a number which helps you answer a simple question: &rdquo;if I went running right now, how far should I go?&rdquo; It gives you the freedom to decide when and how much to run, without committing to an inflexible schedule. It&rsquo;s the perfect thing to display in a complication.</p>
+  <p>I created the concept of a running budget. A running budget is a number which helps you answer a simple question: &ldquo;if I went running right now, how far should I go?&rdquo; It gives you the freedom to decide when and how much to run, without committing to an inflexible schedule. It&rsquo;s the perfect thing to display in a complication.</p>
 
   <p>Each Monday, your budget is reset. As the week progresses, it gradually increases. When you go for a run, it decreases by the amount you ran. The goal is to ensure your budget is zero by the end of the week.</p>
 

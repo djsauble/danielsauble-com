@@ -86,7 +86,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <Image src={admin} alt="package filtering admin UI" />
 
-  <p>After setting a blocking policy, developer could no longer install those
+  <p>After setting a blocking policy, developers could no longer install those
   packages. To make it obvious what was going on, we let the npm Enterprise admin
   set a custom message to display in the terminal whenever packages were blocked.</p>
 
@@ -105,10 +105,10 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <p>To achieve this, we had to make the npm CLI aware of which packages were good,
   and which were bad. We modified the packument (a JSON object returned by the
-  registry with information about a package, including what version are
+  registry with information about a package, including what versions are
   available) by moving any bad packages to a separate list of "blocked" versions.</p>
 
-  <p>Now, the CLI could look at the the list of available versions (now all allowed
+  <p>Now, the CLI could look at the list of available versions (now all allowed
   by policy), and choose the best one. And since we kept the blocked packages in
   the packument, it could also tell the difference between a package that was not
   found, and a package that was blocked. A nice side effect of this approach is
@@ -150,7 +150,7 @@ const breadcrumbs: BreadcrumbLink[] = [
   </pre>
 
   <p>In fact, they could simply ask for the latest, and npm would automatically
-  install the latest verion of lodash allowed by policy.</p>
+  install the latest version of lodash allowed by policy.</p>
 
   <pre>
   $ npm install lodash npm WARN tmp@1.0.0 No description npm WARN tmp@1.0.0 No
