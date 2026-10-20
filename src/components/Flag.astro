@@ -1,0 +1,31 @@
+---
+// An open question for Daniel inside a draft. Flags render in dev and fail a
+// production build, so an unresolved one can never deploy.
+interface Props {
+  kind?: 'tbd' | 'confidential';
+}
+
+const { kind = 'tbd' } = Astro.props;
+
+if (import.meta.env.PROD) {
+  throw new Error(`Unresolved ${kind} flag on ${Astro.url.pathname}. Resolve it before publishing.`);
+}
+
+const label = kind === 'tbd' ? 'TBD — Daniel to confirm' : '⚠️ Confidentiality check — Daniel to review';
+---
+
+<mark class={`flag flag-${kind}`}><strong>{label}:</strong> <slot /></mark>
+
+<style>
+  .flag {
+    color: var(--off-black);
+    background-color: var(--lime);
+    outline: 2px dashed var(--off-black);
+    padding: 0 0.25em;
+  }
+
+  .flag-confidential {
+    color: var(--lime);
+    background-color: var(--off-black);
+  }
+</style>

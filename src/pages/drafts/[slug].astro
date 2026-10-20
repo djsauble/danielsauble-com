@@ -1,0 +1,18 @@
+---
+import type { GetStaticPaths } from 'astro';
+
+// Drafts in src/drafts preview at /drafts/<slug> under `yarn dev` only.
+// Production builds skip them. To publish, move the file to src/pages.
+export const getStaticPaths = (async () => {
+  const drafts = import.meta.env.DEV ? import.meta.glob('../../drafts/*.astro') : {};
+
+  return Object.entries(drafts).map(([path, load]) => ({
+    params: { slug: path.split('/').pop()!.replace('.astro', '') },
+    props: { load },
+  }));
+}) satisfies GetStaticPaths;
+
+const { default: Draft } = (await Astro.props.load()) as { default: any };
+---
+
+<Draft />
