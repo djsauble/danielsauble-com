@@ -74,6 +74,20 @@ code {
   padding: 0.1em 0.3em;
 }
 
+/* Long lines scroll inside the block instead of widening the page */
+pre {
+  overflow-x: auto;
+  padding: 0.75em 1em;
+  background-color: var(--paper-shade);
+  font-family: var(--mono);
+  font-size: 0.85em;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+}
+
 ::selection {
   background-color: var(--lime);
   color: var(--off-black);
