@@ -1,0 +1,94 @@
+---
+// A team map in the style of the older 00_team.png images: me at the bottom
+// center, the people I worked with on an arc above, labeled by role only.
+import { getImage } from 'astro:assets';
+import headshot from '../../public/images/daniel.jpeg';
+
+interface Props {
+  roles: string[];
+}
+
+const { roles } = Astro.props;
+
+const width = 608;
+const height = 334;
+const center = { x: width / 2, y: 258 };
+const headshotRadius = 76;
+const arc = { rx: 232, ry: 196 };
+
+const photo = await getImage({ src: headshot, width: headshotRadius * 4, format: 'webp' });
+
+// Spread roles evenly from left to right along the arc
+const people = roles.map((role, i) => {
+  const angle = roles.length === 1
+    ? Math.PI / 2
+    : Math.PI * (170 - (160 * i) / (roles.length - 1)) / 180;
+  const x = center.x + arc.rx * Math.cos(angle);
+  const y = center.y - arc.ry * Math.sin(angle);
+
+  // Lines stop short of both the headshot and the silhouette
+  const dx = x - center.x;
+  const dy = y - center.y;
+  const length = Math.hypot(dx, dy);
+  const from = { x: center.x + (dx / length) * (headshotRadius + 16), y: center.y + (dy / length) * (headshotRadius + 16) };
+  const to = { x: center.x + (dx / length) * (length - 62), y: center.y + (dy / length) * (length - 62) };
+
+  return { role, x, y, from, to };
+});
+
+const label = `Team map: me, working with ${roles.join(', ')}`;
+---
+
+<svg class="team-map" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={label}>
+  <defs>
+    <clipPath id="team-map-headshot">
+      <circle cx={center.x} cy={center.y} r={headshotRadius} />
+    </clipPath>
+  </defs>
+
+  {people.map(p => (
+    <line x1={p.from.x} y1={p.from.y} x2={p.to.x} y2={p.to.y} class="team-map-line" />
+  ))}
+
+  {people.map(p => (
+    <g>
+      <circle cx={p.x} cy={p.y - 34} r={20} class="team-map-person" />
+      <rect x={p.x - 34} y={p.y - 10} width={68} height={34} rx={14} class="team-map-person" />
+      <text x={p.x} y={p.y + 46} text-anchor="middle" class="team-map-label">{p.role}</text>
+    </g>
+  ))}
+
+  <image
+    href={photo.src}
+    x={center.x - headshotRadius}
+    y={center.y - headshotRadius}
+    width={headshotRadius * 2}
+    height={headshotRadius * 2}
+    clip-path="url(#team-map-headshot)"
+    preserveAspectRatio="xMidYMid slice"
+  />
+</svg>
+
+<style>
+  .team-map {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1em 0;
+  }
+
+  .team-map-line {
+    stroke: var(--paper-deep);
+    stroke-width: 4;
+  }
+
+  .team-map-person {
+    fill: var(--paper-deep);
+  }
+
+  .team-map-label {
+    fill: var(--off-black);
+    font-family: var(--serif);
+    font-size: 17px;
+  }
+</style>
