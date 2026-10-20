@@ -9,10 +9,20 @@ body {
 }
 
 main {
-  padding: 2em 3em 3em 3em;
+  padding: calc(2em + 6px) 3em 3em 3em;
   background-color: var(--off-white);
   border: solid 2px var(--off-black);
-  border-top: solid 8px var(--lime);
+}
+
+/* A block instead of a border-top, so the corners stay square instead of mitering into the side borders */
+main::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  height: 8px;
+  background-color: var(--lime);
 }
 
 @media (max-width: 960px) {
@@ -21,9 +31,14 @@ main {
   }
 
   main {
-    padding: 1em 1em 0 1em;
+    padding: calc(1em + 8px) 1em 0 1em;
     border: none;
-    border-top: solid 8px var(--lime);
+  }
+
+  main::before {
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
   ul {
