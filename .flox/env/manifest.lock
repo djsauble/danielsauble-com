@@ -1,0 +1,206 @@
+{
+  "lockfile-version": 1,
+  "manifest": {
+    "schema-version": "1.19.0",
+    "install": {
+      "corepack_24": {
+        "pkg-path": "corepack_24"
+      },
+      "nodejs_24": {
+        "pkg-path": "nodejs_24"
+      }
+    },
+    "vars": {
+      "ASTRO_TELEMETRY_DISABLED": "1",
+      "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0"
+    },
+    "hook": {
+      "on-activate": "  # Install dependencies on first activation, and again when the lockfile changes.\n  lock_hash=\"$(shasum yarn.lock | cut -d' ' -f1)\"\n  if [ ! -d node_modules ] || [ \"$(cat \"$FLOX_ENV_CACHE/yarn.lock.sha\" 2>/dev/null)\" != \"$lock_hash\" ]; then\n    echo \"Installing dependencies...\" >&2\n    yarn install --immutable >&2 && echo \"$lock_hash\" > \"$FLOX_ENV_CACHE/yarn.lock.sha\"\n  fi\n"
+    },
+    "options": {},
+    "services": {
+      "dev": {
+        "command": "yarn dev"
+      }
+    }
+  },
+  "packages": [
+    {
+      "attr_path": "corepack_24",
+      "broken": false,
+      "derivation": "/nix/store/aq6g1kifhfw11f6z0vvm56k3yzsdmyrr-corepack-nodejs-24.21.0.drv",
+      "description": "Wrappers for npm, pnpm and Yarn via Node.js Corepack",
+      "install_id": "corepack_24",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "name": "corepack-nodejs-24.21.0",
+      "pname": "corepack_24",
+      "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "rev_count": 1092090,
+      "rev_date": "2026-10-14T05:35:54Z",
+      "scrape_date": "2026-10-17T04:01:53.027335Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "24.21.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/v8i7sp5dvyqc24k1451kzjzbwq3l8358-corepack-nodejs-24.21.0"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "corepack_24",
+      "broken": false,
+      "derivation": "/nix/store/hp4w0jnvpwgxklaq12d4nsjig8qdpa39-corepack-nodejs-24.21.0.drv",
+      "description": "Wrappers for npm, pnpm and Yarn via Node.js Corepack",
+      "install_id": "corepack_24",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "name": "corepack-nodejs-24.21.0",
+      "pname": "corepack_24",
+      "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "rev_count": 1092090,
+      "rev_date": "2026-10-14T05:35:54Z",
+      "scrape_date": "2026-10-17T04:31:09.072083Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "24.21.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/zrm735mrvaajh6av4lk96z9yvgikblz4-corepack-nodejs-24.21.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "corepack_24",
+      "broken": false,
+      "derivation": "/nix/store/58y0f33svv3271q0s0lpq58hk0crmc7p-corepack-nodejs-24.21.0.drv",
+      "description": "Wrappers for npm, pnpm and Yarn via Node.js Corepack",
+      "install_id": "corepack_24",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "name": "corepack-nodejs-24.21.0",
+      "pname": "corepack_24",
+      "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "rev_count": 1092090,
+      "rev_date": "2026-10-14T05:35:54Z",
+      "scrape_date": "2026-10-17T05:06:05.132955Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "24.21.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/b3qk604z6zgiz9npgdg16mkgqk5riyk6-corepack-nodejs-24.21.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "nodejs_24",
+      "broken": false,
+      "derivation": "/nix/store/kfalw8dhzga1b294cr5zz1diwgkigrra-nodejs-24.21.0.drv",
+      "description": "Event-driven I/O framework for the V8 JavaScript engine",
+      "install_id": "nodejs_24",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "name": "nodejs-24.21.0",
+      "pname": "nodejs_24",
+      "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "rev_count": 1092090,
+      "rev_date": "2026-10-14T05:35:54Z",
+      "scrape_date": "2026-10-17T04:01:53.246674Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "24.21.0",
+      "outputs_to_install": [
+        "out",
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/7cr3l1m9yyng2hscs8lj4x4bj0hm7908-nodejs-24.21.0"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "nodejs_24",
+      "broken": false,
+      "derivation": "/nix/store/ij09sr7m9ngn7iafal95327svx411rjf-nodejs-24.21.0.drv",
+      "description": "Event-driven I/O framework for the V8 JavaScript engine",
+      "install_id": "nodejs_24",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "name": "nodejs-24.21.0",
+      "pname": "nodejs_24",
+      "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "rev_count": 1092090,
+      "rev_date": "2026-10-14T05:35:54Z",
+      "scrape_date": "2026-10-17T04:31:09.389008Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "24.21.0",
+      "outputs_to_install": [
+        "out",
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/8lgcgi9riqm71v9ibjw5qjcwwr5nfm83-nodejs-24.21.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "nodejs_24",
+      "broken": false,
+      "derivation": "/nix/store/m4gixiwcnhplm2mcd5nnd6i0lxncnyji-nodejs-24.21.0.drv",
+      "description": "Event-driven I/O framework for the V8 JavaScript engine",
+      "install_id": "nodejs_24",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "name": "nodejs-24.21.0",
+      "pname": "nodejs_24",
+      "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+      "rev_count": 1092090,
+      "rev_date": "2026-10-14T05:35:54Z",
+      "scrape_date": "2026-10-17T05:06:05.306839Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "24.21.0",
+      "outputs_to_install": [
+        "out",
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/gxq2cd70i077rah1d4hkzc1lpq8q4pv8-nodejs-24.21.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    }
+  ]
+}

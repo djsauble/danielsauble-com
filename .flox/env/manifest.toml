@@ -1,0 +1,25 @@
+schema-version = "1.19.0"
+
+# Node 24 matches the CI build in .github/workflows/aws.yml.
+# Corepack reads the exact Yarn version from package.json (packageManager).
+[install]
+nodejs_24.pkg-path = "nodejs_24"
+corepack_24.pkg-path = "corepack_24"
+
+[vars]
+COREPACK_ENABLE_DOWNLOAD_PROMPT = "0"
+ASTRO_TELEMETRY_DISABLED = "1"
+
+[hook]
+on-activate = '''
+  # Install dependencies on first activation, and again when the lockfile changes.
+  lock_hash="$(shasum yarn.lock | cut -d' ' -f1)"
+  if [ ! -d node_modules ] || [ "$(cat "$FLOX_ENV_CACHE/yarn.lock.sha" 2>/dev/null)" != "$lock_hash" ]; then
+    echo "Installing dependencies..." >&2
+    yarn install --immutable >&2 && echo "$lock_hash" > "$FLOX_ENV_CACHE/yarn.lock.sha"
+  fi
+'''
+
+# flox activate --start-services runs the dev server at http://localhost:4321
+[services.dev]
+command = "yarn dev"
