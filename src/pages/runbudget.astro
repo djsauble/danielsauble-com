@@ -38,7 +38,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <h2>Building a base platform</h2>
 
-  <p>I started by building a SAAS solution to store my runs. In retrospect, I could have used Strava or Garmin Connect as an out-of-the-box solution, but I wanted to own my data, and was wary of the control I would yield by giving it to a 3rd-party API.</p>
+  <p>I started by building a SaaS solution to store my runs. In retrospect, I could have used Strava or Garmin Connect as an out-of-the-box solution, but I wanted to own my data, and was wary of the control I would yield by giving it to a 3rd-party API.</p>
 
   <p>The initial service was written in Ruby, hosted on Heroku, with data stored in a CouchDB database. It supported multiple users, and persisted run data POSTed to its REST API.</p>
 
@@ -77,7 +77,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <p>Again, I didn&rsquo;t want to burden people with needing to create/maintain/adhere to a strict training plan. I used weeks as the unit of progress. Each week, I set a goal of 10% (or less) of the previous week&rsquo;s mileage, showing past weeks to help people see how well they were doing at being consistent.</p>
 
-  <p>To visualize this information, I wrote a new web front-end in Backbone.js, and rewrote the backend in Node.js. This allowed me to share NPM modules between the front- and backend, and made the whole experience work much better.</p>
+  <p>To visualize this information, I wrote a new web front-end in Backbone.js, and rewrote the backend in Node.js. This allowed me to share npm modules between the front- and backend, and made the whole experience work much better.</p>
 
   <Image src={forrestCruiseLandingPage} alt="Forrest Cruise Landing Page" />
 
@@ -114,7 +114,7 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <p>If you consistently use your entire running budget, your mileage will increase 10% each week. You can adjust your rate of progress by varying the amount of budget left over at the end of each week.</p>
 
-  <p>Furthermore, WatchOS has HealthKit support, so you can consume data produced by other apps, without needing to generate or store it yourself. This was a perfect solution for the first problem in my previous attempt. Since I no longer needed to track runs or store the data, I was able to focus on the core problems.</p>
+  <p>Furthermore, watchOS has HealthKit support, so you can consume data produced by other apps, without needing to generate or store it yourself. This was a perfect solution for the first problem in my previous attempt. Since I no longer needed to track runs or store the data, I was able to focus on the core problems.</p>
 
   <p>The new iOS app is very simple, and consists solely of the following screen:</p>
 
@@ -122,11 +122,11 @@ const breadcrumbs: BreadcrumbLink[] = [
 
   <p>The complications are also quite simple. They range from a complication which shows your running budget, progress against your weekly goal, and last week&rsquo;s mileage...</p>
 
-  <Image src={runbudgetLargeComplication} alt="WatchOS large complication" />
+  <Image src={runbudgetLargeComplication} alt="watchOS large complication" />
 
   <p>...to a very simple complication which only shows your running budget:</p>
 
-  <Image src={runbudgetSmallComplication} alt="WatchOS small complication" />
+  <Image src={runbudgetSmallComplication} alt="watchOS small complication" />
 
   <p>These complications all support Time Travel, so you can easily speed ahead and see how much budget you&rsquo;ll have at various points throughout your day.</p>
 
