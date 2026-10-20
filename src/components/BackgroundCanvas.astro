@@ -15,7 +15,6 @@
   const spacing = 20; // Spacing between dots in pixels. Range: 20 to 100.
   const damping = .95; // Controls how quickly waves dissipate. Range: 0.1 to 0.9.=
   const baseColor = [239, 237, 231]; // --paper-shade
-  const rippleColor = [50, 205, 50]; // --lime
   const highlightColor = '#32CD32'; // --lime
   const pulseMagnitude = 50; // Magnitude of the displacement pulse on click. Range: 50 to 200.
 
@@ -79,11 +78,10 @@
       for (let j = 0; j < gridHeight; j++) {
         const displacement = grid[i][j];
 
-        // Tint toward lime in proportion to the size of the wave
-        const t = Math.min(Math.abs(displacement) / pulseMagnitude * 4, 1);
-        const r = baseColor[0] + (rippleColor[0] - baseColor[0]) * t;
-        const g = baseColor[1] + (rippleColor[1] - baseColor[1]) * t;
-        const b = baseColor[2] + (rippleColor[2] - baseColor[2]) * t;
+        // Vary color based on displacement
+        const r = baseColor[0] + displacement;
+        const g = baseColor[1] + displacement;
+        const b = baseColor[2] + displacement;
 
         // Check if the current cell is the highlighted cell
         if (highlightedCell && highlightedCell[0] === i && highlightedCell[1] === j) {
