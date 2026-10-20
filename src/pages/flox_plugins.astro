@@ -1,0 +1,160 @@
+---
+import { Image } from 'astro:assets';
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
+import TeamMap from "../components/TeamMap.astro";
+
+import debuggingAPlugin from '../../public/images/flox_plugins/01_debugging_a_plugin.png';
+import secretStoreReference from '../../public/images/flox_plugins/02_secret_store_reference.png';
+
+const title = "Flox secrets plugins";
+const description = "How Flox's experimental plugins section and four secret-store plugins shipped within 17 days, starting from a prototype I built with Claude.";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
+---
+
+<Layout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <h1>Flox secrets plugins</h1>
+
+  <h2>Intro</h2>
+
+  <p>I was the PM and designer for our pod at Flox, and I led this project.
+  We shipped Flox's experimental <code>[plugins]</code> manifest section about a week after I framed it.
+  By day 17, we had also shipped four secret-store plugins.
+  The feature began as a prototype I built with Claude agents, which engineering reworked.</p>
+
+  <p>Flox defines reproducible developer environments in a shared <code>manifest.toml</code>.
+  Secrets don't belong there, yet our docs modeled <code>vars.PGPASSWORD = "super-secret"</code>.
+  Teams needed a safe way to declare secrets.</p>
+
+  <p>I framed the problem, built the first prototype, and wrote three of the four plugins.
+  I also wrote the <a href="https://flox.dev/docs/concepts/plugins" target="_blank" rel="noopener">plugins concept page</a> and reworked the <a href="https://flox.dev/docs/concepts/secrets-management" target="_blank" rel="noopener">secrets page</a>.</p>
+
+  <h2>Team and collaboration</h2>
+
+  <p>An engineer reworked my prototype for production and wrote the 1Password plugin.
+  My pod teammate ran the prior-art research, built plugin CI and publishing, and fixed the post-launch <code>[vars]</code> blocker.
+  Another colleague handled testing and review.
+  A fourth colleague's earlier <code>profile.d</code> loading fix made the design possible.
+  Stakeholders included engineers at spec review, community users, and marketing.</p>
+
+  <TeamMap roles={['Community users', 'Engineer', 'Pod teammate', 'Reviewer', 'Marketing']} />
+
+  <p>Work flowed from prototype to production:</p>
+
+  <ul>
+    <li>I framed the problem with Claude agents and took the framing to a team review.</li>
+    <li>I built a working prototype, and the engineer reworked it with Claude for production.</li>
+    <li>I presented at spec review and took new plugins to the community users who asked for them.</li>
+  </ul>
+
+  <h2>Hand-rolled secrets problem</h2>
+
+  <p>Our docs offered a hand-rolled workaround: an activation hook that fetches each secret.
+  It was hard to discover, different for every store, and silent about which secrets an environment needed.</p>
+
+  <p>The open question was how much Flox should own.
+  There were three paths:</p>
+
+  <ol>
+    <li>Flox could hold secrets itself, encrypted in the repo (SOPS or age).</li>
+    <li>It could build each store's provider into the binary, as the prior-art research recommended.</li>
+    <li>It could own only the declaration and let packages fetch.</li>
+  </ol>
+
+  <p>My July 21 sketch took the last path.
+  It was a <code>[plugins.1password]</code> table of secret references, fetched by the store's package.</p>
+
+  <h2>Framing with Claude agents</h2>
+
+  <p>On July 21, I framed the project with Claude agents in an internal planning repo.
+  At the team review that day, I asked how secrets would stay out of <code>flox containerize</code> images.
+  My pod teammate questioned the planned leak linter and CI guarantees.
+  We cut all three, and I recorded each cut.</p>
+
+  <h2>References, not values</h2>
+
+  <p>I decided this feature would carry references, never values, even though every user now needs an external store.
+  Holding values means owning key management, rotation, revocation, audit, and breach blast radius.</p>
+
+  <p>Here's a Vault declaration from our secrets docs:</p>
+
+<pre><code>[plugins.vault]
+GH_TOKEN = "secret/github-work#token"</code></pre>
+
+  <h2>A generic <code>[plugins]</code> section, not <code>[secrets]</code></h2>
+
+  <p>My pod teammate, the rest of our pod, and I chose one generic section, so a new integration is just a package.
+  We accepted that nothing validates plugin data before activation, and that failing scripts are hard to attribute.</p>
+
+  <h2>A prototype the team could try</h2>
+
+  <p>The night of the team review, I built a working prototype through the planning repo's Claude agents.
+  The goal was a design the team could try, not just read.
+  Its 10 commits added schema, helpers, a demo plugin, tests, docs, and a walkthrough.
+  The PR said it wasn't meant to merge as-is.
+  It also named its own shortcut, an in-place schema edit.
+  Claude's PR review flagged that shortcut too.</p>
+
+  <h2>Handoff to engineering</h2>
+
+  <p>The engineer's first review asked for hard errors where my helper silently returned nothing.
+  He reworked the branch with Claude (a proper v1.14.0 schema, a fail-closed helper, and new tests).
+  He merged it 45 hours after framing began.
+  My data model and merge logic shipped essentially unchanged, but the commits are his.
+  At handoff, the rework dropped my demo plugin, my walkthrough, and one helper.</p>
+
+  <p>We left a few loose ends.
+  Our merge commit claimed a version bump that hadn't happened.
+  A version-guard test was skipped on purpose until the engineer re-armed it eight days later.
+  The next-day release slipped to the following week.</p>
+
+  <h2>Plugins the community asked for</h2>
+
+  <p>On July 29, I presented at spec review, then turned its open questions into decision issues.
+  Community members had asked for Vault, Infisical, and OpenBao.
+  So I wrote those plugins with Claude Code and soft-launched them to those users.
+  Not every store got a live end-to-end test before release.</p>
+
+  <h2>Each plugin owns its failure policy</h2>
+
+  <p>We left fail-fast to each plugin.
+  Core Flox still blocks activation when a plugin's table is missing.
+  My plugins just warn on a missing secret.
+  The cost is no Flox-level "required secrets" contract.</p>
+
+  <h2>Real use exposed an ordering problem</h2>
+
+  <p>Early real-world use showed that plugins couldn't read <code>[vars]</code> and that debugging a plugin was opaque.
+  Package <code>profile.d</code> scripts ran before <code>[vars]</code> was set.
+  I'd written that order down twice, but I didn't see it as a blocker until then.
+  My pod teammate's fix shipped in Flox 1.15.0.
+  The debugging section I'd asked for in the docs on August 4 didn't merge until August 26.</p>
+
+  <p>The <a href="https://flox.dev/docs/concepts/plugins#debugging-a-plugin" target="_blank" rel="noopener">plugins docs</a> now show how to trace which plugin scripts ran:</p>
+
+  <Image src={debuggingAPlugin} alt="The Debugging a plugin section of the Flox plugins docs, with a flox activate -v trace" />
+
+  <h2>Our docs kept the bad example</h2>
+
+  <p>Fixing our <code>super-secret</code> docs was in scope, but it still hasn't happened.
+  That's awkward for a secrets project.</p>
+
+  <h2>Outcome</h2>
+
+  <p><a href="https://github.com/flox/flox/releases/tag/v1.14.0" target="_blank" rel="noopener">Flox 1.14.0</a> shipped the experimental <code>[plugins]</code> section about a week after framing.
+  By day 17, we (and by we, I mean my pod teammate) had published all four plugins to the public Flox catalog.
+  I wrote three of them.</p>
+
+  <p>Here's the Vault plugin's install command from our docs:</p>
+
+<pre><code>$ flox install flox/plugin-vault</code></pre>
+
+  <p>Our <a href="https://flox.dev/docs/concepts/secrets-management#secret-store-reference" target="_blank" rel="noopener">secrets docs</a> now list which stores have a Flox plugin:</p>
+
+  <Image src={secretStoreReference} alt="The secret store reference table in the Flox docs, with plugins for 1Password, HashiCorp Vault, OpenBao, and Infisical" />
+
+  <p><a href="https://github.com/flox/flox/releases/tag/v1.15.0" target="_blank" rel="noopener">Flox 1.15.0</a> let plugins read <code>[vars]</code>, 18 days after they went public.</p>
+
+  <p>Nothing measures adoption.</p>
+</Layout>

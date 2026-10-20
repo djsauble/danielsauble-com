@@ -1,0 +1,164 @@
+---
+import { Image } from 'astro:assets';
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
+import TeamMap from "../components/TeamMap.astro";
+
+import wizardOverview from '../../public/images/flox_onboarding/01_wizard_overview.png';
+import wizardActivate from '../../public/images/flox_onboarding/02_wizard_activate.png';
+import wizardPackages from '../../public/images/flox_onboarding/03_wizard_packages.png';
+import floxDevBefore from '../../public/images/flox_onboarding/04_flox_dev_before.png';
+import floxDevAfter from '../../public/images/flox_onboarding/05_flox_dev_after.png';
+import choiceScreen from '../../public/images/flox_onboarding/06_choice_screen.png';
+
+const title = "FloxHub onboarding";
+const description = "How I designed FloxHub's onboarding and made \"Sign in to FloxHub\" the main call to action on flox.dev.";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
+---
+
+<Layout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <h1>FloxHub onboarding</h1>
+
+  <h2>Intro</h2>
+
+  <p>I designed FloxHub's onboarding, then made <strong>Sign in to FloxHub</strong> the main call to action (CTA) on <a href="https://flox.dev" target="_blank" rel="noopener">flox.dev</a>, five days after marketing asked.
+  Weekly signups rose 116.6% in a before/after readout.
+  The comparison was confounded, and the onboarding flow couldn't have caused the rise directly.</p>
+
+  <p>Flox builds reproducible developer environments on Nix.
+  You use them through the <code>flox</code> CLI, and you can push them to FloxHub, the hosted side.
+  Leadership watched FloxHub signups every week.
+  However, flox.dev told people to download the CLI first.</p>
+
+  <p>I joined Flox as a product designer in August 2025.
+  Working from an existing requirements doc and persona, I designed the screens and wrote the concept copy.</p>
+
+  <h2>Team and collaboration</h2>
+
+  <p>The lead engineer ran the build.
+  Another engineer wrote the most onboarding commits, and a third built default-environment creation.
+  By commit count, I was third of six.
+  I also wrote follow-up PRs and the CTA change.</p>
+
+  <p>My stakeholders were our VP of Engineering and Growth, marketing, and our CEO.</p>
+
+  <TeamMap roles={['Engineers', 'Lead engineer', 'CEO', 'VP Eng & Growth', 'Marketing']} />
+
+  <p>The wizard was a Figma handoff, from before I swapped mockups for code prototypes.
+  In January 2026, I prototyped CLI-side onboarding with Claude.
+  That branch never merged.</p>
+
+  <h2>New-user problem</h2>
+
+  <p>On my second day, I audited FloxHub as a new user.
+  My first finding was that FloxHub didn't explain what an environment was or why it mattered.
+  The second was that you couldn't download the CLI from FloxHub, even though you need the CLI for most tasks there.</p>
+
+  <p>I wanted onboarding to end with an activated environment.
+  On August 7, I suggested "a success indicator in FloxHub after you activate your default environment."
+  However, the CLI had no clean way to tell FloxHub you'd activated.
+  A CLI callback was one option, and I was in favor.
+  The lead engineer judged it "awkward and somewhat impolite," so we didn't build it.</p>
+
+  <h2>First draft and async review</h2>
+
+  <p>I shared the first Figma draft on August 8, at the "so early it's kind of embarrassing" stage.
+  I ran the review async.</p>
+
+  <p>The docs put the concept two clicks away, so the first step explains environments in plain words.
+  Two CLI engineers reviewed the copy.
+  The cost is a whole step of reading before you touch anything.</p>
+
+  <p>Here's that first step as it looks today:</p>
+
+  <Image src={wizardOverview} alt="The first step of FloxHub onboarding, which explains what a Flox environment is" />
+
+  <p>In the built wizard, pressing <strong>Back</strong> dropped you out of the flow.
+  The lead engineer flagged that kind of edge case in my August review, but I ticketed the flow with questions still open.
+  By late October, it was a known issue.</p>
+
+  <h2>What counted as done</h2>
+
+  <p>With no activation signal, "done" came to mean a default environment exists.
+  So I kept <strong>Skip</strong> on the CLI and activate steps, even though the CLI is essential for most of FloxHub.
+  We measured the step we could see, not the one that matters.</p>
+
+  <p>Today the activate step asks you to confirm it yourself:</p>
+
+  <Image src={wizardActivate} alt="The FloxHub onboarding activate step, with an I've activated the environment button" />
+
+  <p>Measurement was thin.
+  Before the build, I listed what to capture, including skips, packages picked, and activation.
+  Step tracking arrived five weeks after launch.
+  Through mid-2026, we still couldn't tell who activated.</p>
+
+  <h2>Preselected packages</h2>
+
+  <p>After the September 24 launch, the lead engineer noticed that people weren't picking any packages.
+  He and one other engineer had floated suggestions.
+  When he raised it again on October 1, I suspected a "blank sheet of paper" problem.
+  About 50 minutes later, I opened a one-line change to preselect <code>git</code>, <code>emacs</code>, and <code>coreutils</code>.</p>
+
+  <p>The step looks like this today, with a different set of defaults:</p>
+
+  <Image src={wizardPackages} alt="The FloxHub onboarding package step, with packages preselected" />
+
+  <p>I bet defaults would beat a blank sheet, even though they muddy the signal.
+  We can't tell who wanted <code>git</code> and who didn't uncheck it.
+  It also put Emacs in front of every new user, which the lead engineer called "devious" (approvingly).
+  Early users started editing the defaults (one swapped Emacs for nano and added Python).
+  We never measured the result beyond anecdotes.</p>
+
+  <h2>Sign in CTA on flox.dev</h2>
+
+  <p>The <strong>Sign in</strong> CTA wasn't my idea.
+  In October, marketing reminded me that <strong>Sign in to FloxHub</strong> was meant to be the main CTA.
+  That needed a CLI download page in FloxHub, outside onboarding.
+  I had designed it in August, but it never made the build.
+  I built it the same day, then made the website change.</p>
+
+  <p>I proposed moving <strong>Download</strong> to the <strong>Resources</strong> menu, even though it adds a step for CLI-only visitors.
+  I watched downloads as a counter-metric, and they didn't appear to drop.
+  Our CEO thanked me for "keeping track of the tradeoff."</p>
+
+  <p>Here's the flox.dev hero before the change:</p>
+
+  <Image src={floxDevBefore} alt="The flox.dev hero before the change, with Download as the main button" />
+
+  <p>And after, with <strong>Sign in to FloxHub</strong> as the main button:</p>
+
+  <Image src={floxDevAfter} alt="The flox.dev hero after the change, with Sign in to FloxHub as the main button" />
+
+  <p>I cut the hero <strong>Sign in</strong> button in December, leaving mobile homepage visitors without one until February.
+  Claude told me the mobile menu never had one, and the fix went from PR to merge in seven minutes.</p>
+
+  <h2>Confounded attribution</h2>
+
+  <p>The wizard couldn't move signups directly, because it runs after signup.
+  Beyond that, attribution is confounded.
+  In October, I wasn't sure the early numbers meant anything yet.
+  A sales colleague noted conference days run higher.
+  The "after" window held GitHub Universe, KubeCon, and a Hacker News front-page post.
+  It also held new signup paths: a Kubernetes page and my AI page.
+  When the readout came out in December, I didn't push on attribution, and I should have.</p>
+
+  <h2>Outcome</h2>
+
+  <p>The wizard went live September 24, 2025.
+  The new CTA followed on October 21, five days after marketing asked.
+  The <a href="https://web.archive.org/web/20251018234430/https://flox.dev/" target="_blank" rel="noopener">before</a> and <a href="https://web.archive.org/web/20251111082941/https://flox.dev/" target="_blank" rel="noopener">after</a> are in the Internet Archive.</p>
+
+  <p>In December, our internal readout put average weekly signups over the last 60 days 116.6% above the 60 before.
+  It credited both the CTA and the onboarding flow.
+  It's a before/after, not a test.
+  The "last 60 days" window opens about 11 days before the CTA change, and the baseline includes about two weeks of the wizard.</p>
+
+  <p>The forced walkthrough didn't last.
+  In September 2026, two teammates made it one of three lanes on a new choice screen.
+  Their PR credits my review for pushing a coding agent onto the first screen.</p>
+
+  <Image src={choiceScreen} alt="The FloxHub setup choice screen, with lanes for a coding agent, a default environment, and going straight to FloxHub" />
+
+  <p>My biggest lesson was that an unmeasured flow gets credit for numbers it couldn't have moved.</p>
+</Layout>

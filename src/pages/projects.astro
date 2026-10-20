@@ -4,6 +4,9 @@ import ProjectHero from "../components/project_hero.jsx";
 import "../styles/index.css";
 import Layout from '../layouts/Layout.astro';
 
+import floxAutoActivationImage from '../../public/images/flox_auto_activation/01_auto_activation_docs.png';
+import floxPluginsImage from '../../public/images/flox_plugins/02_secret_store_reference.png';
+import floxOnboardingImage from '../../public/images/flox_onboarding/01_wizard_overview.png';
 import prefectImage from '../../public/images/prefect/13_prototype_hover_over_run.png';
 import endorLabsImage from '../../public/images/endor_labs/05_dependency_graph.png';
 import iterativeImage from '../../public/images/iterative/04_remote_code_execution.png';
@@ -34,6 +37,30 @@ const drafts = import.meta.env.DEV
       </ul>
     </>
   )}
+
+  <ProjectHero
+    to="/flox_auto_activation"
+    title="Flox auto-activation"
+    description="Activate your environment just by entering its directory"
+  >
+    <Image src={floxAutoActivationImage} alt="Flox auto-activation docs" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/flox_plugins"
+    title="Flox secrets plugins"
+    description="Pull secrets from your vault without putting them in your manifest"
+  >
+    <Image src={floxPluginsImage} alt="Flox secret store reference" />
+  </ProjectHero>
+
+  <ProjectHero
+    to="/flox_onboarding"
+    title="FloxHub onboarding"
+    description="Set up your first Flox environment from FloxHub"
+  >
+    <Image src={floxOnboardingImage} alt="FloxHub onboarding" />
+  </ProjectHero>
 
   <ProjectHero
     to="/prefect"

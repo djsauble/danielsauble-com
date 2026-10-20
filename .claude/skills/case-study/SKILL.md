@@ -105,7 +105,7 @@ Publish only after Daniel has reviewed the draft and every flag is resolved.
 1. Replace or remove every `<Flag>`. The production build fails if one remains on a published page. Remove leftover `<!-- IMAGE: … -->` comments too.
 2. Run `mv src/drafts/<slug>.astro src/pages/<slug>.astro`, then `git add` the page and its images.
 3. Add a `ProjectHero` at the top of `src/pages/projects.astro`, in reverse-chronological order:
-   - `title` is the company name.
+   - `title` is the company name. When a company has several case studies, use each page's title instead ("Flox auto-activation", "FloxHub onboarding"), so the cards are distinguishable.
    - `description` is an imperative user outcome, sentence case, with no period.
    - The hero image is the best shipped screen.
 4. Run `site-qa`, then commit and push to `master`. It deploys to production.

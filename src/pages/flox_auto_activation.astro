@@ -1,0 +1,155 @@
+---
+import { Image } from 'astro:assets';
+import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
+import TeamMap from "../components/TeamMap.astro";
+
+import autoActivationDocs from '../../public/images/flox_auto_activation/01_auto_activation_docs.png';
+
+const title = "Flox auto-activation";
+const description = "I led and co-built cd-to-activate for Flox, on by default in 1.14.0, about four months after a prototype I started in a day.";
+const breadcrumbs: BreadcrumbLink[] = [
+  { text: 'Projects', href: '/projects' },
+];
+---
+
+<Layout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <h1>Flox auto-activation</h1>
+
+  <h2>Intro</h2>
+
+  <p>I led and co-built <code>cd</code>-to-activate for Flox.
+  It shipped on by default in Flox <a href="https://github.com/flox/flox/releases/tag/v1.14.0" target="_blank" rel="noopener">1.14.0</a>.
+  That was about four months after a prototype I started in a day.</p>
+
+  <p>Flox environments only help when they're active.
+  Activating one meant typing <code>flox activate</code>.
+  Tools like direnv taught developers to expect activation on <code>cd</code>.
+  The bet was that people would use Flox more if it turned on by itself.</p>
+
+  <p>As a product designer at Flox, I kicked this off with a prototype of an idea on our CTO's roadmap.
+  I wrote the user docs before the production code.
+  I became project lead in mid-June, and I was a main implementer.</p>
+
+  <h2>Team and collaboration</h2>
+
+  <p>I worked most closely with our CTO and three engineers.</p>
+
+  <TeamMap roles={['Engineer', 'CTO', 'Engineer', 'Engineer']} />
+
+  <ul>
+    <li>Our CTO shaped the hook architecture.</li>
+    <li>An engineer who was one of my main reviewers wrote our formal requirements and design.
+    He also removed the feature flag.</li>
+    <li>Another engineer worked on detach logic, shell fixes, and tests.
+    That engineer approved more of my PRs than anyone else (16 of 28).</li>
+    <li>A third engineer made <code>flox deactivate</code> the canonical command and shipped it without the flag.
+    That engineer also built allow, deny, and environment restore.</li>
+  </ul>
+
+  <p>Work moved from my prototype to user docs, then to formal requirements and small PRs.</p>
+
+  <h2>Deactivation problem</h2>
+
+  <p>It started as an experiment while I tried the Amp coding agent.
+  What would a direnv-like Flox feel like?</p>
+
+  <p>Entering a directory turned out to be the easy half.
+  Leaving has to undo variables, <code>[profile]</code> scripts, services, and nested environments, in four shells.
+  That needs a <code>flox deactivate</code> that actually deactivates.
+  Ours was hidden and only told you to type <code>exit</code>.</p>
+
+  <h2>A prototype in a day</h2>
+
+  <p>Over March 19–20, I built the first version with Amp.
+  Our CTO saw a working demo, not a mockup.
+  The next two weeks of hardening were in Claude Code.</p>
+
+  <h2>Docs as the spec</h2>
+
+  <p>On March 26, I opened a user-facing docs PR.
+  When the engineer who wrote our requirements noted the 4,000-line prototype was too big to review, I pitched it as a throwaway.
+  The docs became the spec, which would force us to say how it works for an end user.
+  Open questions went into a Notion doc.</p>
+
+  <p>After an April 2 design review, he turned the docs into formal requirements and a design.
+  Then we rebuilt in small PRs.</p>
+
+  <p>I later wrote the shipped version of those docs, the <a href="https://flox.dev/docs/concepts/auto-activation" target="_blank" rel="noopener">auto-activation concept page</a>:</p>
+
+  <Image src={autoActivationDocs} alt="The auto-activation concept page in the Flox docs" />
+
+  <h2>Claude Code in production</h2>
+
+  <p>Every commit in my 28 merged PRs carries a Claude co-author trailer.
+  Claude's review bot caught a shell-injection risk in one of them before it merged.</p>
+
+  <h2>The second time: making activation visible</h2>
+
+  <p>In-place and auto-activations were silent, so you couldn't tell what was on.
+  On July 30–31, I prototyped a fix with Claude Code.
+  Our CTO pitched it as an experiment: prototype to release in one sprint.</p>
+
+  <p>Claude Code drafted six PRs.
+  I questioned the telemetry one and had another one split, which made eight.
+  Five merged on August 5, within three days of opening.</p>
+
+  <h2>Two commands, not three</h2>
+
+  <p>I cut <code>flox hook</code>, leaving <code>flox activate</code> and <code>flox deactivate</code>.
+  It's a simpler mental model, even though people who wanted only the hook now get a default environment.</p>
+
+  <h2>One prompt per <code>cd</code></h2>
+
+  <p>I made the default one batched consent prompt, even though that costs an extra prompt.
+  While it was behind a flag, anyone who turned it on wanted to try it.
+  So requiring <code>flox activate allow</code> first felt like needless friction.</p>
+
+  <p>The docs show the prompt:</p>
+
+<pre><code>Auto-activate the environment in '/path/to/project'? [y/N]</code></pre>
+
+  <p>Before launch, the engineer who wrote our requirements made a "no" stick, since typing a command to refuse for good was surprising.
+  I agreed.</p>
+
+  <h2>Announce once, then get out of the way</h2>
+
+  <p>Colleagues suggested announcing activations in one line and showing <code>default</code> environments in the prompt.
+  My framing was that a line on each change buys a shorter prompt.
+  So <code>flox [acme/core (local)]</code> became <code>flox [core]</code>.</p>
+
+  <p>We also considered abbreviating the owner instead of hiding it, and adding a setting to silence announcements.
+  I decided against both.
+  You know whose environment you're in, and the old (bad) behavior didn't need a setting.
+  The cost is that two <code>default</code> environments look alike, and announcements have no off setting.</p>
+
+  <h2>What didn't work</h2>
+
+  <ul>
+    <li>The prototype was good for feel and poor for handoff.
+    It skipped <code>[profile]</code> scripts, which the engineer who wrote our requirements warned might be the hardest part.
+    He guessed the prototype took a week and predicted ten times that for production.
+    I'd spent two and a half weeks, and production took about 13 more weeks (closer to five times).
+    My second prototype was under 500 lines and shipped as five small PRs (+164 lines), though for a smaller feature.</li>
+    <li>I underestimated deactivation.
+    It turned out to be most of the work.</li>
+    <li>The AI was confidently wrong.
+    The engineer who wrote our requirements spotted odd behavior in fish.
+    I traced it to what looked like Claude misreading direnv's docs.
+    Claude also kept writing unsafe tcsh, so I added a rule to the repo's <code>AGENTS.md</code>.</li>
+    <li>The telemetry that would have counted auto-activations didn't ship, so I can't report adoption.</li>
+  </ul>
+
+  <h2>Outcome</h2>
+
+  <ul>
+    <li><code>flox deactivate</code> shipped in <a href="https://github.com/flox/flox/releases/tag/v1.13.0" target="_blank" rel="noopener">1.13.0</a> (June 17).
+    Auto-activation went GA in <a href="https://github.com/flox/flox/releases/tag/v1.14.0" target="_blank" rel="noopener">1.14.0</a> (July 29) with a consent prompt.</li>
+    <li>The visibility changes shipped in <a href="https://github.com/flox/flox/releases/tag/v1.14.1" target="_blank" rel="noopener">1.14.1</a> (August 11), about 12 days after their prototype.
+    That spanned two of our one-week sprints, not one.</li>
+    <li>I diagnosed a 1.18.0 deactivation regression with Claude.
+    The engineer who approved most of my PRs and I agreed to hotfix it.
+    The fix merged 58 minutes after I opened it and shipped in <a href="https://github.com/flox/flox/releases/tag/v1.18.1" target="_blank" rel="noopener">1.18.1</a> the next day.</li>
+    <li>I authored 28 merged PRs (+7,315/-1,128) and the docs <a href="https://flox.dev/docs/concepts/auto-activation" target="_blank" rel="noopener">concept page</a>.
+    A colleague wrote the <a href="https://flox.dev/blog/auto-activation-is-now-native-in-flox/" target="_blank" rel="noopener">launch post</a>.</li>
+  </ul>
+</Layout>
