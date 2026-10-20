@@ -1,4 +1,4 @@
-# This workflow will deploy the Gatsby site to S3
+# This workflow will deploy the Astro site to S3
 
 on:
   push:
@@ -35,5 +35,9 @@ jobs:
       uses: borales/actions-yarn@v4
       with:
         cmd: run build
-    - name: Deploy to S3
-      run: aws s3 sync dist/ s3://www.danielsauble.com --delete
+    # Hashed assets first, so new pages never point at files that aren't there yet.
+    # They're kept across deploys, since a page cached for an hour may still need them.
+    - name: Deploy hashed assets to S3
+      run: aws s3 sync dist/_astro/ s3://www.danielsauble.com/_astro/ --cache-control "public, max-age=31536000, immutable"
+    - name: Deploy pages to S3
+      run: aws s3 sync dist/ s3://www.danielsauble.com --delete --exclude "_astro/*" --cache-control "public, max-age=3600"
