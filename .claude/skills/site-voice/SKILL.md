@@ -62,3 +62,6 @@ Append a dated rule each time Daniel edits copy, with **Why:** and **How to appl
 - (2026-10-19) **Use official product casing**: SaaS, npm, watchOS, HubSpot, SageMaker, NumPy, scikit-learn.
   **Why:** Daniel approved these fixes across the site.
   **How to apply:** check a product's own site for its casing before writing its name.
+- (2026-10-19) **Every past-role résumé bullet starts with a past-tense verb.** Noun-phrase bullets ("Acting product manager for…") get a minimal verb ("Served as acting product manager for…").
+  **Why:** Daniel asked for all résumé bullets in past tense after seeing tenses mixed within roles.
+  **How to apply:** only a current role may use present tense. Change the verb, not the rest of the bullet.
