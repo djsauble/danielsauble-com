@@ -17,6 +17,7 @@ All colors live on `:root` in `src/styles/index.css`. Never hardcode a color els
 | `--off-white` | `#FAF9F6` | Page and panel background |
 | `--off-black` | `#343231` | Text, borders, outlines |
 | `--paper-shade` | `#EFEDE7` | Code background, canvas hexes |
+| `--paper-deep` | `#D8D5CD` | Team-map silhouettes and lines |
 | `--serif` | Calisto MT → Iowan Old Style → Palatino → Georgia → serif | All text |
 | `--mono` | ui-monospace → SF Mono → Menlo → Consolas → monospace | Code |
 
@@ -36,6 +37,8 @@ All colors live on `:root` in `src/styles/index.css`. Never hardcode a color els
   - Lime is only the hover-cell highlight.
   - It stops when the waves converge, so idle CPU is zero.
   - It is the site's one playful element. Add no other motion.
+- **TeamMap** (`src/components/TeamMap.astro`): an inline SVG team map in the style of the older `00_team.png` images. It draws my headshot at the bottom center with roles on an arc, and gets an `aria-label` listing the roles.
+- **Code blocks:** `pre` uses the mono stack on `--paper-shade`, and long lines scroll inside the block so the page never scrolls sideways.
 - **Drafts:** `<Flag>` (`src/components/Flag.astro`) marks open questions in drafts. It renders lime and dashed in dev and fails a production build. See the `case-study` skill.
 
 ## Rules

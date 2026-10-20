@@ -50,11 +50,14 @@ Sections 1–8 run 600–1,000 words. Then add a `Sources` list that maps each c
 
 Pages start in `src/drafts/<slug>.astro`. Under `yarn dev`, drafts render at `/drafts/<slug>`, and production builds skip them.
 
+`src/drafts/` is git-ignored. The repo is public, so committing a draft would publish its flags and unreviewed claims on GitHub even though the page never deploys. Drafts stay on this machine until they're published. Keep their images in `public/images/<slug>/` uncommitted until then too.
+
 ```astro
 ---
 import { Image } from 'astro:assets';
 import Layout, { type BreadcrumbLink } from "../layouts/Layout.astro";
 import Flag from "../components/Flag.astro";
+import TeamMap from "../components/TeamMap.astro";
 
 import heroShot from '../../public/images/<slug>/01_hero_shot.png';
 
@@ -83,7 +86,7 @@ The import paths are the same as for `src/pages`, so publishing is just a file m
 |---|---|
 | Title + summary | `h1` (same as `title`). The first sentences of Intro state the outcome. |
 | Context + My role | `<h2>Intro</h2>`: "I was the … at …", then scope and dates |
-| Stakeholders | `<h2>Team and collaboration</h2>`: roles only, and how work flowed (including the prototype-to-production loop) |
+| Stakeholders | `<h2>Team and collaboration</h2>`: roles only, a `<TeamMap roles={[...]} />`, and how work flowed (including the prototype-to-production loop) |
 | The problem | `<h2><Specific> problem</h2>` |
 | Process | One concretely named `h2` per phase |
 | Decisions and tradeoffs | Inline ("We decided to…, even though…") or their own `h2` |
@@ -99,8 +102,8 @@ The import paths are the same as for `src/pages`, so publishing is just a file m
 
 Publish only after Daniel has reviewed the draft and every flag is resolved.
 
-1. Replace or remove every `<Flag>`. The production build fails if one remains on a published page.
-2. Run `git mv src/drafts/<slug>.astro src/pages/<slug>.astro`.
+1. Replace or remove every `<Flag>`. The production build fails if one remains on a published page. Remove leftover `<!-- IMAGE: … -->` comments too.
+2. Run `mv src/drafts/<slug>.astro src/pages/<slug>.astro`, then `git add` the page and its images.
 3. Add a `ProjectHero` at the top of `src/pages/projects.astro`, in reverse-chronological order:
    - `title` is the company name.
    - `description` is an imperative user outcome, sentence case, with no period.
@@ -112,4 +115,4 @@ Publish only after Daniel has reviewed the draft and every flag is resolved.
 - **Prefer real, public product surfaces:** docs pages, public FloxHub pages, and terminal output you can reproduce in a Flox environment.
 - Terminal snippets must be real and reproducible. Never invent output.
 - Internal screens, Slack, Linear, prototypes, and videos need Daniel's OK and redaction (customer org names, internal URLs).
-- A team map (`00_team.png`) shows roles only.
+- Team maps use `<TeamMap roles={['CTO', 'Engineer', ...]} />`, not a PNG. It draws my headshot with the roles on an arc, in brand colors, with real text labels. Keep labels short (about 16 characters), and put the most senior roles toward the top of the arc (the middle of the list).

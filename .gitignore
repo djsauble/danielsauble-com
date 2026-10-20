@@ -14,3 +14,7 @@ node_modules/
 
 # macOS-specific files
 .DS_Store
+
+# Case-study drafts stay on this machine until published (this repo is public)
+src/drafts/*
+!src/drafts/.gitkeep
