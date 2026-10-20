@@ -5,9 +5,10 @@ import "./project_hero.css"
 const ProjectHero = ({to, title, description, children}) => {
   return (
     <div className="project_hero">
-      <h3>{title}</h3>
+      <h3><a href={to}>{title}</a></h3>
       <p>{description}</p>
-      <a href={to}>
+      {/* The title link is the keyboard target, so the image link skips the tab order */}
+      <a href={to} className="project_hero_image" tabIndex={-1} aria-hidden="true">
         {children}
       </a>
     </div>

@@ -9,31 +9,31 @@ export interface BreadcrumbLink {
 
 interface Props {
   title?: string;
+  description?: string;
   breadcrumbs?: BreadcrumbLink[];
 }
 
+import Head from '../components/Head.astro';
 import BackgroundCanvas from '../components/BackgroundCanvas.astro';
 
-const { title = 'Daniel Sauble', breadcrumbs } = Astro.props;
+const { title = 'Daniel Sauble', description, breadcrumbs } = Astro.props;
 ---
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="generator" content={Astro.generator} />
-  <title>{title}</title>
-</head>
-<main>
-  <nav class="breadcrumbs">
-    <a href="/">Home</a>
-    {breadcrumbs && breadcrumbs.map((crumb, index) => (
-      <>
-        {' / '}
-        <a href={crumb.href}>{crumb.text}</a>
-      </>
-    ))}
-  </nav>
-  <slot />
-</main>
-<BackgroundCanvas />
+<html lang="en">
+  <Head title={title} description={description} />
+  <body>
+    <main>
+      <nav class="breadcrumbs">
+        <a href="/">Home</a>
+        {breadcrumbs && breadcrumbs.map((crumb, index) => (
+          <>
+            {' / '}
+            <a href={crumb.href}>{crumb.text}</a>
+          </>
+        ))}
+      </nav>
+      <slot />
+    </main>
+    <BackgroundCanvas />
+  </body>
+</html>

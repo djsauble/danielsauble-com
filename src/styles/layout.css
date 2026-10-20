@@ -10,8 +10,9 @@ body {
 
 main {
   padding: 2em 3em 3em 3em;
-  background-color: #ffffff;
-  border: solid 5px #eeeeee;
+  background-color: var(--off-white);
+  border: solid 2px var(--off-black);
+  border-top: solid 8px var(--lime);
 }
 
 @media (max-width: 960px) {
@@ -22,6 +23,7 @@ main {
   main {
     padding: 1em 1em 0 1em;
     border: none;
+    border-top: solid 8px var(--lime);
   }
 
   ul {

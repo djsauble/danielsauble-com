@@ -20,7 +20,7 @@ main {
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid #333333;
+  border: 2px solid var(--off-black);
 }
 
 .button-container {

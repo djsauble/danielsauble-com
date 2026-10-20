@@ -1,13 +1,14 @@
 .button {
   display: inline-block;
   padding: 0.5em 1em;
-  border: 1px solid #000;
-  color: #000;
+  border: 2px solid var(--off-black);
+  background-color: var(--lime);
+  color: var(--off-black);
   text-decoration: none;
   font-size: 1em;
-  transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #f0f0f0;
+  background-color: var(--lime);
+  text-decoration: underline;
 }

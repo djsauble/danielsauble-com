@@ -1,12 +1,27 @@
+/*
+ * Brand tokens. Lime is an accent, never text on off-white (2:1 contrast).
+ * Off-black on lime is 6:1, so lime works as a fill behind text.
+ */
+:root {
+  --lime: #32CD32;
+  --off-white: #FAF9F6;
+  --off-black: #343231;
+  --paper-shade: #EFEDE7;
+
+  --serif: 'Calisto MT', 'Iowan Old Style', 'Palatino Linotype', Palatino, 'URW Palladio L', P052, Georgia, serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
 body {
   margin: 0 auto;
   min-width: 200px;
   width: 100%;
-  background-color: #f8f8f8;
+  background-color: var(--off-white);
+  color: var(--off-black);
 
   /* Fonts */
-  font-family: 'Calisto MT', 'HelveticaNeue', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  font-size: 1em;
+  font-family: var(--serif);
+  font-size: 1.125em;
   line-height: 1.5em;
 }
 
@@ -32,6 +47,34 @@ h3 {
   margin-bottom: 0;
 }
 
-.fa-external-link {
-  font-size: 80%;
+a {
+  color: var(--off-black);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  background-color: var(--lime);
+}
+
+a:focus-visible {
+  background-color: var(--lime);
+  outline: 3px solid var(--off-black);
+  outline-offset: 2px;
+}
+
+a[target="_blank"]::after {
+  content: " \2197" / "";
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background-color: var(--paper-shade);
+  padding: 0.1em 0.3em;
+}
+
+::selection {
+  background-color: var(--lime);
+  color: var(--off-black);
 }
