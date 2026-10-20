@@ -15,10 +15,25 @@ import browseImage from '../../public/images/browse/tree_browsing.png';
 import runbudgetImage from '../../public/images/runbudget/forrest_cruise.png';
 
 const title = "Daniel Sauble";
+
+// Drafts only exist under `yarn dev`; see src/pages/drafts/[slug].astro
+const drafts = import.meta.env.DEV
+  ? Object.keys(import.meta.glob('../drafts/*.astro')).map(path => path.split('/').pop()!.replace('.astro', ''))
+  : [];
 ---
 
 <Layout title={title}>
   <h1>Projects</h1>
+
+  {drafts.length > 0 && (
+    <>
+      <h2>Drafts</h2>
+      <p>Only visible in dev. Production builds skip these.</p>
+      <ul>
+        {drafts.map(slug => <li><a href={`/drafts/${slug}`}>{slug}</a></li>)}
+      </ul>
+    </>
+  )}
 
   <ProjectHero
     to="/prefect"
